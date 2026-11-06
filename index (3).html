@@ -1,0 +1,1142 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style></head><body>
+<title>Cositas Importantes TA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: barra fija con pestañas; cada pestaña es una herramienta de consulta o un generador, de resumen a detalle */
+:root{
+  --bg:#F4F5FA; --surface:#FFFFFF; --ink:#1B2033; --muted:#646B85; --line:#E1E4EE;
+  --accent:#5552D1; --accent-soft:#ECEBFD; --on-accent:#FFFFFF;
+  --client:#23845A; --client-soft:#E3F4EB; --internal:#7A4FC2; --internal-soft:#F0E9FB;
+  --crit:#C93C3C; --crit-soft:#FBE9E9; --warn:#B9770E; --warn-soft:#FBF1DE; --ok:#23845A; --ok-soft:#E3F4EB; --done:#7C8299; --done-soft:#EEEFF3;
+  --scrim:rgba(20,22,35,.45);
+  --f-display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12141D; --surface:#1A1D29; --ink:#E8EAF2; --muted:#9CA2B8; --line:#2B2F3F;
+  --accent:#9A97F5; --accent-soft:#26254A; --on-accent:#12141D;
+  --client:#5CC994; --client-soft:#183126; --internal:#B996F2; --internal-soft:#2C2240;
+  --crit:#F07373; --crit-soft:#3A2024; --warn:#E9AE4A; --warn-soft:#3A2F1A; --ok:#5CC994; --ok-soft:#183126; --done:#9298AE; --done-soft:#252836; --scrim:rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12141D; --surface:#1A1D29; --ink:#E8EAF2; --muted:#9CA2B8; --line:#2B2F3F;
+  --accent:#9A97F5; --accent-soft:#26254A; --on-accent:#12141D;
+  --client:#5CC994; --client-soft:#183126; --internal:#B996F2; --internal-soft:#2C2240;
+  --crit:#F07373; --crit-soft:#3A2024; --warn:#E9AE4A; --warn-soft:#3A2F1A; --ok:#5CC994; --ok-soft:#183126; --done:#9298AE; --done-soft:#252836; --scrim:rgba(0,0,0,.6); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1120px;margin:0 auto;padding-block:20px 56px;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:26px;font-weight:700} h2{font-size:17px;font-weight:600} h3{font-size:14.5px;font-weight:600}
+p{margin:0}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)} .small{font-size:12.5px}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+button,select,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.appbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
+.appbar-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:14px;padding-block:8px}
+.brand{font-family:var(--f-display);font-weight:700;font-size:16px;white-space:nowrap}
+.brand span{color:var(--accent)}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:0;background:none;padding:9px 11px;border-radius:8px;font-weight:500;color:var(--muted);white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.searchbox{width:190px;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:7px 10px;min-width:0}
+
+.pagehead{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between}
+.pagehead .meta{display:flex;flex-direction:column;gap:3px;max-width:680px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid-side{display:grid;grid-template-columns:340px 1fr;gap:14px;align-items:start}
+.stack{display:flex;flex-direction:column;gap:12px;min-width:0}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 12px;font-weight:500;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.sm{padding:5px 9px;font-size:12.5px}
+.btn:hover{border-color:var(--accent)}
+.btn:disabled{opacity:.5;cursor:default}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 10px;font-size:12.5px;white-space:nowrap}
+button.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.pill{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600;white-space:nowrap;color:var(--c,var(--muted));background:var(--cs,var(--done-soft))}
+.c-client{--c:var(--client);--cs:var(--client-soft)} .c-int{--c:var(--internal);--cs:var(--internal-soft)}
+.c-ok{--c:var(--ok);--cs:var(--ok-soft)} .c-warn{--c:var(--warn);--cs:var(--warn-soft)} .c-crit{--c:var(--crit);--cs:var(--crit-soft)} .c-acc{--c:var(--accent);--cs:var(--accent-soft)}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.form label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}
+.form .full{grid-column:1/-1}
+input,select,textarea{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 10px;color:var(--ink);min-width:0}
+textarea{resize:vertical}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filters input[type=search]{flex:1 1 220px}
+.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;background:var(--bg);white-space:nowrap}
+.empty{color:var(--muted);font-size:13px;padding:8px 0}
+.note{font-size:12.5px;color:var(--muted);background:var(--accent-soft);border-radius:8px;padding:9px 12px}
+.note.warn{background:var(--warn-soft);color:var(--ink)}
+.pre{white-space:pre-line}
+
+/* Proceso */
+.steps{display:flex;flex-direction:column;gap:0;position:relative}
+.step{display:grid;grid-template-columns:44px 1fr;gap:14px;position:relative;padding-bottom:14px}
+.step:not(:last-child)::before{content:"";position:absolute;left:21px;top:40px;bottom:0;width:2px;background:var(--line)}
+.step .n{width:44px;height:44px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-family:var(--f-display);font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center}
+.step .body{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.step .meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.step .meta div{display:flex;flex-direction:column;gap:2px;font-size:12.5px}
+.flow{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.flow .arrow{color:var(--muted)}
+
+.linkbtn{border:0;background:none;padding:0;color:var(--accent);text-decoration:underline;text-underline-offset:2px;font-size:13px}
+/* Acordeones */
+details.acc{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+details.acc>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"+";margin-left:auto;font-family:var(--f-mono);color:var(--muted);font-size:16px}
+details.acc[open]>summary::after{content:"–"}
+details.acc[open]{border-color:var(--accent)}
+details.acc .in{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px}
+.step .n.sm{width:36px;height:36px;font-size:15px}
+.step.compact{grid-template-columns:36px 1fr;padding-bottom:8px}
+.step.compact:not(:last-child)::before{left:17px;top:36px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
+.tile{background:var(--bg);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tile span{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.tile b{font-family:var(--f-display);font-size:16px;font-weight:600;line-height:1.2}
+.bchips{display:flex;flex-wrap:wrap;gap:6px}
+.bchip{background:var(--accent-soft);color:var(--ink);border-radius:999px;padding:3px 10px;font-size:12.5px}
+.prot{display:flex;flex-direction:column;gap:8px}
+.protrow{display:grid;grid-template-columns:1fr 140px;gap:10px;align-items:center}
+.protbar{height:26px;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-family:var(--f-mono);font-size:12px;color:var(--surface);white-space:nowrap;overflow:hidden}
+.cflow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:560px){.cflow{grid-template-columns:1fr}.protrow{grid-template-columns:1fr}}
+/* Status CEIPAL */
+.sflow{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:6px}
+.sbtn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 6px;display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center;min-width:0;border-top:4px solid var(--oc)}
+.sbtn .sn{font-family:var(--f-display);font-weight:700;font-size:18px;color:var(--oc)}
+.sbtn .st{font-size:11.5px;line-height:1.25}
+.sbtn .ss{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.sbtn[aria-pressed="true"]{background:var(--accent-soft);box-shadow:0 0 0 1px var(--accent)}
+.o-rec{--oc:var(--accent)} .o-poc{--oc:var(--warn)}
+.sown{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:6px;margin-bottom:-4px}
+.sown span{border-radius:8px 8px 0 0;padding:5px 8px;font-size:12px;font-weight:600;text-align:center;background:var(--oc);color:var(--surface);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.handoff{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted)}
+.sdetail{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+.sname{font-family:var(--f-mono);font-size:17px;font-weight:500;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;display:inline-block}
+.sitgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.sit{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;text-align:left;display:flex;flex-direction:column;gap:3px}
+.sit:hover{border-color:var(--accent)}
+.sit b{font-family:var(--f-mono);font-weight:500;font-size:13px;color:var(--accent)}
+@media (max-width:900px){.sflow{grid-template-columns:repeat(3,minmax(0,1fr))}.sown{display:none}}
+/* CEIPAL */
+.verdict{border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.verdict .big{font-family:var(--f-display);font-size:20px;font-weight:700}
+.verdict.ok{background:var(--ok-soft)} .verdict.ok .big{color:var(--ok)}
+.verdict.warn{background:var(--warn-soft)} .verdict.warn .big{color:var(--warn)}
+.verdict.crit{background:var(--crit-soft)} .verdict.crit .big{color:var(--crit)}
+.notechips{display:flex;flex-wrap:wrap;gap:8px}
+.notechip{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 12px;text-align:left;display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 200px}
+.notechip b{font-family:var(--f-mono);font-weight:500;font-size:13px}
+.notechip span{font-size:12px;color:var(--muted)}
+.notechip:hover{border-color:var(--accent)}
+
+/* Follow up */
+.tl{display:flex;flex-direction:column;gap:6px}
+.tli{display:grid;grid-template-columns:92px 1fr auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.tli .d{font-family:var(--f-mono);font-size:12.5px;line-height:1.3}
+.tli .d small{display:block;color:var(--muted);font-size:11px}
+.tli.today{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.tli.past{opacity:.6}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;vertical-align:-1px;margin-right:4px}
+
+/* Follow up pasos */
+.fusteps{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+.fustep{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 6px;display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center;min-width:0}
+.fustep b{font-family:var(--f-mono);font-size:12px;font-weight:500;white-space:nowrap}
+.fustep.past{opacity:.55}
+.fustep.now{border-color:var(--warn);background:var(--warn-soft)}
+.fustep[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+@media (max-width:700px){.fusteps{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* JD */
+.outtabs{display:flex;gap:6px;flex-wrap:wrap}
+.out{width:100%;min-height:300px;font-family:var(--f-body);font-size:13.5px;line-height:1.55}
+.detected{display:flex;flex-wrap:wrap;gap:6px}
+
+/* Entrevista */
+.qlist{display:flex;flex-direction:column;gap:8px}
+.qcat{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;margin-top:6px}
+.q{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;grid-template-columns:auto 1fr;gap:6px 10px;background:var(--surface)}
+.q.off{opacity:.45}
+.q .qt{font-size:13.5px}
+.q .why{font-size:12px;color:var(--muted)}
+.q .rate{grid-column:2;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.q .rate button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:2px 9px;font-size:12px}
+.q .rate button[aria-pressed="true"].r3{background:var(--ok);border-color:var(--ok);color:var(--surface)}
+.q .rate button[aria-pressed="true"].r2{background:var(--warn);border-color:var(--warn);color:var(--surface)}
+.q .rate button[aria-pressed="true"].r1{background:var(--crit);border-color:var(--crit);color:var(--surface)}
+.q .rate input{flex:1 1 160px;padding:4px 8px;font-size:12.5px}
+.q input[type=checkbox]{width:18px;height:18px;margin-top:2px;padding:0}
+.score{display:flex;gap:8px;flex-wrap:wrap}
+/* Contratos */
+.countries{display:flex;gap:6px;flex-wrap:wrap}
+.ccards{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.facts div{background:var(--bg);border-radius:8px;padding:6px 9px;display:flex;flex-direction:column;font-size:12.5px;min-width:0}
+.facts span{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.ccard ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px;font-size:13px}
+.lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+
+/* Salarios */
+.split{display:flex;height:42px;border-radius:8px;overflow:hidden}
+.split div{display:flex;align-items:center;justify-content:center;color:var(--surface);font-family:var(--f-mono);font-size:12.5px;white-space:nowrap;overflow:hidden;min-width:0}
+.bigmoney{font-family:var(--f-display);font-size:30px;font-weight:700;font-variant-numeric:tabular-nums}
+.kv{display:grid;grid-template-columns:1fr auto;gap:6px 14px;font-size:13.5px}
+.kv .v{font-family:var(--f-mono);text-align:right}
+
+/* Sites / Links */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.card .t{font-weight:600}
+.card .s{font-size:12.5px;color:var(--muted)}
+.card .row{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+
+/* Reloj mundial */
+.clocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.clk{display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface);min-width:0}
+.clk .top{display:flex;align-items:center;gap:8px}
+.clk .fl{font-size:22px;line-height:1}
+.clk .nm{font-weight:600}
+.clk .tm{font-family:var(--f-display);font-size:32px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.clk .df{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.clk .dot{width:8px;height:8px;border-radius:50%;flex:none;margin-left:auto}
+.clk.home{border-color:var(--accent);background:var(--accent-soft)}
+/* Supervisores */
+.lvlseg{display:inline-flex;gap:6px;flex-wrap:wrap}
+.verdict small{display:block;font-weight:400;color:var(--ink);font-size:13px;margin-top:2px}
+.rgtbl td.sel{background:var(--accent-soft);font-weight:600}
+.rgtbl tr.cur td:first-child{font-weight:700;color:var(--accent)}
+.rgtbl td small{display:block;color:var(--muted);font-size:11px;font-family:var(--f-mono)}
+.chat{display:flex;flex-direction:column;gap:8px}
+.bub{border-radius:12px;padding:10px 14px;font-size:13.5px;line-height:1.5;max-width:92%;position:relative}
+.bub .who{display:block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.bub.cand{background:var(--bg);border:1px solid var(--line)}
+.bub.cand .who{color:var(--muted)}
+.bub.rec{background:var(--accent-soft);margin-left:auto}
+.bub.rec .who{color:var(--accent)}
+.bub.alt{background:var(--warn-soft);margin-left:auto}
+.bub.alt .who{color:var(--warn)}
+.bub.hl{box-shadow:0 0 0 2px var(--ok)}
+.bub.dim{opacity:.5}
+.bub .cp{position:absolute;top:6px;right:8px}
+.tipline{font-size:12.5px;color:var(--muted);font-style:italic}
+.pflow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.pstep{border:1px solid var(--line);border-top:4px solid var(--oc);border-radius:10px;padding:8px 10px;background:var(--surface);display:flex;flex-direction:column;gap:3px;min-width:0}
+.pstep b{font-size:12.5px}.pstep span{font-size:12px;color:var(--muted)}
+.pstep .who{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--oc)}
+@media (max-width:800px){.pflow{grid-template-columns:1fr}}
+/* Mejor hora */
+.ctgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.ctl{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:13.5px;align-items:baseline}
+.ctl .k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.ctl .co{color:var(--muted);font-size:12.5px}
+.status{border-radius:10px;padding:10px 12px;font-weight:600;font-size:15px}
+.status.ok{background:var(--ok-soft);color:var(--ok)}.status.wait{background:var(--warn-soft);color:var(--warn)}.status.no{background:var(--crit-soft);color:var(--crit)}
+.status small{display:block;font-weight:400;color:var(--ink);font-size:12.5px;margin-top:2px}
+.ct{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.ct.good{border-color:var(--ok);box-shadow:0 0 0 1px var(--ok)}
+.ct .clock{font-family:var(--f-display);font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.ct .rate{font-family:var(--f-mono);font-size:13px}
+.day24{position:relative;height:14px;background:var(--bg);border-radius:4px;overflow:hidden}
+.day24 i{position:absolute;top:0;bottom:0}
+.day24 .nw{background:var(--ink);width:2px}
+.ticks24{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10px;color:var(--muted)}
+.ratebar{height:6px;border-radius:3px;background:var(--bg);overflow:hidden}.ratebar i{display:block;height:100%;background:var(--ok)}
+/* Horarios */
+.lanes{display:flex;flex-direction:column;gap:14px}
+.lane{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center}
+.track{position:relative;height:58px;background:var(--bg);border:1px solid var(--line);border-radius:8px}
+.blk{position:absolute;top:5px;bottom:5px;border-radius:6px;background:var(--accent-soft);border:1px solid var(--accent);padding:3px 6px;font-size:11.5px;overflow:hidden;line-height:1.25;color:var(--ink)}
+.blk.me{background:var(--accent);color:var(--on-accent)}
+.blk.now{box-shadow:0 0 0 2px var(--ok)}
+.nowline{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--crit)}
+.hours{display:grid;grid-template-columns:96px 1fr;gap:10px}
+.hours .ticks{position:relative;height:16px;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.hours .ticks span{position:absolute;transform:translateX(-50%)}
+.nowbox{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.nowbox .panel .big{font-family:var(--f-display);font-size:19px;font-weight:700}
+
+.scrim{position:fixed;inset:0;background:var(--scrim);z-index:30;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--surface);width:100%;max-width:640px;max-height:92%;overflow:auto;border-radius:16px 16px 0 0;padding:18px max(18px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:12px}
+@media (min-width:700px){.scrim{align-items:center}.sheet{border-radius:16px}}
+.mailbox{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px;max-height:50vh;overflow:auto}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--surface);border-radius:8px;padding:9px 14px;font-size:13px;z-index:40;max-width:calc(100% - 32px)}
+
+@media (max-width:900px){.grid2,.grid-side{grid-template-columns:1fr}.searchbox{display:none}}
+@media (max-width:560px){
+  h1{font-size:22px}.brand{display:none}
+  .step .meta,.facts{grid-template-columns:1fr}
+  .tli{grid-template-columns:78px 1fr}.tli .act{grid-column:1/-1}
+  .lane,.hours{grid-template-columns:60px 1fr}
+  .nowbox{grid-template-columns:1fr}
+}
+</style>
+
+<header class="appbar gutter">
+  <div class="appbar-in">
+    <div class="brand">Cositas <span>TA</span></div>
+    <nav class="tabs" role="tablist" aria-label="Secciones" id="tabs"></nav>
+    <input type="search" class="searchbox" id="gsearch" placeholder="Buscar en todo…" aria-label="Buscar en todo">
+  </div>
+</header>
+<main class="gutter"><div class="wrap" id="main"></div></main>
+<div class="scrim" id="scrim" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const DATA={"proceso": [{"n": "1", "etapa": "Recepción del Form", "desc": "Llega el formulario de la vacante (New Req / Replacement). Se asigna un POC y un reclutador", "resp": "Dani", "sla": "Primer día hábil después de la apertura de la posición.", "tool": "Form por Correo"}, {"n": "2", "etapa": "Kick Off Call con Hiring Manager", "desc": "Llamada inicial para alinear perfil, condiciones, expectativas y urgencia de la posición.", "resp": "POC y reclutador", "sla": "Durante el primer día hábil posterior a la recepción de la vacante.", "tool": "Se toma notas y se comparte por medio del correo al Team y al Hiring Manager"}, {"n": "3", "etapa": "Inicio de búsqueda (Sourcing)", "desc": "Se activa la búsqueda de candidatos en las plataformas definidas.", "resp": "Reclutador asignado", "sla": "Inmediatamente después del Kick Off Call.", "tool": "LinkedIn, Pandape, Indeed, Ceipal"}, {"n": "4", "etapa": "Entrevista de TA", "desc": "Se realizan las entrevistas del TA con los candidatos", "resp": "Reclutador", "sla": "Según avance del pipeline.", "tool": "Teams"}, {"n": "5", "etapa": "Envío de Submittal", "desc": "Se envía el perfil del candidato directamente al Hiring Manager.", "resp": "Reclutador asignado", "sla": "Hiring Manager debe responder en 1 día hábil.", "tool": "Se envia el submittal por ceipal con los requerimientos del Hiring manager (CV, VIDEO, KUDERT o EXCEL)"}, {"n": "6", "etapa": "Agenda de entrevista con HM", "desc": "Se coordina la entrevista entre el candidato y el Hiring Manager.", "resp": "Reclutador asignado", "sla": "Dentro de las siguientes 24 horas posteriores a la aprobación del perfil.", "tool": "Calendario / Correo"}, {"n": "7", "etapa": "Retroalimentación del HM", "desc": "Se espera el feedback del HM, en caso de que demore mas de un dia se le puede escribir a consultarle como le fue con el candidato", "resp": "Reclutador asignado", "sla": "1 a 2 días hábiles posteriores a la entrevista.", "tool": "Tracker de vacantes"}, {"n": "8", "etapa": "Oferta", "desc": "Se extiende la oferta al candidato seleccionado.", "resp": "Reclutador", "sla": "Dentro de las 24 horas posteriores a la decisión final.", "tool": "Se envia el Acknowledgement (Colombia y paises con contrato bajo planilla o prestaciones) en caso de ser contractor no se les manda ACK"}, {"n": "9", "etapa": "Control Order / Examenes medicos", "desc": "Se envia ya sea a proceso invertido inicialmente (lo recomendado si el candidato tiene altos indicios de ser contratado para adelantar) tambien se puede subir la orden directamente si seleccionaron al candidato y HR lo cita a examenes medicos (Solo en colombia y Perú si la posicion es con contrato indefinido o bajo planilla) si es contractor solo se sube la control order", "resp": "Reclutador", "sla": "Inmediatamente después de la aceptación de oferta.", "tool": ""}], "ceipal": {"steps": [{"paso": "Buscar candidato en CEIPAL", "accion": "Validar si el candidato ya existe en la plataforma.", "regla": "Si tiene un proceso activo o un submittal activo, no se puede continuar con el candidato."}, {"paso": "Revisar protección", "accion": "Verificar notas y actividad reciente.", "regla": "Si no tiene notas, está disponible para cualquier TA."}, {"paso": "Crear candidato", "accion": "Si no existe, crear el perfil completo en CEIPAL.", "regla": "Todo candidato nuevo debe quedar documentado con una nota de seguimiento."}, {"paso": "Registrar notas", "accion": "Actualizar el estado del candidato según corresponda.", "regla": "Solo están permitidas las notas aprobadas indicadas abajo."}, {"paso": "Gestionar entrevistas", "accion": "Programar y dar seguimiento a entrevistas.", "regla": "Una entrevista protege al candidato durante 48 horas mientras se registra el feedback."}, {"paso": "Mantener actualizado el proceso", "accion": "Registrar cada avance oportunamente.", "regla": "Después de 7 días sin actualización, el candidato vuelve a estar disponible para otros TA."}], "notas": [{"nota": "First Contact", "uso": "Primer contacto con el candidato."}, {"nota": "Interview Scheduled", "uso": "Entrevista programada."}, {"nota": "CV and Video Requested", "uso": "Solicitud de CV y video."}, {"nota": "Final Interview Scheduled", "uso": "Entrevista final programada."}, {"nota": "Hired", "uso": "Candidato contratado."}, {"nota": "In Process", "uso": "Solo puede ser utilizada una vez por reclutador."}], "prot": [{"sit": "Sin notas registradas", "prot": "Disponible para cualquier TA/Sourcer."}, {"sit": "First Contact sin respuesta", "prot": "24 horas de protección."}, {"sit": "Entrevista o Submittal registrado", "prot": "7 días hábiles de protección para el TA Owner."}, {"sit": "Más de una semana sin actualización", "prot": "Disponible nuevamente para otros TA."}, {"sit": "Entrevista agendada", "prot": "48 horas de protección hasta registrar feedback."}]}, "links": [{"name": "Form para solicitar posición", "label": "SOLICITUD REQUISICIÓN", "url": "https://forms.cloud.microsoft/pages/responsepage.aspx?id=I2XspS3VPUS-vO7PE6rnrJ2xCvMQpUhJheD9McMzo0RUMDVPTUxXUk42WFE5RjU4RFBMWFlEUklLOS4u", "desc": "Link para que el Hiring manager solicite formalmente una posicion"}, {"name": "Cambios en form", "label": "Form Changes", "url": "https://forms.cloud.microsoft/pages/responsepage.aspx?id=I2XspS3VPUS-vO7PE6rnrJ6fEcS7VNVAg7je5gIV60pUQ0xEMElINTZWV1Y1QkY5QThOMEJZTzI1RS4u", "desc": "Cancelaciones de posiciones, reopen, etc."}, {"name": "General Talent Acquisition Form", "label": "General Talent Acquisition Form (2026)", "url": "https://forms.office.com/pages/responsepage.aspx?id=I2XspS3VPUS-vO7PE6rnrJ6fEcS7VNVAg7je5gIV60pUOEoxVkE0QTNHTjFGN1A5UlgxTTFTOTczTi4u&route=shorturl", "desc": "Form para proceso invertido, cambios en CO, cancelaciones, rehire y verificacion de extranjeria, company changes"}, {"name": "Ceipal", "label": "Ceipal", "url": "https://talenthirecls1.ceipal.com/Applicants/index", "desc": ""}, {"name": "Salary payment mood Perú", "label": "Compensacion Peru", "url": "https://onesourcecorp.sharepoint.com/:x:/r/sites/CompensationPricing/_layouts/15/Doc2.aspx?action=edit&sourcedoc=%7B2b27af04-c2c3-4140-b07d-87989a05b25d%7D&wdOrigin=TEAMS-MAGLEV.undefined_ns.rwc&wdExp=TEAMS-TREATMENT&wdhostclicktime=1770824590810&web=1", "desc": ""}, {"name": "Control Order", "label": "Control Order", "url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=I2XspS3VPUS-vO7PE6rnrJ2xCvMQpUhJheD9McMzo0RUNDNEWldTQ0Y5VlVOVFYwMUJJUTlIUDk2Si4u", "desc": ""}, {"name": "Tracker", "label": "", "url": null, "desc": ""}, {"name": "Vista control order", "label": "Vista Control Order para TA.xlsx", "url": "https://onesourcecorp.sharepoint.com/:x:/r/sites/dataentry/Shared%20Documents/Vista%20Control%20Order%20para%20TA.xlsx?d=w340ef4942eb1455c97f682b1bc1dc810&csf=1&web=1&e=BsANOi", "desc": ""}, {"name": "CV Generator", "label": "Solvo CV Generator", "url": "https://teams.microsoft.com/l/app/?source=agentCenterDialog&titleId=T_a686db59-cc62-7eea-77fb-044e68be92ff", "desc": ""}, {"name": "JD CV IA Evaluator", "label": "CV and JD evaluator", "url": "https://teams.microsoft.com/l/app/e14bc513-d061-4a1d-ad75-ea210a6794a9?source=store-item", "desc": ""}, {"name": "Global HR policies", "label": "Global HR policies", "url": "https://teams.microsoft.com/l/app/75efc759-ae1e-40ef-9b5c-2f4efcdd8756?source=store-item", "desc": ""}, {"name": "Kudert", "label": "Kudert", "url": "https://app.kudert.com/send-test?operative=true", "desc": ""}, {"name": "Link de Funnel", "label": "Funnel follow up - STAFF.xlsx", "url": "https://onesourcecorp-my.sharepoint.com/:x:/r/personal/jennifer_botero_solvoglobal_com/_layouts/15/Doc.aspx?sourcedoc=%7B06A78E78-2518-4604-B31A-89273BC3C5A5%7D&file=Funnel%20follow%20up%20-%20STAFF.xlsx&fromShare=true&action=default&mobileredirect=true%20Funnel%20follow%20up%20-%20STAFF.xlsx&ovuser=a5ec6523-d52d-443d-bebc-eecf13aae7ac%2Cvanessa.valencia%40solvoglobal.com&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI0OS8yNjA4MTMxOTMyMSJ9", "desc": "Mostrar el movimiento de la posición en números."}, {"name": "Solicitud de CDP", "label": "DataHelpDesk", "url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=I2XspS3VPUS-vO7PE6rnrMWtLRsqRQpFrxZ3RtV-o1dUN0o0NUc0T1Y3N1pHWk9LNEw1R0I2UTRYSS4u", "desc": "Para cuando las posiciones son Replacement y no está el CDP - se requiere el"}, {"name": "Form de ingreso Relación de dependencia Mexico", "label": "Formulario Nuevo Ingreso", "url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=I2XspS3VPUS-vO7PE6rnrMWtLRsqRQpFrxZ3RtV-o1dURVJTS0hEQldJR0VVVFVPRDZLQk9MWlFFUC4u", "desc": ""}], "fu_obj": ["Optimizar y estandarizar la comunicación entre los actores del proceso de reclutamiento enfocado en nuestros clientes (TA, Ventas y Onboarding) para colocar hires de la forma más rápida y eficiente posible. Una comunicación efectiva asegura que el cliente responda y que los candidatos sean considerados y entrevistados a tiempo, reduciendo los ciclos de desconexión, demoras y seguimientos.\nLos clientes nuevos son muy importantes: activarlos y hacerlos crecer es parte de nuestro objetivo como Talent Acquisition. Trabajar junto con Onboarding permite movilizar y garantizar estos hires, dejando a Ventas enfocado en sus funciones. La relación y el enfoque correctos del POC de TA y del agente de OB con el cliente serán el camino hacia el éxito de los clientes nuevos y el crecimiento orgánico.", "1. Cronograma general (resumen)"], "fu_notes": [{"n": "1", "tema": "Respuestas del cliente", "regla": "Si el cliente responde a nuestros correos, debe ser un feedback concreto sobre los candidatos presentados. Respuestas como \"estamos revisando\", \"gracias, lo reviso\", \"quedamos atentos\", \"les escribimos pronto\" cuentan como respuesta, pero no como la que necesitamos para saber si el pipeline avanza. En esos casos NO se inicia el proceso de follow up: el Especialista de Activación de Clientes llama ese mismo día al Implementation Manager para darle visibilidad de las respuestas y al día siguiente llama al cliente para hacer seguimiento a los próximos pasos con base en los primeros candidatos enviados."}, {"n": "2", "tema": "Canales y responsable", "regla": "Todas las comunicaciones de seguimiento las envía TA, a través del Especialista de Activación de Clientes a cargo del cliente, en este orden: 1) llamada; 2) si no contesta, correo; 3) finalmente, un SMS con el resumen del último correo enviado."}, {"n": "3", "tema": "Frecuencia y duración", "regla": "Cada contacto se hace como muestra el calendario: unos cada 48 horas y otros cada 72 horas. Desde el envío del 1.er candidato, todo el proceso de follow up y el aviso final de cancelación de la requisición toma 22 días hábiles."}, {"n": "4", "tema": "Candidatos mínimos para iniciar", "regla": "Los reclutadores deben enviar 3 candidatos por posición (si el cliente solicita 2 o más vacantes) y máximo 5 candidatos por posición (si solicita solo 1 vacante) para iniciar el proceso de follow up."}, {"n": "5", "tema": "Cliente de vacaciones / PTO / fuera de oficina", "regla": "El contador de seguimientos se detiene. De acuerdo con Ventas y el Implementation Manager se toma una de estas rutas: 1) intentar contactar a un segundo punto de contacto de respaldo que indique el contacto principal; 2) si no hay respaldo, poner la posición en hold hasta que el cliente regrese. La reactivación es responsabilidad del Especialista de Activación de Clientes."}, {"n": "6", "tema": "Tiempo de respuesta de TA", "regla": "El equipo de TA se compromete a responder al cliente en máximo 3 horas hábiles: agendamiento de entrevistas de candidatos, preguntas y feedback en general."}, {"n": "7", "tema": "Límite de 5 candidatos", "regla": "Si ya se enviaron 5 candidatos al cliente y este no responde, sin importar en qué número de seguimiento estemos, se dejan de enviar candidatos nuevos hasta recibir feedback de los pendientes."}], "fu_tpls": [{"n": "1", "seg": "Seguimiento 1", "asunto": "Seguimiento a candidatos para el cargo de [Nombre del cargo]", "cuerpo": "Buenos días, [Nombre del cliente]:\n\nEspero que se encuentre muy bien.\n\nLe escribo para hacer seguimiento a la shortlist de candidatos que le compartí el [Fecha de envío] para el cargo de [Nombre del cargo] en [Empresa]. Le dejo un resumen para su referencia:\n• [Nombre del candidato 1]\n• [Nombre del candidato 2]\n• [Nombre del candidato 3]\n\nLos tres candidatos siguen muy interesados en la oportunidad y con ganas de avanzar en el proceso. Me han pedido novedades, por eso quería consultarle si tiene algún feedback inicial o si le gustaría programar entrevistas con alguno de ellos.\n\nQuedo pendiente de sus comentarios o de cualquier información adicional que necesite de mi parte.\n\nCordial saludo,\n[Su nombre]"}, {"n": "2", "seg": "Seguimiento 2", "asunto": "Segundo seguimiento a candidatos para el cargo de [Nombre del cargo]", "cuerpo": "Buenos días, [Nombre del cliente]:\n\nEspero que se encuentre muy bien.\n\nQuiero hacer un nuevo seguimiento a la shortlist de candidatos que le compartí el [Fecha de envío] para el cargo de [Nombre del cargo] en [Empresa]. Como recordatorio, los candidatos presentados fueron:\n• [Nombre del candidato 1]\n• [Nombre del candidato 2]\n• [Nombre del candidato 3]\n\nYa ha pasado poco más de una semana y los tres candidatos siguen muy interesados en la oportunidad. Me han vuelto a escribir para preguntar por los siguientes pasos, así que quería consultarle si tiene algún feedback o si desea avanzar con las entrevistas.\n\nPor favor, cuénteme cómo desea proceder o si necesita información adicional de mi parte. Con gusto le colaboro en lo que necesite.\n\nCordial saludo,\n[Su nombre]"}, {"n": "3", "seg": "Seguimiento 3", "asunto": "Tercer seguimiento a candidatos para el cargo de [Nombre del cargo]", "cuerpo": "Buenos días, [Nombre del cliente]:\n\nEspero que se encuentre muy bien.\n\nLe escribo nuevamente por la shortlist de candidatos que compartimos el [Fecha de envío] para el cargo de [Nombre del cargo] en [Empresa]. Como recordatorio, los candidatos que están en cola son:\n• [Nombre del candidato 1]\n• [Nombre del candidato 2]\n• [Nombre del candidato 3]\n\nHan pasado más de [X] días hábiles desde que enviamos los perfiles y todos los candidatos siguen interesados. Sin embargo, están participando activamente en otros procesos de selección y el riesgo de perderlos por ofertas de la competencia es cada vez mayor.\n\nEntiendo que las prioridades y agendas internas pueden cambiar, pero quería que tuviera total visibilidad para evitar perder talento valioso para este cargo. Si pudiera compartirme alguna novedad o indicarme si desea avanzar con las entrevistas, coordino todo de inmediato.\n\nGracias de antemano por su tiempo; quedo pendiente de sus noticias.\n\nCordial saludo,\n[Su nombre]"}, {"n": "4", "seg": "Seguimiento 4", "asunto": "Cuarto seguimiento a candidatos para el cargo de [Nombre del cargo]", "cuerpo": "Buenos días, [Nombre del cliente]:\n\nEspero que se encuentre muy bien.\n\nLe escribo una vez más para hacer seguimiento a la shortlist de candidatos que compartimos el [Fecha de envío] para el cargo de [Nombre del cargo] en [Empresa]. Como recordatorio, los candidatos que están en cola son:\n• [Nombre del candidato 1]\n• [Nombre del candidato 2]\n• [Nombre del candidato 3]\n\nHan pasado [X] días hábiles desde que enviamos los perfiles. Nuestra prioridad es seguir brindándole el apoyo y la experiencia necesarios para que el proceso de contratación sea exitoso. Sin embargo, dado el tiempo transcurrido, necesitamos avanzar para no perder talento valioso que está progresando en otros procesos.\n\nEn este punto, su compromiso oportuno es fundamental para mantener el proceso en la dirección correcta y lograr el mejor resultado posible para este cargo.\n\nApenas pueda compartirnos feedback actualizado, próximos pasos o disponibilidad para entrevistas, estaremos listos para coordinar de inmediato.\n\nGracias de antemano por su atención. Quedo pendiente de sus noticias.\n\nCordial saludo,\n[Su nombre]"}, {"n": "5–7", "seg": "Seguimientos 5, 6 y 7 (misma plantilla)", "asunto": "[Quinto / Sexto / Séptimo] seguimiento a candidatos para el cargo de [Nombre del cargo]", "cuerpo": "Buenos días, [Nombre del cliente]:\n\nEspero que se encuentre muy bien.\n\nLe escribo nuevamente por la shortlist de candidatos que compartimos el [Fecha de envío] para el cargo de [Nombre del cargo] en [Empresa]. Como recordatorio, los candidatos que están en cola son:\n• [Nombre del candidato 1]\n• [Nombre del candidato 2]\n• [Nombre del candidato 3]\n\nHan pasado [X] días hábiles desde que enviamos los perfiles y aún no hemos recibido feedback ni novedades del proceso. Todos los candidatos han seguido manifestando interés, pero en este punto están avanzando en otras oportunidades y la probabilidad de perderlos es muy alta.\n\nSeguimos totalmente comprometidos con apoyarle y con que esta búsqueda sea exitosa. Sin embargo, sin comunicación ni próximos pasos es cada vez más difícil mantener alineado el proceso y el interés de los candidatos.\n\nEn este punto necesitamos con urgencia su opinión para definir cómo proceder. Incluso una breve actualización nos ayudaría a manejar expectativas y a decidir el mejor curso de acción.\n\nGracias de antemano por su atención. Quedo pendiente de sus noticias.\n\nCordial saludo,\n[Su nombre]"}], "contratos": [{"pais": "Colombia", "tipo": "Término indefinido", "cond": "Periodo de prueba: 2 meses.\nDespido sin justa causa: sin preaviso, se paga la indemnización correspondiente.", "benef": "• Prima legal (1 mes de salario por año, en 2 cuotas: 30 de junio y 20 de diciembre)\n• Seguridad social (salud, pensión y riesgos laborales)\n• Vacaciones: 15 días hábiles al año (tras 1 año de servicio)\n• Auxilio de transporte de $200.000 (si aplica)", "partner": "Solvo Global", "moneda": "COP", "min": "3 días hábiles", "notas": "Aplica para todas las posiciones. Cuenta con división salarial: 65% base salarial / 35% auxilio extralegal de vivienda (la base no puede ser inferior al SMMLV).\nFecha máxima de ingreso: el 27 de cada mes por nómina (después de esa fecha requiere autorización previa)."}, {"pais": "Colombia", "tipo": "Término fijo", "cond": "Periodo de prueba: 2 meses.\nDuración máxima: 4 años (si se prorroga más, pasa a indefinido).\nSe renueva automáticamente si el empleador no avisa 30 días antes del vencimiento; el empleado también debe avisar con mínimo 30 días (salvo pacto distinto).", "benef": "• Mismas prestaciones de ley que el indefinido (prima legal, seguridad social, vacaciones)", "partner": "Solvo Global", "moneda": "COP", "min": "3 días hábiles", "notas": "Solo si el Hiring Manager lo solicita o cuenta con un aprobado para ello.\nSe usa cuando el trabajo tiene duración definida (proyectos temporales o reemplazo por licencia de maternidad)."}, {"pais": "Argentina", "tipo": "Contractor", "cond": "Único tipo de contrato que se ofrece en el país.\nPeriodo de prueba: 2 meses.\nEl cliente define calendario, objetivos y honorarios (normalmente no negociables, se comunican con claridad desde el inicio).", "benef": "Sin prestaciones legales, vacaciones reglamentarias ni bonificaciones.\n• PTO como beneficio extra: 10 días hábiles al año (después de los primeros 6 meses)", "partner": "Solvo Global", "moneda": "USD", "min": "1 día hábil", "notas": "Usar siempre \"honorarios\", nunca \"salario\" (modelo de servicios).\nPago mensual por Payoneer entre el 1.º y el 5.º día hábil; el candidato crea su propio usuario con las instrucciones de HR.\nRequiere DNI argentino. Monotributo obligatorio si la posición es presencial (opcional si es remota).\nSin exámenes médicos ni fecha máxima de ingreso."}, {"pais": "México", "tipo": "Término indefinido", "cond": "Periodo de prueba: 2 meses (60 días) para entry level; 180 días para posiciones directivas o muy técnicas.\nNo existe un plazo de preaviso legal para la rescisión del contrato.", "benef": "• IMSS (seguridad social)\n• Aguinaldo: 15 días de sueldo en diciembre (proporcional si lleva menos de 1 año)\n• Utilidades: 10% de las utilidades de la empresa, se pagan en mayo–junio (mínimo 60 días trabajados)\n• Prima dominical: 25% extra\n• Vacaciones: 12 días hábiles el 1.er año (hasta 22 desde el 6.º)", "partner": "Solvo Global", "moneda": "MXN", "min": "1 día hábil", "notas": "Cuenta con división salarial: 70% sueldo / 30% bono neto (se paga por fuera de nómina, en tarjeta adicional, sin deducciones). La remuneración indicada es bruta (\"total de percepciones\").\nAcknowledgement: se envía apenas se carga el control order. Sin exámenes médicos."}, {"pais": "México", "tipo": "Término fijo", "cond": "Se usa cuando el trabajo tiene duración definida (proyectos temporales o reemplazo por licencia de maternidad).", "benef": "• Mismas prestaciones de ley que el indefinido (IMSS, aguinaldo, utilidades, prima dominical, vacaciones)", "partner": "Solvo Global", "moneda": "MXN", "min": "1 día hábil", "notas": "Cuenta con división salarial: 70% sueldo / 30% bono neto."}, {"pais": "México", "tipo": "Contractor", "cond": "", "benef": "NA", "partner": "Solvo Global", "moneda": "USD", "min": "1 día hábil", "notas": ""}, {"pais": "Perú", "tipo": "Bajo planilla (fijo cada 3 meses)", "cond": "Planilla completa bajo el régimen general (a término fijo).\nPeriodo de prueba: 3 meses. Contratos renovables cada 3 meses.\nEl contrato se envía cuando el candidato aprueba todas las etapas de pre-hiring.", "benef": "• Seguro público cubierto 100% por Apex (si quiere EPS privada, el candidato paga la diferencia)\n• Asignación familiar (con la documentación adecuada al firmar el contrato)\n• Gratificaciones: 1 sueldo completo en julio y otro en diciembre\n• Pensión: descuento del 13% del salario bruto\n• Vacaciones: 30 días al año; se gozan 15 días hábiles tras el 1.er año y los otros 15 se pagan con el sueldo", "partner": "Apex", "moneda": "PEN", "min": "5 días hábiles", "notas": "Renovable cada 3 meses. Cuenta con división salarial: base prestacional + vale de alimentos 20% (Sodexo) + transporte S/30 por día presencial (posiciones remotas: S/200 fijos de compensación por teletrabajo).\nAl ingresar firman un documento aceptando la política de vacaciones. Feriados laborados: se pagan al triple (si no se da día compensatorio)."}, {"pais": "Perú", "tipo": "Contractor", "cond": "Periodo de prueba 2 meses", "benef": "NA", "partner": "Solvo Global", "moneda": "PEN", "min": "1 día hábil", "notas": "Remoto"}, {"pais": "Guatemala", "tipo": "Término indefinido", "cond": "Periodo de prueba: 2 meses (60 días).\nPara terminarlo debe haber justa causa o mutuo acuerdo; sin justa causa se paga indemnización.", "benef": "• IGSS (seguridad social) e IRTRA (centro recreativo)\n• Aguinaldo (salario extra en diciembre)\n• Bono 14 (salario extra en julio)\n• Vacaciones: 15 días hábiles al año (tras 1 año de servicio)\n• Parqueadero con tarifa baja (carros Q150, motos Q50)", "partner": "Allied Global", "moneda": "GTQ", "min": "3 días hábiles", "notas": "Cuenta con división salarial: 80% base salarial (se paga a fin de mes) / 20% bono de asistencia (no prestacional, sin descuentos, normalmente se paga el 15).\nMencionar la alianza con Allied desde el inicio y aclarar que no todas las posiciones son de CSR.\nAcknowledgement: se envía cuando el candidato aprueba el background check. Sin exámenes médicos."}, {"pais": "Guatemala", "tipo": "Término fijo", "cond": "Se usa cuando el trabajo tiene duración definida (proyectos temporales o reemplazo por licencia de maternidad).\nSi se renueva constantemente puede convertirse en indefinido.", "benef": "• Mismas prestaciones de ley que el indefinido (IGSS, IRTRA, aguinaldo, Bono 14, vacaciones)", "partner": "Allied Global", "moneda": "GTQ", "min": "3 días hábiles", "notas": "Cuenta con división salarial: 80% base salarial / 20% bono de asistencia."}, {"pais": "Guatemala", "tipo": "Contractor", "cond": "Periodo de prueba 2 meses", "benef": "NA", "partner": "Solvo Global", "moneda": "USD", "min": "1 día hábil", "notas": "Remoto"}, {"pais": "Honduras", "tipo": "Término indefinido", "cond": "Periodo de prueba: 2 meses (60 días).\nPara terminarlo debe haber justa causa o mutuo acuerdo; sin justa causa se paga indemnización.", "benef": "• IHSS (seguridad social)\n• Catorceavo: 1 salario mensual completo, generalmente antes del 30 de junio (proporcional si lleva menos de 1 año)\n• Aguinaldo: salarios ordinarios del año (sin horas extra ni bonificaciones) ÷ 12; proporcional si lleva menos de 1 año\n• Vacaciones: 10 días tras el 1.er año, 12 al 2.º, 15 al 3.º y 20 desde el 4.º", "partner": "Allied Global", "moneda": "HNL", "min": "Por confirmar", "notas": "Cuenta con división salarial: 80% base salarial (se paga a fin de mes) / 20% bono de asistencia (no prestacional, sin descuentos, normalmente se paga el 15).\nMencionar la alianza con Allied desde el inicio y aclarar que no todas las posiciones son de CSR.\nAcknowledgement: se envía cuando el candidato aprueba el background check. Sin exámenes médicos."}, {"pais": "Honduras", "tipo": "Término fijo", "cond": "Se usa cuando el trabajo tiene duración definida (proyectos temporales o reemplazo por licencia de maternidad).\nSi se renueva constantemente puede convertirse en indefinido.", "benef": "• Mismas prestaciones de ley que el indefinido (IHSS, catorceavo, aguinaldo, vacaciones)", "partner": "Allied Global", "moneda": "HNL", "min": "Por confirmar", "notas": "Cuenta con división salarial: 80% base salarial / 20% bono de asistencia."}, {"pais": "Kenia", "tipo": "Carta de oferta – término fijo", "cond": "Se inicia con una carta de oferta por un periodo inicial de 3 meses (periodo de prueba, ampliable a 6 meses o máximo 1 año si el empleador lo justifica).\nAl superarlo, se entrega un contrato formal por 1 año, renovable anualmente (incluye el periodo de prueba ya cumplido).", "benef": "• NSSF (protección social) y SHIF (seguro social de salud)\n• Prestaciones legales e impuesto sobre la vivienda (aplican desde el 1.er día)\n• Vacaciones: 21 días laborables al año (tras 12 meses; se pueden empezar a tomar desde el mes 3, prorrateadas)", "partner": "Oasis Outsourcing", "moneda": "KES", "min": "5 días", "notas": "Se ofrece el valor bruto mensual en moneda local (KES), antes de deducciones.\nAuxilio de transporte de 10.500 KES para todos los candidatos cuando el horario es después de las 10:00 pm (hora Kenia); se paga a fin de mes por M-Pesa (proporcional si el horario es rotativo).\nEl hire debe notificarse con mínimo 5 días de anticipación. Sin exámenes médicos."}, {"pais": "Filipinas", "tipo": "Periodo de prueba → indefinido", "cond": "Se inicia con un contrato de prueba de 6 meses. Al terminar, el candidato presenta una prueba de rendimiento y, si la supera, se le ofrece un contrato indefinido.", "benef": "• Beneficios obligatorios del gobierno (Pag-IBIG, SSS, PhilHealth, impuestos)\n• Paga extra de diciembre\n• Seguro médico, dental y de vida pagado 100% por el empleador (si cumple requisitos)\n• HMO propio tras 3 meses (+ cobertura para 1 dependiente tras la regularización)\n• Vacaciones: 20 días al año en posiciones presenciales y 10 en remotas (beneficio extra de TBPO)", "partner": "Calltek y Transparent BPO", "moneda": "PHP", "min": "Por confirmar", "notas": "Se ofrece el valor bruto mensual en pesos filipinos, antes de deducciones (100% base, sin división salarial).\nNómina semanal.\nSin Acknowledgement ni exámenes médicos.\nEl candidato queda contratado 2 días antes de la fecha de inicio formal con el cliente (onboarding); esto no cambia el start date del control order."}, {"pais": "Brasil", "tipo": "Término indefinido", "cond": "Periodo de prueba: 3 meses.", "benef": "• Vale de refrigerio, plan de salud y odontológico, seguro de vida y convenio con academias\n• 13.º salario a fin de año\n• Vale-transporte (el trabajador aporta máximo el 6% de su salario base; el empleador cubre la diferencia)\n• Vacaciones: 30 días al año (tras 1 año de trabajo, en máximo 3 periodos; el primero de mínimo 14 días consecutivos)", "partner": "Apex", "moneda": "BRL", "min": "5 días", "notas": "Se ofrece el salario bruto con todas las prestaciones de ley. Pago: 40% el día 15 y 60% el día 30 (la 2.ª quincena incluye feriados, horas extra y pagos adicionales).\nFecha máxima de ingreso: 25 de cada mes; el ingreso se notifica con mínimo 5 días de anticipación.\nAcknowledgement (carta de oferta) y exámenes médicos: los gestiona el equipo de contratación."}], "accesos": [{"plat": "LinkedIn Recruiter", "cuenta": "msolorzanopardo@gmail.com", "url": "https://www.linkedin.com/recruiter/", "notas": "Búsqueda booleana avanzada, InMails"}, {"plat": "LinkedIn Recruiter", "cuenta": "vanessavalenciacastro1@gmail.com", "url": "https://www.linkedin.com/recruiter/", "notas": "Headhunting | inMails | Boolean Search"}, {"plat": "Pandape", "cuenta": "maria.solorzano@solvoglobal.com", "url": "https://www.pandape.com/", "notas": "Publicación de vacantes y base de hojas de vida"}, {"plat": "Indeed", "cuenta": "maria.solorzano@solvoglobal.com", "url": "https://www.indeed.com/", "notas": "Publicación de vacantes, sponsored jobs"}, {"plat": "Indeed", "cuenta": "vanessa.valencia@solvoglobal.com", "url": "https://www.indeed.com/", "notas": "Publicación de vacantes, sponsored jobs"}, {"plat": "Kudert", "cuenta": "alba.castro@solvoglobal.com", "url": "https://app.kudert.com/login", "notas": "Envío de pruebas Kudert a candidatos"}], "horarios": [{"ta": "Agustin Daniel Oroquieta", "cuenta": "Mari", "ini": 420, "fin": 540, "raw": "7:00 AM 9:00 AM"}, {"ta": "Camilo Andres Saavedra Vallarino", "cuenta": "Mari", "ini": 600, "fin": 720, "raw": "10:00 AM 12:00 PM"}, {"ta": "Juan Andres Martinez Rivera", "cuenta": "Vane", "ini": 540, "fin": 660, "raw": "9:00 AM A 11: 00 AM"}, {"ta": "Grecia Helena Jeannett Miranda Viñas", "cuenta": "Vane", "ini": 660, "fin": 780, "raw": "11:00 AM A 1:00 PM"}, {"ta": "Lilian Bungei", "cuenta": "Mari", "ini": 300, "fin": 420, "raw": "5:00 AM 7:00 AM"}, {"ta": "Marcos Bindelli", "cuenta": "Vane", "ini": 420, "fin": 540, "raw": "7:00 AM 9:00 AM"}, {"ta": "Maria Angelica Solorzano Pardo", "cuenta": "Mari", "ini": 840, "fin": 960, "raw": "2:00 PM 4:00 PM"}, {"ta": "Vanessa Valencia Castro", "cuenta": "Vane", "ini": 870, "fin": 960, "raw": "2:30 PM 4:00 PM"}, {"ta": "Diego Temoche Devoto", "cuenta": "Vane", "ini": 960, "fin": 1080, "raw": "4:00 PM A 6:00PM"}, {"ta": "Karla Melina Canata", "cuenta": "Mari", "ini": 780, "fin": 840, "raw": "1:00 PM 2:00 PM"}, {"ta": "Katheryne Jesus Santa Cruz", "cuenta": "Mari", "ini": 720, "fin": 780, "raw": "12:00 PM 1:00 PM"}, {"ta": "Loris Marina Zeman", "cuenta": "Mari", "ini": 540, "fin": 600, "raw": "9:00 AM 10:00 AM"}, {"ta": "Franco Alfaro", "cuenta": "Vane", "ini": 780, "fin": 870, "raw": "1:00 PM A 2:30 PM"}], "sites": [{"pais": "Colombia", "comp": "Solvo", "site": "Murano", "ciudad": "Medellín", "dir": "Calle 40 Sur #41-44", "contractor": "NO", "notas": "Envigado - HR"}, {"pais": "Colombia", "comp": "Solvo", "site": "Fili", "ciudad": "Medellín", "dir": "Calle 16a Sur #48B-18", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Solvo", "site": "Camacol", "ciudad": "Medellín", "dir": "Cra 63 #49c-31", "contractor": "NO", "notas": "Barrio el estadio"}, {"pais": "Colombia", "comp": "Solvo", "site": "Talsa", "ciudad": "Medellín", "dir": "Cra 50GG #12 Sur-14", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Solvo", "site": "Aguacatala", "ciudad": "Medellín", "dir": "Calle 10 Sur #48B-29", "contractor": "NO", "notas": "TA, Onboarding y client success"}, {"pais": "Colombia", "comp": "Solvo", "site": "Rosales", "ciudad": "Bogotá", "dir": "Calle 72 #8-24", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Solvo", "site": "Las Americas III", "ciudad": "Barranquilla", "dir": "Calle 77 # 59-35", "contractor": "NO", "notas": "Fuera de funcionamiento"}, {"pais": "Colombia", "comp": "Solvo", "site": "Smartoffice", "ciudad": "Barranquilla", "dir": "Cra 51b #80-58", "contractor": "NO", "notas": "TA, Client success y OB"}, {"pais": "Colombia", "comp": "Solvo", "site": "Celer", "ciudad": "Barranquilla", "dir": "Cra 53 #76-115", "contractor": "NO", "notas": "Vensure / OPS"}, {"pais": "Colombia", "comp": "Solvo", "site": "Cabecera la 56", "ciudad": "Bucaramanga", "dir": "Calle 56 #32-54", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Solvo", "site": "Cabecera la 33", "ciudad": "Bucaramanga", "dir": "Cra 33 #51-87", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Solvo", "site": "Versalles", "ciudad": "Cali", "dir": "Calle 22 norte #5bn- 102", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Solvo", "site": "Parque Residencial el Cocora", "ciudad": "Armenia", "dir": "Cra 10a norte #18-36", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Solvo", "site": "Ibague", "ciudad": "Tolima", "dir": "Carrera 7b 51-33", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Allied", "site": "Barranquilla", "ciudad": "Barranquilla", "dir": "Calle 47 # 44-58", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Becall", "site": "Nueva Granada", "ciudad": "Pereira", "dir": "Calle 72 #13-23", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Becall", "site": "30 de Agosto", "ciudad": "Pereira", "dir": "Av 30 Agosto # 40-09", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Becall", "site": "Maraya", "ciudad": "Pereira", "dir": "Cra 10 #48-74", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Becall", "site": "Olaya", "ciudad": "Pereira", "dir": "Calle 20 #12-56", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Becall", "site": "Otun", "ciudad": "Pereira", "dir": "Cra 5B #39-08", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Becall", "site": "Plaza Centro", "ciudad": "Manizales", "dir": "Cra 24 #22-02", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Becall", "site": "ABS", "ciudad": "Manizales", "dir": "Cra 23 #19-19", "contractor": "NO", "notas": ""}, {"pais": "Colombia", "comp": "Becall", "site": "Viterbo", "ciudad": "Viterbo", "dir": "Vereda El Guayabito CE Ágora Bodega No. 1", "contractor": "NO", "notas": ""}, {"pais": "Argentina", "comp": "Solvo", "site": "General Paz", "ciudad": "Cordoba", "dir": "24 de Septiembre Av. 1536", "contractor": "SI", "notas": ""}, {"pais": "Argentina", "comp": "Solvo", "site": "Velez Sarsfield", "ciudad": "Cordoba", "dir": "Velez Sarsfield Av. 576", "contractor": "SI", "notas": ""}, {"pais": "Argentina", "comp": "Apex", "site": "Correo", "ciudad": "Cordoba", "dir": "Colón Av. 210", "contractor": "NO", "notas": ""}, {"pais": "Argentina", "comp": "Apex", "site": "Entre Rios 11", "ciudad": "Cordoba", "dir": "Entre Rios 11", "contractor": "NO", "notas": ""}, {"pais": "Argentina", "comp": "Apex", "site": "Ituzaingo 129", "ciudad": "Cordoba", "dir": "Ituzaingo 129", "contractor": "NO", "notas": ""}, {"pais": "Argentina", "comp": "Apex", "site": "Arbo y Blanco", "ciudad": "Resistencia", "dir": "Arbo y Blanco 236", "contractor": "NO", "notas": ""}, {"pais": "Argentina", "comp": "Apex", "site": "Mitre", "ciudad": "Resistencia", "dir": "Mitre 1754", "contractor": "NO", "notas": ""}, {"pais": "Argentina", "comp": "Apex", "site": "Sarmiento", "ciudad": "Rosario", "dir": "Santa Fé Av. 1183", "contractor": "NO", "notas": ""}, {"pais": "Argentina", "comp": "Apex", "site": "Vicente Lopez", "ciudad": "Buenos Aires", "dir": "Del Libertador Av. 742", "contractor": "NO", "notas": ""}, {"pais": "México", "comp": "Solvo", "site": "Universidad", "ciudad": "Chihuahua", "dir": "Av. Universidad 2727 Colonia Parques de San Felipe", "contractor": "SI", "notas": ""}, {"pais": "México", "comp": "Solvo", "site": "Merida", "ciudad": "Merida", "dir": "C. 13 102, entre Avenida Shutan Medina", "contractor": "SI", "notas": "Fuera de funcionamiento"}, {"pais": "Perú", "comp": "Solvo", "site": "Comunal", "ciudad": "Lima", "dir": "Complejo More, Golf Los Incas y el domicilio es Av. Circunvalación del Club Golf Los Incas 170, Piso 23 , Surco", "contractor": "SI", "notas": ""}, {"pais": "Perú", "comp": "Apex", "site": "Lima", "ciudad": "Lima", "dir": "Jirón de Camaná #851 Cercado de Lima", "contractor": "NO", "notas": ""}, {"pais": "Perú", "comp": "Becall", "site": "Lima", "ciudad": "Lima", "dir": "Av Paseo de la República #3245 Edf El Senador", "contractor": "NO", "notas": ""}, {"pais": "Kenia", "comp": "Solvo / Oasis", "site": "Royal Offices", "ciudad": "Nairobi", "dir": "3rd Floor, Office 33, Mogotio Road, Kenya.", "contractor": "NO", "notas": ""}, {"pais": "Kenia", "comp": "Solvo / Oasis", "site": "Crescent Bussines Center", "ciudad": "Nairobi", "dir": "28 Crescent RD, Nairobi, Kenya", "contractor": "NO", "notas": ""}, {"pais": "Kenia", "comp": "Solvo / Oasis", "site": "Principal Place", "ciudad": "Nairobi", "dir": "13 School Lane, Nairobi, Kenya", "contractor": "NO", "notas": ""}, {"pais": "Kenia", "comp": "Solvo / Oasis", "site": "Templeton", "ciudad": "", "dir": "Matundu Lane of School Lane, Westlands Nairobi, Kenya", "contractor": "NO", "notas": ""}, {"pais": "Guatemala", "comp": "Allied", "site": "Reforma 383", "ciudad": "Guatemala City", "dir": "Av. Reforma Ed 383, zona 10", "contractor": "SI", "notas": ""}, {"pais": "Guatemala", "comp": "Allied", "site": "Peten", "ciudad": "Peten", "dir": "Melchor de Mencos Barrio Fallabon", "contractor": "NO", "notas": ""}, {"pais": "Guatemala", "comp": "Allied", "site": "Pacific Center II", "ciudad": "Guatemala City", "dir": "6ta avenida 32-36 zona 11", "contractor": "NO", "notas": ""}, {"pais": "Guatemala", "comp": "Allied", "site": "Pacific Center", "ciudad": "Guatemala City", "dir": "Calzada Aguilar Batres 32-10, zona 11", "contractor": "NO", "notas": ""}, {"pais": "Guatemala", "comp": "Allied", "site": "ACC 1", "ciudad": "Guatemala City", "dir": "15 Av 2-08 Zona 4 Colonia Valle del Sol", "contractor": "NO", "notas": ""}, {"pais": "Guatemala", "comp": "Allied", "site": "Plaza Zona 4", "ciudad": "Guatemala City", "dir": "6ta Avenida 0-79 zona 4", "contractor": "NO", "notas": ""}, {"pais": "Sudáfrica", "comp": "Allied", "site": "Cape Town", "ciudad": "Cape Town", "dir": "Newspaper House 2nd Floor, 122 St Georges Mall, 7925", "contractor": "POR DEFINIR", "notas": ""}, {"pais": "Sudáfrica", "comp": "Allied", "site": "Durban", "ciudad": "Durban", "dir": "111 Florence Nzama Drive, North Beach, Durban, 4001, KwaZulu Natal", "contractor": "POR DEFINIR", "notas": ""}, {"pais": "Sudáfrica", "comp": "Allied", "site": "Johannesburg", "ciudad": "Johannesburg", "dir": "Block B, 2nd Floor, 11 Naivasha Road, Sunninghill, 2191", "contractor": "POR DEFINIR", "notas": ""}, {"pais": "Honduras", "comp": "Allied", "site": "San Pedro", "ciudad": "San Pedro Sula", "dir": "Boulevard Michelleti, Mall Galerias Del Valle", "contractor": "NO", "notas": ""}, {"pais": "Honduras", "comp": "Apex", "site": "San Pedro", "ciudad": "San Pedro Sula", "dir": "BV. Armenta km 2 Altia Business Park", "contractor": "NO", "notas": ""}, {"pais": "Honduras", "comp": "Allied", "site": "Cascadas", "ciudad": "Tegucigalpa", "dir": "Colonia Humuya Mall Las Cascadas", "contractor": "NO", "notas": ""}, {"pais": "Filipinas", "comp": "Allied", "site": "General santos", "ciudad": "General Santos", "dir": "Design Bldg. Mabuhay IT Park, CED Avenue, Brgy. Lagao,  9500", "contractor": "POR DEFINIR", "notas": ""}, {"pais": "Filipinas", "comp": "Transparent", "site": "Greenhills", "ciudad": "San Juan", "dir": "J22X+JH2 N Western St Greenhills Center Floor 12", "contractor": "NO", "notas": ""}, {"pais": "Filipinas", "comp": "Allied", "site": "Cebú", "ciudad": "Cebu City", "dir": "9F JY Square IT center 3, No. 1 Salinas Drive, Lahug, 6000", "contractor": "POR DEFINIR", "notas": ""}, {"pais": "Chile", "comp": "Apex", "site": "Santiago", "ciudad": "Santiago", "dir": "Av. Italia #662. Providencia", "contractor": "NO", "notas": ""}, {"pais": "Chile", "comp": "Apex", "site": "Talca", "ciudad": "Talca", "dir": "1 sur #1543 Talca", "contractor": "NO", "notas": ""}, {"pais": "Paraguay", "comp": "Apex", "site": "Citicenter", "ciudad": "Asuncion", "dir": "Av. Mariscal Lopez #3794", "contractor": "NO", "notas": ""}, {"pais": "Paraguay", "comp": "Apex", "site": "Chufi", "ciudad": "Asuncion", "dir": "Cruz del Defensor #1413", "contractor": "NO", "notas": ""}, {"pais": "Brasil", "comp": "Apex", "site": "São Paulo", "ciudad": "São Paulo", "dir": "Av. Alfredo Egídio de Souza Aranha, 100.", "contractor": "NO", "notas": ""}, {"pais": "Belice", "comp": "Transparent", "site": "Seaside 1", "ciudad": "Belize City", "dir": "Mile 3.5 Philip Goldson Hwy", "contractor": "NO", "notas": ""}, {"pais": "Belice", "comp": "Transparent", "site": "Seaside 2", "ciudad": "Belize City", "dir": "Mile 3.5 Philip Goldson Hwy", "contractor": "NO", "notas": ""}, {"pais": "Belice", "comp": "Transparent", "site": "Belmopan", "ciudad": "Belmopan", "dir": "3025 Hummingbird Highway", "contractor": "NO", "notas": ""}, {"pais": "Jamaica", "comp": "Transparent", "site": "Angels", "ciudad": "Kingston", "dir": "Lot 4 Fairymead Farm Road", "contractor": "NO", "notas": ""}, {"pais": "España", "comp": "Becall", "site": "Cruz Roja", "ciudad": "Leon", "dir": "C/ Cruz Roja de León 10, Planta 3-4 - 24008 León", "contractor": "NO", "notas": ""}, {"pais": "España", "comp": "Becall", "site": "Edificio Europa", "ciudad": "Leon", "dir": "Av. de los Reyes Leoneses 14, Planta 5 - 24008 León", "contractor": "NO", "notas": ""}, {"pais": "España", "comp": "Becall", "site": "Panadés", "ciudad": "Gijon", "dir": "C/ Panadés 15 Bjo, 33208 Gijón - Asturias", "contractor": "NO", "notas": ""}, {"pais": "España", "comp": "Becall", "site": "Valladolid", "ciudad": "Valladolid", "dir": "C/ Cobalto, 49 - 47012 Valladolid", "contractor": "NO", "notas": ""}, {"pais": "España", "comp": "Becall", "site": "Santander", "ciudad": "Santander", "dir": "Pasaje de Peña 4, 6º of 44 - 39008 Santander", "contractor": "NO", "notas": ""}, {"pais": "España", "comp": "Becall", "site": "Ávila", "ciudad": "Avila", "dir": "C/ Vereda de las Mozas 1 Bjo - 05003 Ávila", "contractor": "NO", "notas": ""}, {"pais": "India", "comp": "Vensure", "site": "Noida", "ciudad": "Noida", "dir": "21st floor, Advant Navis Business Park, 20, Towerc, Sector 142, Noida, Uttar Pradesh 201305", "contractor": "POR DEFINIR", "notas": ""}, {"pais": "Colombia", "comp": "Solvo", "site": "Bio 26", "ciudad": "Medellín", "dir": "Calle 26 # 38-26 Hotel La Quinta", "contractor": "", "notas": ""}, {"pais": "Colombia", "comp": "Solvo", "site": "Astorga", "ciudad": "Medellín", "dir": "Calle 7D #43C 105", "contractor": "", "notas": ""}, {"pais": "Colombia", "comp": "Solvo", "site": "Prolific Center", "ciudad": "Barranquilla", "dir": "Calle 51 #79-34", "contractor": "", "notas": "Fuera de funcionamiento"}, {"pais": "Colombia", "comp": "Solvo", "site": "Edificio F25", "ciudad": "Ibagué", "dir": "Cra. 5 #41-16 oficina 1205", "contractor": "", "notas": ""}, {"pais": "Perú", "comp": "", "site": "San Isidro", "ciudad": "Lima", "dir": "Juan de Arona, 798", "contractor": "", "notas": ""}, {"pais": "Perú", "comp": "", "site": "Centro Cívico", "ciudad": "Lima", "dir": "Paseo la República 134 - 4to piso - Al costado del Hotel Sheraton", "contractor": "", "notas": ""}, {"pais": "Perú", "comp": "", "site": "Magdalena del Mar", "ciudad": "Lima", "dir": "Av. Alberto del Campo 411", "contractor": "", "notas": ""}, {"pais": "Kenia", "comp": "", "site": "Oasis Outsourcing - Royal Office", "ciudad": "Nairobi", "dir": "Royal Offices, 3rd Floor, Office 33, Mogotio Road, Kenya", "contractor": "", "notas": ""}, {"pais": "Argentina", "comp": "", "site": "Coworking", "ciudad": "Buenos Aires", "dir": "Av. Córdoba 1351, Microcentro, Provincia de Buenos Aires", "contractor": "", "notas": ""}, {"pais": "Argentina", "comp": "", "site": "Piso 5", "ciudad": "Córdoba", "dir": "Av. Vélez Sarsfield, piso 5", "contractor": "", "notas": ""}, {"pais": "Argentina", "comp": "", "site": "Cerro", "ciudad": "Córdoba", "dir": "Gay Lussac 5095 - Cerro", "contractor": "", "notas": ""}, {"pais": "Honduras", "comp": "", "site": "Galerías Mall", "ciudad": "San Pedro Sula", "dir": "", "contractor": "", "notas": ""}]};
+const TABS=[['proceso','Proceso'],['ceipal','CEIPAL'],['status','Status CEIPAL'],['followup','Follow up'],['jd','JD → Mensajes'],['entrevista','JD → Entrevista'],['contactar','Mejor hora'],['contratos','Contratos'],['salarios','Salarios'],['peru','Salario Perú'],['sups','Supervisores'],['sites','Sites'],['links','Links'],['accesos','Accesos'],['horarios','Horarios']];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const lines=t=>String(t||'').split(/\n+/).map(l=>l.replace(/^\s*[•\-*·]\s*/,'').trim()).filter(Boolean);
+const store={get(k,d){try{const v=localStorage.getItem('cositas_'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('cositas_'+k,JSON.stringify(v))}catch(e){}}};
+function toast(t){const el=$('toast');el.textContent=t;el.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>el.hidden=true,3000)}
+async function copy(t,msg){try{await navigator.clipboard.writeText(t);toast(msg||'Copiado.')}catch(e){openSheet(`<h2>Copia este texto</h2><textarea class="out" id="cpy">${esc(t)}</textarea><div class="actions"><button class="btn" data-close>Cerrar</button></div>`);const a=$('cpy');a.focus();a.select()}}
+function openSheet(h){$('sheet').innerHTML=h;$('scrim').hidden=false}
+function closeSheet(){$('scrim').hidden=true;$('sheet').innerHTML=''}
+$('scrim').addEventListener('click',e=>{if(e.target.id==='scrim'||e.target.closest('[data-close]'))closeSheet()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('scrim').hidden)closeSheet()});
+const ext=u=>u?`<a class="btn sm" href="${esc(u)}" target="_blank" rel="noopener">Abrir ↗</a>`:'<span class="pill">Sin link</span>';
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parseD=s=>new Date(s+'T12:00');
+const fmtD=d=>d.toLocaleDateString('es-CO',{weekday:'short',day:'numeric',month:'short'});
+function addBiz(d,n){const x=new Date(d);while(n>0){x.setDate(x.getDate()+1);if(x.getDay()!==0&&x.getDay()!==6)n--}return x}
+function bizBetween(a,b){let n=0;const x=new Date(a);while(iso(x)<iso(b)){x.setDate(x.getDate()+1);if(x.getDay()!==0&&x.getDay()!==6)n++}return n}
+const money=(n,cur)=>new Intl.NumberFormat('es-CO',{maximumFractionDigits:0}).format(Math.round(n))+(cur?' '+cur:'');
+
+/* ================== Vistas ================== */
+const V={};
+
+function slaShort(t){const n=norm(t);
+  if(n.includes('primer dia habil'))return 'Día 1 hábil';if(n.includes('inmediatamente'))return 'Inmediato';if(n.includes('segun'))return 'Según pipeline';
+  if(n.includes('1 a 2 dias'))return '1–2 días hábiles';if(n.includes('24 horas'))return '24 h';if(n.includes('1 dia habil'))return '1 día hábil';return t?t.split(/[.,]/)[0]:'—'}
+V.proceso=()=>{
+  const P=DATA.proceso;
+  return `<div class="pagehead"><div class="meta"><span class="eyebrow">De inicio a fin</span><h1>Proceso de reclutamiento</h1></div><span class="muted small">Toca una etapa para ver el detalle</span></div>
+  <div class="steps">${P.map((s,i)=>`<div class="step compact"><div class="n sm">${esc(s.n)}</div>
+    <details class="acc" id="st${i}"><summary><h3>${esc(s.etapa)}</h3><span class="pill c-acc">${esc(s.resp)}</span><span class="pill c-warn">⏱ ${esc(slaShort(s.sla))}</span></summary>
+    <div class="in"><p>${esc(s.desc)}</p>
+    <div class="tiles"><div class="tile"><span>SLA completo</span>${esc(s.sla||'—')}</div>${s.tool?`<div class="tile" style="grid-column:span 2"><span>Herramienta / nota</span>${esc(s.tool)}</div>`:''}</div></div></details>
+  </div>`).join('')}</div>`;
+};
+
+/* --- CEIPAL --- */
+const CK={exists:'si',active:'no',last:'none',date:iso(new Date()),time:'09:00'};
+const PROT_H={'sin notas registradas':0,'first contact sin respuesta':24,'entrevista agendada':48,'entrevista o submittal registrado':7*24,'mas de una semana sin actualizacion':0};
+V.ceipal=()=>{
+  const C=DATA.ceipal;
+  return `<div class="pagehead"><div class="meta"><span class="eyebrow">Reglas del equipo</span><h1>Proceso en CEIPAL</h1></div></div>
+  <div class="grid-side">
+    <section class="panel"><h2>¿Puedo tomar este candidato?</h2>
+      <div class="form">
+        <label class="full">¿Ya existe en CEIPAL?<select id="ckExists"><option value="si">Sí, ya existe</option><option value="no">No, es nuevo</option></select></label>
+        <label class="full">¿Tiene un proceso o submittal activo?<select id="ckActive"><option value="no">No</option><option value="si">Sí</option></select></label>
+        <label class="full">Última nota registrada<select id="ckLast">
+          <option value="none">Sin notas</option><option value="fc">First Contact (sin respuesta)</option><option value="int">Interview Scheduled / Final Interview Scheduled</option>
+          <option value="sub">Entrevista hecha o Submittal registrado</option><option value="cv">CV and Video Requested / In Process</option><option value="hired">Hired</option></select></label>
+        <label>Fecha de esa nota<input type="date" id="ckDate"></label>
+        <label>Hora<input type="time" id="ckTime"></label>
+      </div>
+      <div id="ckOut"></div>
+      <p class="muted small">Es una guía rápida basada en las reglas de abajo; ante dudas, manda la regla oficial.</p>
+    </section>
+    <div class="stack">
+      <section class="panel"><div class="panel-head"><h2>Paso a paso</h2><span class="muted small">Toca un paso para ver su regla</span></div>
+        <div class="cflow">${C.steps.map((s,i)=>`<details class="acc"><summary><span class="num muted">${i+1}</span><b>${esc(s.paso)}</b></summary><div class="in"><span class="muted small">${esc(s.accion)}</span><span>${esc(s.regla)}</span></div></details>`).join('')}</div></section>
+      <section class="panel"><div class="panel-head"><h2>Notas aprobadas</h2><span class="muted small">Toca una para copiarla</span></div>
+        <div class="notechips">${C.notas.map(n=>`<button class="notechip" data-copy="${esc(n.nota)}"><b>${esc(n.nota)}</b><span>${esc(n.uso)}</span></button>`).join('')}</div></section>
+      <section class="panel"><h2>Protección del candidato</h2>
+        <div class="prot">${C.prot.map(p=>{const h=PROT_H[norm(p.sit)]??0;const lbl=h===0?'Libre':h>=168?'7 días hábiles':h+' horas';const w=h===0?18:Math.min(100,18+h/168*82);
+          return `<div class="protrow"><span title="${esc(p.prot)}">${esc(p.sit)}</span><span class="protbar" style="width:${w}%;background:${h?'var(--warn)':'var(--ok)'}">${lbl}</span></div>`}).join('')}</div></section>
+    </div>
+  </div>`;
+};
+function ceipalCheck(){
+  const out=$('ckOut');if(!out)return;
+  const e=$('ckExists').value,a=$('ckActive').value,l=$('ckLast').value;
+  const showDate=e==='si'&&a==='no'&&!['none','hired'].includes(l);
+  $('ckDate').parentElement.hidden=!showDate;$('ckTime').parentElement.hidden=!showDate;
+  $('ckActive').parentElement.hidden=e==='no';$('ckLast').parentElement.hidden=e==='no';
+  let cls='ok',big='Disponible',txt='';
+  if(e==='no'){big='Créalo en CEIPAL';txt='No existe: crea el perfil completo y déjalo documentado con una nota de seguimiento.'}
+  else if(a==='si'){cls='crit';big='No continuar';txt='Tiene un proceso o submittal activo. No se puede continuar con el candidato.'}
+  else if(l==='none'){txt='Sin notas registradas: está disponible para cualquier TA o sourcer.'}
+  else if(l==='hired'){cls='crit';big='Ya fue contratado';txt='Tiene la nota Hired.'}
+  else{
+    const at=new Date(($('ckDate').value||iso(new Date()))+'T'+($('ckTime').value||'09:00'));
+    let until,why;
+    if(l==='fc'){until=new Date(at.getTime()+24*3600e3);why='First Contact sin respuesta: 24 horas de protección.'}
+    else if(l==='int'){until=new Date(at.getTime()+48*3600e3);why='Entrevista agendada: 48 horas de protección hasta registrar feedback.'}
+    else if(l==='sub'){until=addBiz(at,7);why='Entrevista o submittal registrado: 7 días hábiles de protección para el TA owner.'}
+    else{until=new Date(at.getTime()+7*24*3600e3);why='Más de una semana sin actualización vuelve a quedar disponible.'}
+    const now=new Date();
+    if(now<until){cls='warn';big='Protegido';txt=`${why} Libre desde el ${until.toLocaleString('es-CO',{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit'})}.`}
+    else txt=`${why} Ese plazo ya venció.`;
+  }
+  out.innerHTML=`<div class="verdict ${cls}"><span class="big">${big}</span><span>${esc(txt)}</span></div>`;
+}
+
+/* --- Status CEIPAL --- */
+const ST=[
+  {n:1,s:'TA Review',o:'rec',who:'Reclutador',d:'Entrevistamos y evaluamos el perfil.',sla:'24 h',h:24},
+  {n:2,s:'TA POC Submission',o:'rec',who:'Reclutador',d:'Enviamos el perfil al POC, con el salario ya actualizado en Ceipal.',sla:'4 h después de la entrevista',h:4},
+  {n:3,s:'Candidate submitted to a job – In process',o:'rec',who:'Reclutador · Applicant Status',d:'Puede enviarse a otra vacante 48 h después del 1.er submittal.',sla:'Al enviar',h:0},
+  {n:4,s:'Ops Supervisor Submission',o:'poc',who:'POC',d:'Envía el perfil al supervisor de operaciones.',sla:'24 h',h:24},
+  {n:5,s:'Ops Supervisor Interview',o:'poc',who:'POC',d:'Entrevista con el supervisor de Ops.',sla:'24 h',h:24},
+  {n:6,s:'Client Submission',o:'poc',who:'POC',d:'Envía el perfil al cliente.',sla:'48 h',h:48},
+  {n:7,s:'Client Interview',o:'poc',who:'POC',d:'Entrevista con el cliente.',sla:'48 h',h:48},
+  {n:8,s:'Offer Acknowledgment',o:'rec',who:'Reclutador',d:'Hay oferta: vuelve al reclutador. El candidato recibe y confirma la oferta.',sla:'24 h',h:24},
+  {n:9,s:'Placed',o:'rec',who:'Reclutador · Applicant Status',d:'Contratado: ya no se puede enviar a otras vacantes.',sla:'Al contratar',h:0}];
+const NOSIGUE=[['No cumple el perfil','Profile is not suitable'],['No se conectó y no contesta','Applicant not reachable'],['Se retiró del proceso','Withdrawn'],['Esperando respuesta del candidato','Waiting for candidate response'],['Tiene una restricción','Blacklisted']];
+const PAUSA=[['Esperando feedback de Ops o cliente','Waiting for evaluation'],['Esperando una acción del candidato','Waiting for candidate']];
+let STSEL=store.get('stsel',1);
+const STCK={at:''};
+V.status=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">POC Status</span><h1>Status en CEIPAL</h1></div>
+  <div class="legend"><span><i style="background:var(--accent)"></i>Lo mueve el reclutador</span><span><i style="background:var(--warn)"></i>Lo mueve el POC</span></div></div>
+  <section class="panel"><div class="panel-head"><h2>Ownership</h2><span class="muted small">Toca un status para ver el detalle</span></div>
+    <div class="sown"><span class="o-rec" style="grid-column:span 3">👤 Reclutador · pasos 1–3</span><span class="o-poc" style="grid-column:span 4">🤝 POC · pasos 4–7</span><span class="o-rec" style="grid-column:span 2">👤 Reclutador · 8–9</span></div>
+    <div class="sflow" id="sFlow"></div><div id="sDet"></div></section>
+  <div class="grid2">
+    <section class="panel"><div class="panel-head"><h2>❌ Si el candidato no sigue</h2><span class="muted small">Reclutador · márcalo apenas termine la entrevista</span></div>
+      <div class="sitgrid">${NOSIGUE.map(([es,en])=>`<button class="sit" data-copy="${esc(en)}"><span>${esc(es)}</span><b>${esc(en)}</b></button>`).join('')}</div></section>
+    <section class="panel"><div class="panel-head"><h2>⏸️ Si el proceso está en pausa</h2><span class="muted small">POC · sin SLA, hay que hacerle seguimiento</span></div>
+      <div class="sitgrid">${PAUSA.map(([es,en])=>`<button class="sit" data-copy="${esc(en)}"><span>${esc(es)}</span><b>${esc(en)}</b></button>`).join('')}</div>
+      <p class="note warn">Si lleva más de 48 h en pausa, escríbele al POC.</p></section>
+  </div>
+  <section class="panel"><h2>Reglas de oro</h2><div class="bchips"><span class="bchip">🔁 Cambia de etapa = cambia el status el mismo día</span><span class="bchip">💰 Salario en Ceipal apenas lo tengamos, antes del paso 2</span><span class="bchip">👀 Sin status actualizado, nadie ve avanzar al candidato</span></div>
+  <p class="muted small">Toca cualquier status para copiar su nombre exacto.</p></section>`;
+function renderST(){
+  if(!$('sFlow'))return;
+  $('sFlow').innerHTML=ST.map(x=>`<button class="sbtn o-${x.o}" data-stsel="${x.n}" aria-pressed="${x.n===STSEL}"><span class="sn">${x.n}</span><span class="st">${esc(x.s)}</span><span class="ss">${esc(x.sla.split(' ')[0]==='Al'?x.sla:x.sla.split(' ').slice(0,2).join(' '))}</span></button>`).join('');
+  const x=ST[STSEL-1],nx=ST[STSEL];
+  let due='';
+  if(x.h&&STCK.at){const d=new Date(new Date(STCK.at).getTime()+x.h*3600e3),late=d<new Date();
+    due=`<div class="status ${late?'no':'ok'}">${late?'⚠️ SLA vencido':'⏱ A tiempo'}<small>Debe moverse antes del ${d.toLocaleString('es-CO',{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit'})}</small></div>`}
+  $('sDet').innerHTML=`<div class="sdetail" style="margin-top:6px"><div class="stack" style="gap:8px">
+      <div><span class="pill ${x.o==='rec'?'c-acc':'c-warn'}">${esc(x.who)}</span> <span class="pill">⏱ ${esc(x.sla)}</span></div>
+      <button class="sname" data-copy="${esc(x.s)}" title="Copiar">${esc(x.s)} ⧉</button>
+      <p>${esc(x.d)}</p>
+      ${nx?`<p class="muted small">Sigue: <button class="linkbtn" data-stsel="${nx.n}">${nx.n}. ${esc(nx.s)}</button>${nx.o!==x.o?` · ${nx.o==='poc'?'aquí pasa al POC':'vuelve al reclutador'}`:''}</p>`:'<p class="muted small">Último paso del proceso.</p>'}
+    </div>
+    ${x.h?`<div class="stack" style="gap:6px;min-width:220px"><label class="small muted" style="display:flex;flex-direction:column;gap:4px">¿Cuándo entró a este status?<input type="datetime-local" id="stAt" value="${esc(STCK.at)}"></label>${due}</div>`:''}
+  </div>`;
+}
+
+/* --- Follow up --- */
+const FU_SCHED=[
+  {off:0,label:'Seguimiento 1',type:'c',tpl:0},{off:2,label:'Seguimiento 2',type:'c',tpl:1},
+  {off:4,label:'Seguimiento 3',type:'c',tpl:2,alert:'Alerta interna 1'},{off:6,label:'Seguimiento 4',type:'c',tpl:3,alert:'Alerta interna 2'},
+  {off:9,label:'Seguimiento 5',type:'c',tpl:4,ord:'Quinto',alert:'Alerta interna 3'},{off:12,label:'Seguimiento 6',type:'c',tpl:4,ord:'Sexto',alert:'Alerta interna 4'},
+  {off:14,label:'Seguimiento 7',type:'c',tpl:4,ord:'Séptimo',alert:'Alerta interna 5'},
+  {off:16,label:'Aviso al VP de Ventas',type:'i'},{off:18,label:'Consenso sobre cómo proceder',type:'i'},{off:19,label:'Aviso final al cliente',type:'c',final:true}];
+const FU=store.get('fu',{date:iso(new Date()),cliente:'',cargo:'',empresa:'',cands:'',yo:'',to:''});
+const FINAL_TPL={asunto:'Aviso final: cierre de la requisición de [Nombre del cargo]',cuerpo:`Buenos días, [Nombre del cliente]:
+
+Espero que se encuentre muy bien.
+
+Le escribo por última vez sobre la shortlist que compartimos el [Fecha de envío] para el cargo de [Nombre del cargo] en [Empresa]:
+• [Nombre del candidato 1]
+• [Nombre del candidato 2]
+• [Nombre del candidato 3]
+
+Han pasado [X] días hábiles sin recibir feedback ni próximos pasos. Para no mantener a los candidatos en espera, si no recibimos respuesta en los próximos días procederemos a cancelar la requisición.
+
+Si desea retomar el proceso, con gusto lo reactivamos y coordinamos entrevistas de inmediato. Quedo atenta a sus comentarios.
+
+Cordial saludo,
+[Su nombre]`};
+const SEGS=FU_SCHED.map((s,k)=>({...s,k})).filter(s=>s.tpl!=null||s.final);
+let FUSEL=null,FUSTEP=store.get('fustep',1);
+function fuDates(){const first=parseD(FU.date||iso(new Date()));return {first,at:s=>addBiz(first,s.off)}}
+function fuCurrent(){const {at}=fuDates(),t=iso(new Date());return SEGS.find(s=>iso(at(s))>=t)||SEGS[SEGS.length-1]}
+V.followup=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">Clientes nuevos</span><h1>Follow up con el cliente</h1></div></div>
+  <section class="panel"><div class="panel-head"><h2>1. ¿Cuándo completaste la terna?</h2><span class="muted small">El día que enviaste el 3.er candidato</span></div>
+    <div class="form"><label>Fecha en que se completó la terna<input type="date" id="fuDate" value="${esc(FU.date)}"></label>
+      <label>Cliente (nombre)<input id="fuCliente" value="${esc(FU.cliente)}" placeholder="Ej: Laura"></label>
+      <label>Empresa<input id="fuEmpresa" value="${esc(FU.empresa)}"></label>
+      <label>Cargo<input id="fuCargo" value="${esc(FU.cargo)}"></label>
+      <label class="full">Candidatos enviados · uno por línea<textarea id="fuCands" rows="3">${esc(FU.cands)}</textarea></label>
+      <label>Tu firma<input id="fuYo" value="${esc(FU.yo)}"></label>
+      <label>Correo del cliente (opcional)<input id="fuTo" type="email" value="${esc(FU.to||'')}"></label></div></section>
+  <section class="panel"><h2>2. ¿Qué toca?</h2><div id="fuNow"></div><div class="fusteps" id="fuSteps"></div></section>
+  <section class="panel"><div class="panel-head"><h2>3. Tu correo</h2><span class="muted small" id="fuWhich"></span></div>
+    <label class="small muted" style="display:flex;flex-direction:column;gap:4px">Asunto<input id="fuSubj"></label>
+    <label class="small muted" style="display:flex;flex-direction:column;gap:4px">Cuerpo<textarea id="fuBody" class="out" style="min-height:320px"></textarea></label>
+    <div class="actions"><button class="btn primary" id="fuCpBody">Copiar correo</button><button class="btn" id="fuCpSubj">Copiar asunto</button><a class="btn" id="fuMail" href="#" target="_blank" rel="noopener">Abrir en mi correo ↗</a></div>
+    <p class="muted small" id="fuNote"></p></section>
+  <section class="panel"><div class="panel-head"><h2>Reglas</h2><span class="muted small">Toca una para leerla</span></div>
+    <div class="cflow" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">${DATA.fu_notes.map(n=>`<details class="acc"><summary><span class="num muted">${esc(n.n)}</span><b>${esc(n.tema)}</b></summary><div class="in small">${esc(n.regla)}</div></details>`).join('')}</div></section>`;
+function fuFill(step,first){
+  const T=step.final?FINAL_TPL:DATA.fu_tpls[step.tpl];let subj=T.asunto,body=T.cuerpo;
+  const cands=lines(FU.cands);
+  const rep=s=>s.replace(/\[Quinto \/ Sexto \/ Séptimo\]/g,step.ord||'')
+    .replace(/\[Nombre del cliente\]/g,FU.cliente||'[Nombre del cliente]').replace(/\[Nombre del cargo\]/g,FU.cargo||'[Nombre del cargo]')
+    .replace(/\[Empresa\]/g,FU.empresa||'[Empresa]').replace(/\[Fecha de envío\]/g,first.toLocaleDateString('es-CO',{day:'numeric',month:'long'}))
+    .replace(/\[X\]/g,String(step.off)).replace(/\[Su nombre\]/g,FU.yo||'[Su nombre]');
+  subj=rep(subj);body=rep(body);
+  if(cands.length)body=body.replace(/(• \[Nombre del candidato \d\]\n?)+/,cands.map(c=>'• '+c).join('\n')+'\n');
+  if(cands.length&&cands.length!==3)body=body.replace(/Los tres candidatos/g,'Los candidatos').replace(/los tres candidatos/g,'los candidatos');
+  return {subj,body};
+}
+const dleft=(d)=>{const t=parseD(iso(new Date()));const n=Math.round((parseD(iso(d))-t)/864e5);return n===0?'hoy':n===1?'mañana':n===-1?'ayer':n>0?`en ${n} días`:`hace ${-n} días`};
+function renderFU(){
+  if(!$('fuSteps'))return;
+  const {first,at}=fuDates(),t=iso(new Date()),cur=fuCurrent();
+  if(FUSEL==null)FUSEL=cur.k;
+  const sel=SEGS.find(s=>s.k===FUSEL)||cur,sd=at(sel);
+  const doneAll=iso(at(SEGS[SEGS.length-1]))<t;
+  const cd=at(cur),isToday=iso(cd)===t;
+  $('fuNow').innerHTML=doneAll?`<div class="status no">El proceso de follow up ya terminó<small>El aviso final fue el ${fmtD(at(SEGS[SEGS.length-1]))}.</small></div>`
+    :`<div class="status ${isToday?'ok':'wait'}">${isToday?'📩 Hoy toca: ':'⏳ Próximo: '}${esc(cur.label)}<small>${fmtD(cd)} · ${dleft(cd)} · ${cur.off?cur.off+' días hábiles después de completar la terna':'el mismo día que completaste la terna'}${cur.alert?` · también: ${esc(cur.alert)} (interna)`:''}</small></div>`;
+  $('fuSteps').innerHTML=SEGS.map(s=>{const d=at(s),ds=iso(d),past=ds<t,now=s.k===cur.k&&!doneAll;
+    return `<button class="fustep ${past?'past':''} ${now?'now':''}" data-fusel="${s.k}" aria-pressed="${s.k===sel.k}"><span class="lbl">${s.final?'Final':'S'+s.label.replace(/\D/g,'')}</span><b>${fmtD(d)}</b><span class="small">${past?'✓ pasó':now?(ds===t?'hoy':'próximo'):dleft(d)}</span></button>`}).join('');
+  const m=fuFill(sel,first);
+  $('fuWhich').textContent=`${sel.label} · ${fmtD(sd)}`;
+  $('fuSubj').value=m.subj;$('fuBody').value=m.body;
+  $('fuNote').textContent=(sel.final?'Este correo no venía en el documento original; lo redacté a partir de la regla del aviso final. Revísalo antes de enviarlo. ':'')+(sel.alert?`Ese día también: ${sel.alert} (comunicación interna).`:'');
+  updMail();
+}
+function updMail(){const a=$('fuMail');if(!a)return;a.href=`mailto:${encodeURIComponent(FU.to||'')}?subject=${encodeURIComponent($('fuSubj').value)}&body=${encodeURIComponent($('fuBody').value)}`}
+
+/* --- JD → Mensajes --- */
+const JD=store.get('jd',{text:'',title:'',loc:'',mod:'',sched:'',eng:'',sal:'',link:'',yo:''});
+let JDOUT='wa';const AIOUT={};
+const HEADS=[
+  ['about',/^(about us|about the company|about solvo( global)?|who we are|company overview|our company|the company|sobre nosotros|qui[eé]nes somos|acerca de (la empresa|nosotros)|nuestra empresa)$/],
+  ['sum',/^(job description|job summary description|description|summary|position summary|job summary|role summary|about the role|about the position|about the job|about this role|the role|role overview|position overview|overview|job overview|purpose|job purpose|position purpose|role purpose|mission|your mission|the opportunity|objective|resumen|resumen del (cargo|puesto|rol)|descripci[oó]n( del (cargo|puesto|rol)| general)?|objetivo( del (cargo|puesto|rol))?|prop[oó]sito( del (cargo|puesto|rol))?|misi[oó]n( del (cargo|puesto|rol))?|acerca del (rol|cargo|puesto)|sobre el (rol|cargo|puesto)|la oportunidad)$/],
+  ['ben',/(benefit|perks|what we offer|we offer|why join|why work|beneficios|ofrecemos|te ofrecemos|lo que ofrecemos)/],
+  ['reqs',/(requirement|qualification|what we('|’)?re looking for|we are looking for|what you('|’)?ll need|what you need|what you bring|who you are|about you|your profile|skills|must[- ]haves?|nice[- ]to[- ]haves?|^experience|education|competenc|requisitos|requerimientos|^perfil|lo que buscamos|qu[eé] buscamos|^experiencia|formaci[oó]n|conocimientos|habilidades|^idiomas?|^languages?)/],
+  ['resp',/(responsibilit|responsabilit|respons[ai]bilit|duties|what you('|’)?ll do|what you will do|what you('|’)?ll be doing|day[- ]to[- ]day|your role|in this role|key tasks|^tasks|accountabilit|^funciones|responsabilidades|actividades|tareas|qu[eé] har[aá]s|tu rol)/]
+];
+const BUL=/^\s*(?:[•\-*·▪●◦■□➤►▶✓✔→–—]|\d{1,2}[.)]|[a-z][.)])\s+/i;
+const clean=l=>l.replace(/^[\p{Extended_Pictographic}️\s]+/u,'').replace(/\*\*|__/g,'').replace(/^#+\s*/,'').trim();
+const headOf=l=>{if(BUL.test(l)&&!/^\s*\d{1,2}[.)]\s+\S+\s*[:：]?\s*$/.test(l))return null;const c=clean(l).replace(BUL,'').replace(/[:：]\s*$/,'').trim().toLowerCase();if(!c||c.length>55||c.split(/\s+/).length>7||/[.?!]$/.test(c))return null;for(const [k,re] of HEADS)if(re.test(c))return k;return null};
+const KV=[['title',/^(job title|position title|position|title|role|job|vacancy|cargo|puesto|posici[oó]n|vacante|nombre del cargo)$/],['loc',/^(location|work location|job location|city|country|countries|ubicaci[oó]n|ciudad|pa[ií]s(es)?|sede)$/],
+  ['sched',/^(schedule|work schedule|working hours|hours|shift|horario|horario de trabajo|jornada|turno)$/],['eng',/^(english|english level|english proficiency|nivel de ingl[eé]s|ingl[eé]s|idioma)$/],
+  ['sal',/^(salary|salary range|compensation|pay|rate|salario|rango salarial|compensaci[oó]n|remuneraci[oó]n)$/],['mod',/^(work model|modality|work arrangement|work mode|modalidad|tipo de trabajo)$/],
+  ['xreq',/^(experience|years of experience|education|degree|experiencia|estudios|educaci[oó]n|formaci[oó]n|seniority|nivel)$/]];
+function prepJD(t){
+  let x=String(t||'').replace(/\r/g,'').replace(/ /g,' ');
+  x=x.replace(/\s+([•▪●◦■➤►✓✔])\s+/g,'\n$1 ');
+  x=x.replace(/([^\n])\s+((?:key |main |job )?(?:responsibilities|requirements|qualifications|benefits|perks|what we offer|responsabilidades|funciones|requisitos|beneficios|schedule|horario|location|ubicaci[oó]n))\s*:/gi,'$1\n$2:');
+  if(x.split('\n').filter(l=>l.trim()).length<4&&x.length>300){
+    x=x.replace(/\s((?:key |main |job )?responsibilities|requirements|qualifications|benefits|what we offer|responsabilidades|funciones|requisitos|beneficios)\s*:/gi,'\n$1:\n');
+    x=x.replace(/\s-\s(?=[A-ZÁÉÍÓÚ])/g,'\n- ');
+  }
+  return x.split('\n').map(l=>l.trim());
+}
+function parseJD(t){
+  const L=prepJD(t);
+  const r={title:'',sum:[],resp:[],reqs:[],ben:[],about:[],loc:'',mod:'',sched:'',eng:'',sal:''},bul={sum:0},sumB=[];
+  let cur=null;
+  for(const raw of L){
+    if(!raw)continue;
+    const line=clean(raw);if(!line)continue;
+    const h=headOf(raw);
+    if(h){cur=h;continue}
+    const kv=line.match(/^([^:：]{2,32})[:：]\s*(.*)$/);
+    if(kv){const key=kv[1].replace(BUL,'').trim().toLowerCase(),val=kv[2].trim();let used=false;
+      for(const [k,re] of KV)if(re.test(key)){used=true;if(!val)break;if(k==='xreq')r.reqs.push(`${kv[1].trim()}: ${val}`);else if(!r[k])r[k]=val;break}
+      if(used)continue;
+      const hk=headOf(kv[1]);if(hk){cur=hk;if(val.length>3)(r[cur]||r.sum).push(val.replace(BUL,''));continue}
+    }
+    const isB=BUL.test(raw);
+    if(!r.title&&!cur&&!r.sum.length&&line.length<90&&!/[.]$/.test(line)&&!isB){
+      let tt=line.replace(/^(job description|descripci[oó]n del cargo|jd|we('|’)?re hiring|we are hiring|estamos contratando|hiring|vacante|oferta)\s*[:\-–|]*\s*/i,'');
+      if(tt&&!/^(job description|descripci[oó]n)/i.test(tt)){r.title=tt.replace(/[\-–|]\s*solvo.*$/i,'').trim();continue}
+      continue;
+    }
+    if(r.title&&!cur&&norm(line)===norm(r.title))continue;
+    const sec=cur||'sum';
+    if(['resp','reqs','ben'].includes(sec)&&line.length>110&&/[.;]\s+[A-ZÁÉÍÓÚ]/.test(line)){line.replace(BUL,'').split(/(?<=[.;])\s+(?=[A-ZÁÉÍÓÚ])/).map(x=>x.replace(/[.;]\s*$/,'').trim()).filter(x=>x.length>3).forEach(x=>r[sec].push(x.slice(0,220)));continue}
+    const item=sec==='sum'?line.replace(BUL,''):line.replace(BUL,'').replace(/\.\s*$/,'').slice(0,220);
+    if(sec==='sum'){if(isB)bul.sum++;sumB.push(isB)}
+    r[sec].push(item);
+  }
+  if(!r.resp.length&&bul.sum>=3){const keep=[];r.sum.forEach((l,i)=>(sumB[i]?r.resp:keep).push(l));r.sum=keep}
+  if(!r.sum.length&&r.about.length)r.sum=[];
+  const all=L.join(' ');
+  if(!r.title){const m=all.match(/(?:[Ww]e(?: are|'re|’re) (?:hiring|seeking|looking for)|is (?:hiring|seeking)|[Ll]ooking for|[Ee]stamos buscando|[Bb]uscamos)\s+(?:an?\s+|una?\s+)?(?:[a-záéíóúñ][\w\-áéíóúñ]*,?\s+){0,6}((?:[A-ZÁÉÍÓÚ][\w&/áéíóúñ]*\s?){1,5})/);if(m)r.title=m[1].trim()}
+  if(!r.title){const m=all.match(/^(?:[Jj]ob [Dd]escription|JD)\s*[-–|]\s*((?:[A-ZÁÉÍÓÚ][\w&/áéíóúñ]*\s?){1,5})/);if(m)r.title=m[1].trim()}
+  if(r.sum.length){r.sum[0]=r.sum[0].replace(/^(job description|jd)\s*[-–:|]\s*/i,'');if(r.title&&norm(r.sum[0]).startsWith(norm(r.title)+' '))r.sum[0]=r.sum[0].slice(r.title.length).trim()}
+  if(!r.reqs.length){const re=/((?:at least|minimum of|min\.?)?\s*\d+\+?\s*(?:years?|yrs?)\s+of\s+[^.,;]+?(?:\s+or\s+[^.,;]+)?)(?=[.,;]|$)|(\d+\+?\s*años\s+de\s+experiencia[^.,;]*)/gi;let m;while((m=re.exec(all))&&r.reqs.length<3)r.reqs.push((m[1]||m[2]).trim().replace(/^./,c=>c.toUpperCase()))}
+  if(!r.mod){if(/\bremot[eo]\b|work from home|wfh|teletrabajo|home office/i.test(all))r.mod=/h[ií]brid/i.test(all)?'Híbrido':'Remoto';
+    else if(/h[ií]brid/i.test(all))r.mod='Híbrido';else if(/on[- ]?site|presencial|in[- ]office|in office/i.test(all))r.mod='Presencial'}
+  else{const m=norm(r.mod);r.mod=/remot|home/.test(m)?'Remoto':/hibri|hybri/.test(m)?'Híbrido':/site|presen|office|ofic/.test(m)?'Presencial':r.mod}
+  if(!r.eng){const m=all.match(/\b(B1|B2\+?|C1|C2)(?!\w)/)||all.match(/english\s*(?:level)?\s*[:\-]?\s*(\d+(?:\.\d)?\s*(?:to|a|-)\s*\d+(?:\.\d)?)/i)||all.match(/(\d+(?:\.\d)?\s*(?:to|a|-)\s*\d+(?:\.\d)?)\s*(?:\/\s*10)?\s*(?:in\s*)?english/i);if(m)r.eng=m[1];
+    else if(/\b(advanced|fluent|bilingual|biling[uü]e|avanzado)\b.{0,20}english|english.{0,25}\b(advanced|fluent|avanzado)\b/i.test(all))r.eng='Avanzado'}
+  if(!r.sched){const m=all.match(/\b((?:mon(?:day)?|lun(?:es)?)\.?\s*(?:-|to|a|–)\s*(?:fri(?:day)?|sat(?:urday)?|vie(?:rnes)?|s[aá]b(?:ado)?)\.?[,\s]*\d{1,2}(?::\d{2})?\s*(?:am|pm|a\.?m\.?|p\.?m\.?)?\s*(?:-|to|a|–)\s*\d{1,2}(?::\d{2})?\s*(?:am|pm|a\.?m\.?|p\.?m\.?)?(?:\s*[A-Z]{2,4})?)/i);if(m)r.sched=m[1].trim()}
+  return r;
+}
+function jdModel(){
+  const p=parseJD(JD.text),ov=k=>lines(JD['o_'+k]);
+  const sumTxt=JD.o_sum&&JD.o_sum.trim()?JD.o_sum.trim():p.sum.join(' ');
+  const m={title:JD.title||p.title,loc:JD.loc||p.loc,mod:JD.mod||p.mod,sched:JD.sched||p.sched,eng:JD.eng||p.eng,sal:JD.sal||p.sal,link:JD.link,yo:JD.yo||'',
+    sum:sumTxt.slice(0,400),resp:(ov('resp').length?ov('resp'):p.resp).slice(0,8),reqs:(ov('reqs').length?ov('reqs'):p.reqs).slice(0,8),ben:(ov('ben').length?ov('ben'):p.ben).slice(0,6),p};
+  if(m.sum.length>260)m.sum=m.sum.slice(0,m.sum.lastIndexOf('.',260)+1||260);
+  return m;
+}
+const OUTS={
+  wa:{label:'WhatsApp ES',make:m=>`¡Hola [Nombre]! 👋 Soy ${m.yo||'[Tu nombre]'}, reclutador(a) de Solvo Global.\n\nTenemos una oportunidad como *${m.title||'[Cargo]'}*${m.mod?` (${m.mod})`:''}${m.sched?`, horario ${m.sched}`:''}.\n${m.sum?`\n${m.sum}\n`:''}${m.resp.length?`\nAlgunas de tus funciones:\n${m.resp.slice(0,3).map(x=>'• '+x).join('\n')}\n`:''}${m.eng?`\nBuscamos inglés ${m.eng}.`:''}\n\n¿Te interesa? Te cuento los detalles 😊${m.link?`\nPuedes aplicar aquí: ${m.link}`:''}`},
+  wa_en:{label:'WhatsApp EN',make:m=>`Hi [Name]! 👋 This is ${m.yo||'[Your name]'}, recruiter at Solvo Global.\n\nWe have an opening for a *${m.title||'[Role]'}*${m.mod?` (${m.mod==='Remoto'?'remote':m.mod==='Híbrido'?'hybrid':'on-site'})`:''}${m.sched?`, schedule ${m.sched}`:''}.\n${m.sum?`\n${m.sum}\n`:''}${m.resp.length?`\nSome of your responsibilities:\n${m.resp.slice(0,3).map(x=>'• '+x).join('\n')}\n`:''}${m.eng?`\nRequired English level: ${m.eng}.`:''}\n\nInterested? I'd love to tell you more.${m.link?`\nApply here: ${m.link}`:''}`},
+  li:{label:'LinkedIn ES',make:m=>`🚀 ¡Estamos contratando! ${m.title||'[Cargo]'}\n\n${m.sum||''}\n${m.reqs.length?`\nLo que buscamos:\n${m.reqs.slice(0,5).map(x=>'✅ '+x).join('\n')}\n`:''}${m.ben.length?`\nLo que ofrecemos:\n${m.ben.slice(0,4).map(x=>'⭐ '+x).join('\n')}\n`:''}${m.mod||m.sched||m.loc?`\n📍 ${[m.mod,m.loc,m.sched].filter(Boolean).join(' · ')}`:''}${m.eng?`\n🗣️ Inglés ${m.eng}`:''}\n\n${m.link?`👉 Aplica aquí: ${m.link}\n\n`:''}Si te interesa o conoces a alguien ideal, escríbeme o comenta "Me interesa" 👇\n\n#Hiring #Empleo #BPO #Nearshore #SolvoGlobal`},
+  li_en:{label:'LinkedIn EN',make:m=>`🚀 We're hiring! ${m.title||'[Role]'}\n\n${m.sum||''}\n${m.reqs.length?`\nWhat we're looking for:\n${m.reqs.slice(0,5).map(x=>'✅ '+x).join('\n')}\n`:''}${m.ben.length?`\nWhat we offer:\n${m.ben.slice(0,4).map(x=>'⭐ '+x).join('\n')}\n`:''}${m.loc||m.sched?`\n📍 ${[m.loc,m.sched].filter(Boolean).join(' · ')}`:''}${m.eng?`\n🗣️ English ${m.eng}`:''}\n\n${m.link?`👉 Apply here: ${m.link}\n\n`:''}Interested or know someone great for this role? Send me a message or comment "Interested" 👇\n\n#Hiring #Nearshore #BPO #RemoteJobs #SolvoGlobal`},
+  mail:{label:'InMail / correo EN',make:m=>`Subject: ${m.title||'[Role]'} opportunity at Solvo Global\n\nHi [Name],\n\nI came across your profile and think you could be a great fit for our ${m.title||'[Role]'} role.\n${m.sum?`\n${m.sum}\n`:''}${m.resp.length?`\nIn this role you would:\n${m.resp.slice(0,3).map(x=>'• '+x).join('\n')}\n`:''}\nWould you be open to a quick call this week?\n\nBest regards,\n${m.yo||'[Your name]'}\nTalent Acquisition · Solvo Global`},
+  mail_es:{label:'Correo ES',make:m=>`Asunto: Oportunidad como ${m.title||'[Cargo]'} en Solvo Global\n\nHola [Nombre],\n\nVi tu perfil y creo que podrías encajar muy bien en nuestra vacante de ${m.title||'[Cargo]'}${m.mod?` (${m.mod.toLowerCase()})`:''}.\n${m.sum?`\n${m.sum}\n`:''}${m.resp.length?`\nEn este rol vas a:\n${m.resp.slice(0,3).map(x=>'• '+x).join('\n')}\n`:''}${m.reqs.length?`\nBuscamos:\n${m.reqs.slice(0,3).map(x=>'• '+x).join('\n')}\n`:''}\n¿Tienes unos minutos esta semana para una llamada corta?\n\nSaludos,\n${m.yo||'[Tu nombre]'}\nTalent Acquisition · Solvo Global`}
+};
+V.jd=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">Generador</span><h1>JD → Mensajes</h1></div></div>
+  <div class="grid2">
+    <section class="panel"><div class="panel-head"><h2>Job description</h2><button class="btn sm" id="jdClear">Limpiar</button></div>
+      <textarea id="jdText" rows="12" placeholder="Pega aquí el JD (en inglés o español)…">${esc(JD.text)}</textarea>
+      <div class="detected" id="jdDetected"></div>
+      <details><summary class="small muted" style="cursor:pointer">Ajustar datos (si algo no se detectó bien)</summary>
+      <div class="form" style="margin-top:10px">
+        <label class="full">Cargo<input id="jdTitle" value="${esc(JD.title)}"></label>
+        <label>Ubicación<input id="jdLoc" value="${esc(JD.loc)}"></label>
+        <label>Modalidad<select id="jdMod">${['','Remoto','Híbrido','Presencial'].map(x=>`<option${x===JD.mod?' selected':''} value="${x}">${x||'Auto'}</option>`).join('')}</select></label>
+        <label>Horario<input id="jdSched" value="${esc(JD.sched)}"></label>
+        <label>Inglés<input id="jdEng" value="${esc(JD.eng)}"></label>
+        <label>Salario<input id="jdSal" value="${esc(JD.sal)}"></label>
+        <label class="full">Resumen del rol<textarea id="jdOSum" rows="3" placeholder="Si lo dejas vacío uso el que detecté">${esc(JD.o_sum||'')}</textarea></label>
+        <label class="full">Responsabilidades · una por línea<textarea id="jdOResp" rows="4" placeholder="Si lo dejas vacío uso las que detecté">${esc(JD.o_resp||'')}</textarea></label>
+        <label class="full">Requisitos · uno por línea<textarea id="jdOReqs" rows="4" placeholder="Si lo dejas vacío uso los que detecté">${esc(JD.o_reqs||'')}</textarea></label>
+        <label class="full">Beneficios · uno por línea<textarea id="jdOBen" rows="3" placeholder="Si lo dejas vacío uso los que detecté">${esc(JD.o_ben||'')}</textarea></label>
+        <div class="full"><button class="btn sm" id="jdFill" type="button">Cargar lo detectado para editarlo</button></div>
+        <label class="full">Link para aplicar<input id="jdLink" value="${esc(JD.link)}"></label>
+        <label class="full">Tu nombre (firma)<input id="jdYo" value="${esc(JD.yo)}"></label>
+      </div></details>
+    </section>
+    <section class="panel"><div class="panel-head"><h2>Mensaje</h2><span class="muted small" id="aiState"></span></div>
+      <div class="outtabs" id="jdTabs"></div>
+      <textarea class="out" id="jdOut"></textarea>
+      <div class="actions"><button class="btn primary" id="jdCopy">Copiar</button><button class="btn" id="jdAI" hidden>✨ Mejorar con IA</button><span class="muted small">Cambia [Nombre] antes de enviar. Puedes editar el texto aquí mismo.</span></div>
+    </section>
+  </div>`;
+function renderJD(){
+  if(!$('jdOut'))return;
+  const m=jdModel();
+  const tags=[['Cargo',m.title],['Modalidad',m.mod],['Horario',m.sched],['Inglés',m.eng],['Funciones',m.resp.length?m.resp.length+' detectadas':''],['Requisitos',m.reqs.length?m.reqs.length+' detectados':''],['Beneficios',m.ben.length?m.ben.length+' detectados':'']];
+  $('jdDetected').innerHTML=JD.text?tags.map(([k,v])=>`<span class="pill ${v?'c-ok':''}">${k}: ${esc(v||'no detectado')}</span>`).join(''):'';
+  $('jdTabs').innerHTML=Object.entries(OUTS).map(([k,o])=>`<button class="chip" data-out="${k}" aria-pressed="${k===JDOUT}">${o.label}${AIOUT[k]?' ✨':''}</button>`).join('');
+  $('jdOut').value=JD.text||JD.title?(AIOUT[JDOUT]||OUTS[JDOUT].make(m)):'';
+  $('jdOut').placeholder='Pega un JD a la izquierda y aquí aparece el mensaje.';
+}
+let SAMPLE=null;
+async function aiImprove(){
+  const m=jdModel();if(!JD.text){toast('Primero pega un JD.');return}
+  const b=$('jdAI');b.disabled=true;$('aiState').textContent='Escribiendo con IA…';
+  try{
+    const prompt=`Eres reclutador(a) de Solvo Global (BPO nearshore). A partir del job description, escribe mensajes para atraer candidatos. Reglas: tono cercano y profesional; no inventes datos que no estén en el JD; NO incluyas la ubicación en los mensajes de WhatsApp; incluye un resumen corto del rol y 3 responsabilidades clave; usa [Nombre] para el nombre del candidato; firma como "${m.yo||'[Tu nombre]'}"; ${m.link?`incluye el link para aplicar: ${m.link}`:'no incluyas links'}.
+Devuelve SOLO un JSON con estas claves: "wa" (WhatsApp en español), "wa_en" (WhatsApp en inglés), "li" (post de LinkedIn en español con emojis y 4-6 hashtags), "li_en" (post de LinkedIn en inglés), "mail" (InMail/correo en inglés con línea Subject:), "mail_es" (correo en español con línea Asunto:).
+Datos ajustados por el usuario: cargo=${m.title||'-'}; modalidad=${m.mod||'-'}; horario=${m.sched||'-'}; inglés=${m.eng||'-'}.
+JOB DESCRIPTION:
+${JD.text.slice(0,12000)}`;
+    const r=await SAMPLE.json(prompt,{modelTier:'default'});
+    for(const k in OUTS)if(r&&typeof r[k]==='string')AIOUT[k]=r[k];
+    $('aiState').textContent='Mensajes escritos con IA ✨';renderJD();
+  }catch(e){$('aiState').textContent=e&&e.code==='rate_limited'?'Límite de uso alcanzado, intenta más tarde.':'No se pudo usar la IA; quedan las plantillas.'}
+  b.disabled=false;
+}
+
+/* --- JD → Entrevista --- */
+const IV=store.get('iv',{cand:'',lang:'es',view:'q'});
+let IVQ=[],IVAI=null;const IVST={};
+const isLead=t=>/supervis|lead|l[ií]der|manager|gerente|coordinat|jefe/i.test(t);
+const isCS=t=>/customer|client|support|service|servicio|soporte|call|contact center|sales|ventas/i.test(t);
+function buildQs(){
+  const m=jdModel(),en=IV.lang==='en',Q=[];const add=(cat,q,why)=>Q.push({id:'q'+Q.length,cat,q,why});
+  const T=m.title||(en?'this role':'este cargo');
+  add(en?'Opening':'Apertura',en?`Tell me briefly about your experience and why you're interested in the ${T} role.`:`Cuéntame brevemente de tu experiencia y por qué te interesa el cargo de ${T}.`,en?'Breaks the ice and shows motivation.':'Rompe el hielo y muestra la motivación.');
+  add(en?'Opening':'Apertura',en?'Why are you looking for a new opportunity right now?':'¿Por qué estás buscando una nueva oportunidad en este momento?',en?'Reveals reasons for leaving and stability.':'Muestra el motivo de salida y la estabilidad.');
+  m.resp.slice(0,5).forEach(r=>add(en?'Role responsibilities':'Responsabilidades del rol',en?`This role includes "${r}". Tell me about a time you did this: what did you do and what was the result?`:`El rol incluye "${r}". Cuéntame de una vez en la que lo hiciste: ¿qué hiciste y qué resultado obtuviste?`,en?'Look for a concrete example (situation, action, result).':'Busca un ejemplo concreto: situación, acción y resultado.'));
+  m.reqs.filter(r=>!/ingl[eé]s|english/i.test(r)).slice(0,4).forEach(r=>{const y=r.match(/(\d+)\s*\+?\s*(a[ñn]os|years?)/i);
+    add(en?'Requirements':'Requisitos',y?(en?`The role asks for ${y[1]}+ years: "${r}". How many years do you have and in what roles?`:`El cargo pide ${y[1]}+ años: "${r}". ¿Cuántos años tienes y en qué cargos?`):(en?`The role requires "${r}". How do you meet this? Give me a specific example.`:`El cargo pide "${r}". ¿Cómo cumples con esto? Dame un ejemplo concreto.`),en?'Validates a must-have.':'Valida un requisito indispensable.')});
+  const all=(m.title+' '+JD.text);
+  if(isLead(all)){add(en?'Leadership':'Liderazgo',en?'How many people have you led? How did you handle a team member with low performance?':'¿A cuántas personas has liderado? ¿Cómo manejaste a alguien de tu equipo con bajo desempeño?',en?'Team size and how they manage performance.':'Tamaño del equipo y manejo del desempeño.');
+    add(en?'Leadership':'Liderazgo',en?'Which KPIs did your team track and how did you improve them?':'¿Qué KPIs manejaba tu equipo y cómo los mejoraste?',en?'Expect numbers, not generalities.':'Espera números, no generalidades.')}
+  if(isCS(all))add(en?'Customer focus':'Servicio al cliente',en?'Tell me about an upset customer you turned around. What did you say and do?':'Cuéntame de un cliente molesto al que lograste calmar. ¿Qué dijiste y qué hiciste?',en?'De-escalation and empathy.':'Manejo de escalamientos y empatía.');
+  add(en?'English check':'Parte en inglés','Can you describe your current or last job and a typical day there?',en?'Fluency and vocabulary.':'Fluidez y vocabulario. Hazla en inglés.');
+  add(en?'English check':'Parte en inglés','Tell me about a challenge you faced at work and how you solved it.',m.eng?(en?`Target level: ${m.eng}.`:`Nivel esperado: ${m.eng}.`):(en?'Structure and grammar.':'Estructura y gramática.'));
+  if(m.sched)add(en?'Conditions':'Condiciones',en?`The schedule is ${m.sched}. Does that work for you?`:`El horario es ${m.sched}. ¿Te funciona?`,'');
+  if(m.mod==='Presencial'||m.mod==='Híbrido')add(en?'Conditions':'Condiciones',en?`The role is ${m.mod==='Presencial'?'on-site':'hybrid'}. How would you commute to the office?`:`El rol es ${m.mod.toLowerCase()}. ¿Cómo te desplazarías a la oficina?`,'');
+  add(en?'Conditions':'Condiciones',en?'When could you start?':'¿Cuál es tu disponibilidad para iniciar?','');
+  add(en?'Conditions':'Condiciones',en?'What is your salary expectation?':'¿Cuál es tu expectativa salarial?',en?'Log it in Ceipal before the POC submission.':'Regístrala en Ceipal antes del TA POC Submission.');
+  return Q;
+}
+function ivScript(){
+  const m=jdModel(),en=IV.lang==='en',yo=JD.yo||(en?'[Your name]':'[Tu nombre]'),c=IV.cand||(en?'[Name]':'[Nombre]');
+  const qs=IVQ.filter(q=>!IVST[q.id]||!IVST[q.id].off);
+  const by=k=>qs.filter(q=>q.cat===k).map(q=>'• '+q.q).join('\n');
+  const cats=[...new Set(qs.map(q=>q.cat))];
+  const T=m.title||(en?'the role':'el cargo');
+  if(en)return `1. OPENING (1–2 min)
+"Hi ${c}, I'm ${yo} from Talent Acquisition at Solvo Global. Thanks for your time! This interview takes about 20–30 minutes: I'll tell you about the role, we'll talk about your experience, and at the end you can ask me anything. Sound good?"
+
+2. ABOUT THE ROLE (2 min)
+"The position is ${T}${m.mod?` (${m.mod==='Remoto'?'remote':m.mod==='Híbrido'?'hybrid':'on-site'})`:''}${m.sched?`, schedule ${m.sched}`:''}.${m.sum?` ${m.sum}`:''}"
+${m.resp.length?`Main responsibilities:\n${m.resp.slice(0,3).map(x=>'• '+x).join('\n')}`:''}
+
+3. QUESTIONS
+${cats.map(k=>`${k}:\n${by(k)}`).join('\n\n')}
+
+4. CLOSING (2–3 min)
+"Thank you, ${c}! Next steps: please send me your updated CV and a video in English of at least 2 minutes addressed to the hiring manager. Once I have them, I'll share your profile and get back to you with feedback. Do you have any questions for me?"`;
+  return `1. APERTURA (1–2 min)
+"Hola ${c}, soy ${yo}, de Talent Acquisition en Solvo Global. ¡Gracias por tu tiempo! La entrevista dura unos 20–30 minutos: te cuento del rol, hablamos de tu experiencia, hacemos una parte en inglés y al final resolvemos tus dudas. ¿Te parece?"
+
+2. SOBRE EL ROL (2 min)
+"La vacante es de ${T}${m.mod?` (${m.mod.toLowerCase()})`:''}${m.sched?`, con horario ${m.sched}`:''}.${m.sum?` ${m.sum}`:''}"
+${m.resp.length?`Funciones principales:\n${m.resp.slice(0,3).map(x=>'• '+x).join('\n')}`:''}
+
+3. PREGUNTAS
+${cats.map(k=>`${k}:\n${by(k)}`).join('\n\n')}
+
+4. CIERRE (2–3 min)
+"¡Muchas gracias, ${c}! Como siguiente paso, por favor envíame tu CV actualizado y un video en inglés de mínimo 2 minutos dirigido al hiring manager. Apenas los tenga, envío tu perfil y te cuento el feedback. ¿Tienes alguna pregunta para mí?"
+
+Después de la entrevista: actualiza el status (TA Review → TA POC Submission en máximo 4 h) y deja la nota en Ceipal.`;
+}
+V.entrevista=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">Generador</span><h1>JD → Entrevista</h1></div>
+  <div class="actions"><div class="seg" role="group" aria-label="Idioma"><button class="chip" data-ivlang="es" aria-pressed="${IV.lang==='es'}">Español</button><button class="chip" data-ivlang="en" aria-pressed="${IV.lang==='en'}">English</button></div></div></div>
+  <div class="grid-side">
+    <section class="panel"><div class="panel-head"><h2>Job description</h2><button class="btn sm" data-tab="jd">Ajustar datos</button></div>
+      <textarea id="ivJd" rows="14" placeholder="Pega aquí el JD. Es el mismo de JD → Mensajes.">${esc(JD.text)}</textarea>
+      <div class="detected" id="ivDet"></div>
+      <label class="small muted" style="display:flex;flex-direction:column;gap:4px">Nombre del candidato<input id="ivCand" value="${esc(IV.cand)}"></label>
+      <button class="btn" id="ivAI" hidden>✨ Generar preguntas con IA</button><span class="muted small" id="ivAIst"></span>
+    </section>
+    <section class="panel"><div class="actions"><button class="chip" data-ivview="q" aria-pressed="${IV.view==='q'}">Preguntas</button><button class="chip" data-ivview="s" aria-pressed="${IV.view==='s'}">Script</button></div>
+      <div id="ivOut"></div></section>
+  </div>`;
+function renderIV(){
+  if(!$('ivOut'))return;
+  if($('ivDet')){const m=jdModel();$('ivDet').innerHTML=JD.text?[['Cargo',m.title],['Funciones',m.resp.length||''],['Requisitos',m.reqs.length||''],['Inglés',m.eng],['Horario',m.sched]].map(([k,v])=>`<span class="pill ${v?'c-ok':''}">${k}: ${esc(v||'no detectado')}</span>`).join('')+'<button class="linkbtn" data-tab="jd">Corregir</button>':''}
+  if(!JD.text){$('ivOut').innerHTML='<p class="empty">Pega un JD a la izquierda y aquí salen las preguntas y el script.</p>';return}
+  IVQ=IVAI||buildQs();
+  if(IV.view==='s'){$('ivOut').innerHTML=`<textarea class="out" id="ivScript" style="min-height:460px">${esc(ivScript())}</textarea><div class="actions"><button class="btn primary" data-copyel="ivScript">Copiar script</button><span class="muted small">Usa solo las preguntas que dejaste marcadas.</span></div>`;return}
+  const cats=[...new Set(IVQ.map(q=>q.cat))];
+  const rated=IVQ.filter(q=>IVST[q.id]&&IVST[q.id].r),cnt=k=>rated.filter(q=>IVST[q.id].r===k).length;
+  $('ivOut').innerHTML=`<div class="panel-head"><div class="score"><span class="pill c-ok">Fuerte ${cnt(3)}</span><span class="pill c-warn">Regular ${cnt(2)}</span><span class="pill c-crit">Débil ${cnt(1)}</span></div><button class="btn sm primary" id="ivSum">Copiar resumen para Ceipal</button></div>
+    <div class="qlist">${cats.map(k=>`<div class="qcat">${esc(k)}</div>`+IVQ.filter(q=>q.cat===k).map(q=>{const st=IVST[q.id]||{};
+      return `<div class="q ${st.off?'off':''}"><input type="checkbox" data-ivon="${q.id}" ${st.off?'':'checked'} aria-label="Incluir pregunta"><div><div class="qt">${esc(q.q)}</div>${q.why?`<div class="why">${esc(q.why)}</div>`:''}</div>
+        <div class="rate"><button class="r3" data-ivr="${q.id}:3" aria-pressed="${st.r===3}">Fuerte</button><button class="r2" data-ivr="${q.id}:2" aria-pressed="${st.r===2}">Regular</button><button class="r1" data-ivr="${q.id}:1" aria-pressed="${st.r===1}">Débil</button><input id="ivn_${q.id}" placeholder="Nota rápida" value="${esc(st.n||'')}"></div></div>`}).join('')).join('')}</div>`;
+}
+function ivSummary(){
+  const m=jdModel(),lbl={3:'Fuerte',2:'Regular',1:'Débil'};
+  const rows=IVQ.filter(q=>IVST[q.id]&&(IVST[q.id].r||IVST[q.id].n));
+  return `Entrevista TA – ${IV.cand||'[Candidato]'} – ${m.title||'[Cargo]'} – ${new Date().toLocaleDateString('es-CO')}
+${rows.map(q=>`• ${q.cat}: ${lbl[IVST[q.id].r]||'—'}${IVST[q.id].n?' – '+IVST[q.id].n:''}`).join('\n')||'• (sin calificaciones)'}`;
+}
+async function ivAI(){
+  if(!JD.text){toast('Primero pega un JD.');return}
+  const b=$('ivAI');b.disabled=true;$('ivAIst').textContent='Generando con IA…';
+  try{const r=await SAMPLE.json(`Eres reclutador(a) de Solvo Global (BPO nearshore). A partir del job description, crea 10 a 14 preguntas de entrevista de TA en ${IV.lang==='en'?'inglés':'español'} (incluye 2 en inglés para evaluar el idioma si la entrevista es en español). Cubre: motivación, responsabilidades clave con preguntas de comportamiento (ejemplos concretos), requisitos indispensables, inglés y condiciones (disponibilidad, horario, expectativa salarial). No inventes datos que no estén en el JD.
+Devuelve SOLO un JSON: {"preguntas":[{"cat":"categoría corta","q":"pregunta","why":"qué buscar en la respuesta, máx 12 palabras"}]}
+JOB DESCRIPTION:
+${JD.text.slice(0,12000)}`,{modelTier:'default'});
+    if(r&&Array.isArray(r.preguntas)&&r.preguntas.length){IVAI=r.preguntas.map((x,i)=>({id:'a'+i,cat:String(x.cat||'Preguntas'),q:String(x.q||''),why:String(x.why||'')}));for(const k in IVST)delete IVST[k];$('ivAIst').textContent='Preguntas generadas con IA ✨';renderIV()}
+    else throw 0;
+  }catch(e){$('ivAIst').textContent=e&&e.code==='rate_limited'?'Límite de uso alcanzado, intenta más tarde.':'No se pudo usar la IA; quedan las preguntas automáticas.'}
+  b.disabled=false;
+}
+
+/* --- Contratos --- */
+let CPAIS=store.get('cpais','Colombia');
+const probation=t=>{const s=String(t||'');const m=s.match(/periodo de prueba:?\s*(\d[^.\n(]*)/i)||s.match(/prueba de (\d+ meses)/i)||s.match(/inicial de (\d+ meses)/i);return m?m[1].replace(/\s+para.*$/i,'').trim():''};
+const division=t=>{const m=String(t||'').match(/(\d{2})%[^\d]{1,40}?(\d{2})%/);if(m)return `${m[1]} / ${m[2]}`;return /100% base/i.test(t)?'100% base':''};
+const shortBen=x=>{let s=x.split(/[:(]/)[0].trim();if(s.length>34)s=s.slice(0,32)+'…';return s};
+V.contratos=()=>{
+  const paises=[...new Set(DATA.contratos.map(c=>c.pais))];
+  if(!paises.includes(CPAIS))CPAIS=paises[0];
+  const L=DATA.contratos.filter(c=>c.pais===CPAIS);
+  return `<div class="pagehead"><div class="meta"><span class="eyebrow">Hiring por país</span><h1>Tipos de contrato</h1></div></div>
+  <div class="countries">${paises.map(p=>`<button class="chip" data-pais="${esc(p)}" aria-pressed="${p===CPAIS}">${esc(p)} <span class="muted num">${DATA.contratos.filter(c=>c.pais===p).length}</span></button>`).join('')}</div>
+  <div class="ccards">${L.map(c=>{const pr=probation(c.cond),dv=division(c.notas),ack=/sin acknowledgement/i.test(c.notas)?'No':/acknowledgement/i.test(c.notas)?'Sí':'',med=/sin ex[aá]menes m[eé]dicos/i.test(c.notas)?'No':'';
+    return `<article class="ccard"><div class="panel-head"><h2>${esc(c.tipo)}</h2><span class="pill c-acc">${esc(c.partner)}</span></div>
+    <div class="tiles"><div class="tile"><span>Moneda</span><b class="num">${esc(c.moneda||'—')}</b></div><div class="tile"><span>Aviso mínimo</span><b>${esc(c.min||'—')}</b></div>
+      ${pr?`<div class="tile"><span>Periodo de prueba</span><b>${esc(pr)}</b></div>`:''}${dv?`<div class="tile"><span>División salarial</span><b class="num">${esc(dv)}</b></div>`:''}
+      ${ack?`<div class="tile"><span>Acknowledgement</span><b>${ack}</b></div>`:''}${med?`<div class="tile"><span>Exámenes médicos</span><b>${med}</b></div>`:''}</div>
+    ${c.benef&&c.benef!=='NA'?`<div class="bchips">${lines(c.benef).map(x=>`<span class="bchip" title="${esc(x)}">${esc(shortBen(x))}</span>`).join('')}</div>`:'<span class="muted small">Sin prestaciones de ley</span>'}
+    ${c.cond||c.notas?`<details class="acc"><summary><span class="small">Ver condiciones y notas</span></summary><div class="in">${[...lines(c.cond),...lines(c.notas)].map(x=>`<span class="small">• ${esc(x)}</span>`).join('')}</div></details>`:''}
+  </article>`}).join('')}</div>`;
+};
+
+/* --- Salarios --- */
+const SMMLV=1750905;
+const RULES={
+  'Colombia':{cur:'COP',base:.65,a:'Base prestacional',b:'Plan de beneficios extralegales (auxilio de vivienda)',min:SMMLV,note:'65% base / 35% auxilio extralegal; la base nunca puede ser menor al SMMLV ($1.750.905). Si el total es bajo, la base queda en el mínimo y el resto va al plan extralegal.'},
+  'México':{cur:'MXN',base:.70,a:'Sueldo (nómina)',b:'Bono neto (tarjeta adicional, sin deducciones)',note:'70% sueldo / 30% bono neto. La remuneración es bruta ("total de percepciones"). En contractor no aplica.'},
+  'Guatemala':{cur:'GTQ',base:.80,a:'Base salarial (fin de mes)',b:'Bono de asistencia (normalmente el 15)',note:'80% base / 20% bono de asistencia, según Tipos de contrato. En contractor no aplica.',warn:'Ojo: la hoja de Remuneraciones tiene un ejemplo con 85% / 15%. Confirmen cuál es el vigente.'},
+  'Honduras':{cur:'HNL',base:.80,a:'Base salarial (fin de mes)',b:'Bono de asistencia (normalmente el 15)',note:'80% base / 20% bono de asistencia.'},
+  'Filipinas':{cur:'PHP',base:1,a:'Base (100%)',b:'',note:'Se ofrece el bruto mensual, 100% base, sin división salarial. Nómina semanal.'}
+};
+const SAL=store.get('sal',{pais:'Colombia',total:2400000});
+V.salarios=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">Remuneraciones por país</span><h1>Calculadora de salario</h1></div></div>
+  <div class="grid-side">
+    <section class="panel"><div class="form">
+      <label class="full">País<select id="salPais">${Object.keys(RULES).map(p=>`<option${p===SAL.pais?' selected':''}>${p}</option>`).join('')}</select></label>
+      <p class="full small"><button class="linkbtn" data-tab="peru" style="font-family:var(--f-body)">Perú tiene su propia calculadora →</button></p>
+      <label class="full">Total mensual<input id="salTotal" type="number" min="0" step="1000" value="${esc(SAL.total)}" class="num"></label>
+    </div><div id="salNote"></div></section>
+    <section class="panel" id="salOut"></section>
+  </div>
+  <details class="acc"><summary><h3>Tabla de referencia Colombia</h3></summary><div class="in">
+    <div class="tablebox"><table><thead><tr><th>Total</th><th style="text-align:right">Base prestacional</th><th style="text-align:right">Plan extralegal</th><th style="text-align:right">% base</th></tr></thead><tbody>
+    ${[1800000,1900000,2000000,2100000,2200000,2300000,2400000,2500000,2600000,2700000,3000000].map(t=>{const s=splitCO(t);return `<tr><td class="num">$${money(t)}</td><td class="num" style="text-align:right">$${money(s.a)}</td><td class="num" style="text-align:right">$${money(s.b)}</td><td class="num" style="text-align:right">${Math.round(s.a/t*100)}%</td></tr>`}).join('')}
+    </tbody></table></div>
+    <p class="muted small">2 SMMLV = $3.501.810.</p></div></details>`;
+function splitCO(t){const a=Math.min(t,Math.max(SMMLV,Math.round(t*.65)));return {a,b:t-a}}
+function renderSal(){
+  if(!$('salOut'))return;
+  const R=RULES[SAL.pais],t=Math.max(0,Number(SAL.total)||0);
+  let a=t*R.base,b=t-a;
+  if(SAL.pais==='Colombia'){const s=splitCO(t);a=s.a;b=s.b}
+  const pa=t?Math.round(a/t*100):0;
+  const sentence=R.b?`Tu salario total mensual sería de ${money(t,R.cur)}, dividido así: ${money(a,R.cur)} de ${R.a.toLowerCase()} y ${money(b,R.cur)} de ${R.b.toLowerCase()}.`:`Tu salario mensual bruto sería de ${money(t,R.cur)}.`;
+  $('salOut').innerHTML=`<span class="eyebrow">Total mensual · ${esc(SAL.pais)}</span><span class="bigmoney">${money(t,R.cur)}</span>
+    ${R.b?`<div class="split"><div style="flex:${a||1};background:var(--accent)">${pa}%</div><div style="flex:${b||0.0001};background:var(--internal)">${100-pa}%</div></div>`:''}
+    <div class="kv"><span>${esc(R.a)}</span><span class="v">${money(a,R.cur)}</span>${R.b?`<span>${esc(R.b)}</span><span class="v">${money(b,R.cur)}</span>`:''}</div>
+    ${SAL.pais==='Colombia'&&t<SMMLV?'<p class="note warn">El total es menor al SMMLV; la base no puede ser inferior al mínimo.</p>':''}
+    ${SAL.pais==='Colombia'&&t>0&&t<=2*SMMLV?'<p class="muted small">Hasta 2 SMMLV puede aplicar el auxilio de transporte ($200.000), según Tipos de contrato.</p>':''}
+    <div class="lbl">Para explicárselo al candidato</div><div class="mailbox">${esc(sentence)}</div>
+    <div class="actions"><button class="btn primary" data-copy="${esc(sentence)}">Copiar frase</button></div>`;
+  $('salNote').innerHTML=`<p class="muted small">${esc(R.note)}</p>${R.warn?`<p class="note warn">${esc(R.warn)}</p>`:''}`;
+}
+
+/* --- Salario Perú --- */
+const PE=store.get('pe',{total:2000,mod:'6',rmv:1130});
+const PE_MODS=[['6','6 días oficina'],['5','5 días'],['4','4 días'],['3','3 días'],['2','2 días'],['1','1 día'],['h','Home office']];
+function peSplit(total,mod,rmv){
+  const T=mod==='h'?200:(+mod)*4*30, R=total-T;
+  let base,food;
+  const x=R/1.2,f=R-R/1.2;
+  if(x<rmv)base=rmv;else if(R*0.2>2*rmv)base=null;else base=x;
+  if(f>2*rmv)food=2*rmv;else if(f<rmv)food=null;else food=f;
+  if(base==null)base=total-food-T;
+  base=Math.ceil(base-1e-9);
+  if(food==null)food=total-base-T;
+  food=Math.floor(food+1e-9);
+  return {T,base,food,R};
+}
+const sol=n=>'S/ '+new Intl.NumberFormat('es-PE',{maximumFractionDigits:0}).format(Math.round(n));
+V.peru=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">Salary Payment Model · Perú</span><h1>Calculadora salario Perú</h1></div>
+  <label class="small muted" style="display:flex;flex-direction:column;gap:4px">Sueldo mínimo (RMV)<input id="peRmv" type="number" class="num" style="width:110px" value="${esc(PE.rmv)}"></label></div>
+  <div class="grid-side">
+    <section class="panel">
+      <label class="small muted" style="display:flex;flex-direction:column;gap:4px">Compensación total mensual (S/)<input id="peTotal" type="number" min="0" step="5" class="num" style="font-size:20px" value="${esc(PE.total)}"></label>
+      <input type="range" id="peRange" min="1850" max="8000" step="5" value="${esc(Math.min(8000,Math.max(1850,PE.total)))}" style="padding:0">
+      <div class="small muted">¿Cuántos días va a la oficina?</div>
+      <div class="countries" id="peMods"></div>
+    </section>
+    <section class="panel" id="peOut"></section>
+  </div>
+  <section class="panel"><div class="panel-head"><h2>El mismo total en cada modalidad</h2><span class="muted small">Toca una fila para elegirla</span></div><div class="tablebox"><table id="peTbl"></table></div></section>`;
+function renderPE(){
+  if(!$('peOut'))return;
+  const t=Math.max(0,Number(PE.total)||0),rmv=Number(PE.rmv)||1130,s=peSplit(t,PE.mod,rmv);
+  $('peMods').innerHTML=PE_MODS.map(([k,l])=>`<button class="chip" data-pemod="${k}" aria-pressed="${k===PE.mod}">${l}</button>`).join('');
+  const lbl=PE_MODS.find(m=>m[0]===PE.mod)[1];
+  const tr=PE.mod==='h'?'compensación por teletrabajo':'vale de transporte';
+  const sentence=`Tu compensación total mensual sería de ${sol(t)}, dividida así: ${sol(s.base)} de sueldo básico, ${sol(s.food)} de vale de alimentos y ${sol(s.T)} de ${tr}${PE.mod==='h'?'':` (S/ 30 por día presencial)`}.`;
+  const seg=(v,c,l)=>v>0?`<div style="flex:${v};background:${c}" title="${l}">${Math.round(v/t*100)}%</div>`:'';
+  $('peOut').innerHTML=`<span class="eyebrow">Total · ${esc(lbl)}</span><span class="bigmoney">${sol(t)}</span>
+    ${t>0?`<div class="split">${seg(s.base,'var(--accent)','Básico')}${seg(s.food,'var(--client)','Alimentos')}${seg(s.T,'var(--internal)','Transporte')}</div>`:''}
+    <div class="kv"><span><i class="dot" style="background:var(--accent);display:inline-block"></i> Sueldo básico</span><span class="v">${sol(s.base)}</span>
+      <span><i class="dot" style="background:var(--client);display:inline-block"></i> Vale de alimentos (Sodexo)</span><span class="v">${sol(s.food)}</span>
+      <span><i class="dot" style="background:var(--internal);display:inline-block"></i> ${PE.mod==='h'?'Teletrabajo (fijo)':'Vale de transporte'}</span><span class="v">${sol(s.T)}</span></div>
+    ${t<1850?'<p class="note warn">Está por debajo de la banda mínima (S/ 1.850).</p>':''}
+    ${s.base<=rmv&&t>0?`<p class="muted small">El básico quedó en el sueldo mínimo (${sol(rmv)}); el resto va al vale de alimentos.</p>`:''}
+    ${s.food>=2*rmv?`<p class="muted small">El vale de alimentos llegó a su tope (2 sueldos mínimos = ${sol(2*rmv)}).</p>`:''}
+    <div class="lbl">Para explicárselo al candidato</div><div class="mailbox">${esc(sentence)}</div>
+    <div class="actions"><button class="btn primary" data-copy="${esc(sentence)}">Copiar frase</button></div>`;
+  $('peTbl').innerHTML=`<thead><tr><th>Modalidad</th><th style="text-align:right">Básico</th><th style="text-align:right">Alimentos</th><th style="text-align:right">Transporte / teletrabajo</th></tr></thead><tbody>`+
+    PE_MODS.map(([k,l])=>{const x=peSplit(t,k,rmv);return `<tr data-pemod="${k}" style="cursor:pointer${k===PE.mod?';background:var(--accent-soft);font-weight:600':''}"><td>${l}</td><td class="num" style="text-align:right">${sol(x.base)}</td><td class="num" style="text-align:right">${sol(x.food)}</td><td class="num" style="text-align:right">${sol(x.T)}</td></tr>`}).join('')+'</tbody>';
+}
+
+/* --- Supervisores --- */
+const SUP_LOCAL={Colombia:['COP',[3000000,3000000],[3500000,3000000],[4000000,3000000]],Guatemala:['GTQ',[8500,6800],[10500,6800],[12000,6800]],Kenia:['KES',[85000,60000],[100000,60000],[120000,60000]],'México':['MXN',[16000,15000],[20000,15000],[24000,15000]],'Perú':['PEN',[3500,3000],[4200,3000],[4800,3000]]};
+const SUP_CONTR={Argentina:[[1000,900],[1250,900],[1650,900]],Guatemala:[[1270,1000],[1500,1000],[1750,1000]],Kenia:[[740,1000],[850,1000],[1000,1000]],'México':[[990,1000],[1210,1000],[1470,1000]],'Perú':[[1100,1000],[1400,1000],[1600,1000]]};
+const LVL=['JR','SP','SR'],LVLN=['Jr Operations Supervisor','Specialist (SP)','Senior (SR)'];
+const SUP_PAISES=['Argentina','Colombia','Guatemala','Kenia','México','Perú'];
+const SUPQ=[['¿Cuánto sería el salario base?','El valor exacto lo definimos al final del proceso, según tu experiencia y tus resultados en las etapas. Te lo compartimos detallado en la oferta.'],
+  ['Mi expectativa es solo de salario base, sin bonos.','¡Perfecto, gracias por aclararlo! Lo dejo registrado así. Ten en cuenta que la oferta se arma con base + bonos, así que al final verás ambas partes y podrás evaluar el ingreso total.'],
+  ['¿Los bonos son fijos o variables?','Son variables, porque dependen del desempeño y de los resultados del equipo. En la oferta te explicamos cómo funcionan.'],
+  ['¿Cada cuánto se pagan los bonos?','Te confirmo ese detalle y te lo comparto en la oferta.'],
+  ['¿Y si no llego a las metas?','El salario base es fijo y lo recibes siempre. La bonificación es el componente adicional que premia los resultados.'],
+  ['¿Es negociable?','Tenemos un rango amplio. Por eso es importante que nos cuentes tu expectativa, y la tendremos en cuenta al armar la oferta.'],
+  ['¿Cuándo me dicen la oferta?','Al finalizar todas las etapas del proceso. Yo te voy contando cómo avanzas.']];
+const SCR={ask:'¡Perfecto, gracias! Para registrarlo bien, ¿ese valor lo estás pensando como salario base o incluye bonificaciones?',
+  main:'¡Súper, muchas gracias! En este momento contamos con un rango salarial bastante amplio para este rol, y tu expectativa entra dentro de ese rango sin problema. Algo importante a tener en cuenta es que el rango está compuesto por un salario base + bonificaciones por desempeño y rendimiento del equipo. Dependiendo de cómo te vaya durante el proceso, al finalizar te compartiremos la oferta con el detalle de cuánto corresponde a salario base y cuánto a bonificaciones. ¿Tienes alguna duda al respecto?',
+  above:'Gracias por compartirlo. Tu expectativa está un poco por encima de lo que manejamos para este rol, pero como el paquete incluye base + bonificaciones por desempeño, el ingreso total puede ser competitivo. ¿Te gustaría continuar con el proceso y revisar la oferta completa al final?'};
+const SUP=store.get('sup',{pais:'Colombia',esq:'local',exp:'',bonos:'?'});
+function supScheme(){const hasL=!!SUP_LOCAL[SUP.pais],hasC=!!SUP_CONTR[SUP.pais];if(SUP.esq==='local'&&!hasL)SUP.esq='contr';if(SUP.esq==='contr'&&!hasC)SUP.esq='local';return {hasL,hasC}}
+function supLevels(){if(SUP.esq==='local'){const r=SUP_LOCAL[SUP.pais];return {cur:r[0],lv:r.slice(1)}}return {cur:'USD',lv:SUP_CONTR[SUP.pais]}}
+function supEval(){
+  const x=Number(String(SUP.exp).replace(/[^\d]/g,''));if(!x)return null;
+  const {cur,lv}=supLevels(),incl=SUP.bonos==='si',useTot=SUP.bonos!=='no';
+  const vals=lv.map(([b,r])=>useTot?b+r:b),i=vals.findIndex(v=>x<=v);
+  return {x,cur,incl,useTot,vals,i,above:i<0};
+}
+V.sups=()=>{const {hasL,hasC}=supScheme();
+  return `<div class="pagehead"><div class="meta"><span class="eyebrow">Posiciones de Supervisor</span><h1>Salario y script</h1></div><span class="pill c-crit">Uso interno · no compartir cifras con candidatos</span></div>
+  <div class="grid-side">
+    <section class="panel"><h2>¿Su expectativa entra en el rango?</h2>
+      <div class="countries">${SUP_PAISES.map(p=>`<button class="chip" data-suppais="${p}" aria-pressed="${p===SUP.pais}">${p}</button>`).join('')}</div>
+      ${hasL&&hasC?`<div class="lvlseg"><button class="chip" data-supesq="local" aria-pressed="${SUP.esq==='local'}">Local (${SUP_LOCAL[SUP.pais][0]})</button><button class="chip" data-supesq="contr" aria-pressed="${SUP.esq==='contr'}">Contractor (USD)</button></div>`
+        :`<span class="muted small">${hasL?'Solo esquema local':'Solo esquema contractor (USD)'}</span>`}
+      <label class="small muted" style="display:flex;flex-direction:column;gap:4px">Expectativa mensual del candidato<input id="supExp" inputmode="numeric" class="num" style="font-size:18px" value="${esc(SUP.exp)}" placeholder="Ej: 4.200.000"></label>
+      <div class="small muted">¿Incluye bonificaciones?</div>
+      <div class="lvlseg">${[['si','Sí, incluye bonos'],['no','No, solo base'],['?','No lo dijo']].map(([k,l])=>`<button class="chip" data-supbon="${k}" aria-pressed="${SUP.bonos===k}">${l}</button>`).join('')}</div>
+      <div id="supOut"></div>
+    </section>
+    <section class="panel"><div class="panel-head"><h2>Script</h2><span class="muted small">Toca ⧉ para copiar</span></div><div class="chat" id="supChat"></div></section>
+  </div>
+  <section class="panel"><div class="panel-head"><h2>Rangos por país y nivel</h2><span class="muted small">Mensual · RV = bonificaciones variables · Total = base + RV</span></div>
+    <div class="tablebox"><table class="rgtbl" id="supTbl"></table></div></section>
+  <section class="panel"><div class="panel-head"><h2>Si el candidato pregunta…</h2><span class="muted small">Toca una pregunta para ver la respuesta</span></div>
+    <div class="cflow" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">${SUPQ.map(([q,a])=>`<details class="acc"><summary><b>"${esc(q)}"</b></summary><div class="in"><span>${esc(a)}</span><button class="btn sm" data-copy="${esc(a)}" style="align-self:flex-start">Copiar respuesta</button></div></details>`).join('')}</div>
+    <p class="note warn">"Entra en el rango" no significa "te pagamos eso de base". Aclararlo desde el inicio evita que el candidato rechace la oferta al final.</p></section>
+  <section class="panel"><div class="panel-head"><h2>Proceso de contratación</h2><span class="muted small">Antes de la oferta: 2 OK por correo</span></div>
+    <div class="pflow">${[['TA','Selección y propuesta de nivel','Toma candidatos del Pool de Supervisores, hace la evaluación inicial y el background, y propone Jr, SP o SR.','var(--accent)'],
+      ['Operaciones','Evaluación final','Confirma el nivel o lo ajusta según la experiencia del candidato.','var(--warn)'],
+      ['Operaciones','OK por correo','Envía a TA y Compensaciones: candidato, posición, vertical, nivel y tenure.','var(--warn)'],
+      ['Compensaciones','OK por correo','Valida la escala y confirma salario fijo, bonos e incentivos.','var(--internal)'],
+      ['TA','Oferta final','Con los dos OK, detalla al candidato el salario fijo y cada componente variable.','var(--accent)']].map(([w,t,d,c],i)=>`<div class="pstep" style="--oc:${c}"><span class="who">${i+1} · ${w}</span><b>${t}</b><span>${d}</span></div>`).join('')}</div></section>`;
+};
+function renderSup(){
+  if(!$('supOut'))return;supScheme();
+  const E=supEval(),{cur,lv}=supLevels(),fmt=n=>new Intl.NumberFormat('es-CO').format(n)+' '+cur;
+  let mode='none';
+  if(!E)$('supOut').innerHTML=`<p class="muted small">Escribe la expectativa y te digo qué respuesta del script usar.</p>`;
+  else{
+    const basis=E.useTot?'el total (base + bonos)':'el salario base';
+    mode=E.above?'above':'main';
+    const lvlTxt=E.above?`Supera ${basis} del nivel SR (${fmt(E.vals[2])}).`:E.i===0?`Está dentro ${E.useTot?'del total (base + bonos)':'del salario base'} desde el nivel JR (${fmt(E.vals[0])}).`:`Para cubrirla con ${basis} se necesita nivel ${LVL[E.i]} (${fmt(E.vals[E.i])}) o superior.`;
+    $('supOut').innerHTML=`<div class="verdict ${E.above?'warn':'ok'}"><span class="big">${E.above?'Por encima del rango':'Entra en el rango'}</span><small>${lvlTxt}</small></div>
+      ${SUP.bonos==='?'?'<p class="note">No dijo si incluye bonos: lo comparé con el total. Pregúntale con la primera línea del script.</p>':''}
+      <p class="muted small">Usa: <b>${E.above?'"Si está por encima del rango"':'"Respuesta principal"'}</b> del script.</p>`;
+  }
+  $('supChat').innerHTML=`<div class="bub cand"><span class="who">Candidato</span>Mi expectativa salarial para esta posición es de ${esc(E?fmt(E.x):'4.200.000 COP')}.</div>
+    ${SUP.bonos==='?'?`<span class="tipline">Si no aclara si incluye bonos, pregúntalo para registrarlo bien en Ceipal:</span>
+    <div class="bub rec hl"><span class="who">Reclutador</span>${esc(SCR.ask)} <button class="linkbtn cp" data-copy="${esc(SCR.ask)}" title="Copiar">⧉</button></div>`:''}
+    <div class="bub rec ${mode==='main'?'hl':mode==='above'?'dim':''}"><span class="who">Reclutador · respuesta principal</span>${esc(SCR.main)} <button class="linkbtn cp" data-copy="${esc(SCR.main)}" title="Copiar">⧉</button></div>
+    <div class="bub alt ${mode==='above'?'hl':mode==='main'?'dim':''}"><span class="who">Si está por encima del rango</span>${esc(SCR.above)} <button class="linkbtn cp" data-copy="${esc(SCR.above)}" title="Copiar">⧉</button></div>`;
+  const row=(p,c,arr,isC)=>`<tr class="${p===SUP.pais&&(isC?SUP.esq==='contr':SUP.esq==='local')?'cur':''}"><td>${p}</td><td class="num">${c}</td>${arr.map(([b,r],i)=>`<td class="num ${E&&p===SUP.pais&&(isC?SUP.esq==='contr':SUP.esq==='local')&&i===(E.above?2:E.i)?'sel':''}">${new Intl.NumberFormat('es-CO').format(b+r)}<small>${new Intl.NumberFormat('es-CO').format(b)} + ${new Intl.NumberFormat('es-CO').format(r)}</small></td>`).join('')}</tr>`;
+  $('supTbl').innerHTML=`<thead><tr><th>País</th><th>Moneda</th>${LVL.map((l,i)=>`<th>${l}<br><span style="text-transform:none;letter-spacing:0;font-weight:400">${LVLN[i]}</span></th>`).join('')}</tr></thead><tbody>
+    <tr><td colspan="5" class="lbl" style="background:var(--bg)">Esquema local · total (base + RV)</td></tr>
+    ${Object.entries(SUP_LOCAL).map(([p,v])=>row(p,v[0],v.slice(1),false)).join('')}
+    <tr><td colspan="5" class="lbl" style="background:var(--bg)">Esquema contractor · total (honorarios + RV)</td></tr>
+    ${Object.entries(SUP_CONTR).map(([p,v])=>row(p,'USD',v,true)).join('')}</tbody>`;
+}
+
+/* --- Sites --- */
+const SF={q:'',pais:'',comp:'',showOff:false};
+V.sites=()=>{
+  const paises=[...new Set(DATA.sites.map(s=>s.pais))].sort(),comps=[...new Set(DATA.sites.map(s=>s.comp).filter(Boolean))].sort();
+  return `<div class="pagehead"><div class="meta"><span class="eyebrow">Ubicaciones operativas</span><h1>Sites</h1><p class="muted"><span class="num">${DATA.sites.length}</span> sites en <span class="num">${paises.length}</span> países.</p></div></div>
+  <div class="filters"><input type="search" id="sQ" placeholder="Buscar site, ciudad o dirección" value="${esc(SF.q)}">
+    <select id="sPais"><option value="">Todos los países</option>${paises.map(p=>`<option${p===SF.pais?' selected':''}>${esc(p)}</option>`).join('')}</select>
+    <select id="sComp"><option value="">Todas las compañías</option>${comps.map(p=>`<option${p===SF.comp?' selected':''}>${esc(p)}</option>`).join('')}</select>
+    <label class="chip"><input type="checkbox" id="sOff" ${SF.showOff?'checked':''} style="padding:0"> Ver fuera de funcionamiento</label></div>
+  <div class="cards" id="sList"></div>`;
+};
+function renderSites(){
+  if(!$('sList'))return;const q=norm(SF.q);
+  const L=DATA.sites.filter(s=>(!SF.pais||s.pais===SF.pais)&&(!SF.comp||s.comp===SF.comp)&&(SF.showOff||!/fuera de funcionamiento/i.test(s.notas))&&(!q||norm([s.site,s.ciudad,s.dir,s.pais,s.comp,s.notas].join(' ')).includes(q)));
+  $('sList').innerHTML=L.map(s=>{const off=/fuera de funcionamiento/i.test(s.notas);const ct=norm(s.contractor);
+    return `<article class="card"><div class="panel-head"><span class="t">${esc(s.site)}</span>${s.comp?`<span class="pill c-acc">${esc(s.comp)}</span>`:''}</div>
+    <span class="s">${esc([s.ciudad,s.pais].filter(Boolean).join(', '))}</span><span>${esc(s.dir)}</span>
+    <div class="row">${off?'<span class="pill c-crit">Fuera de funcionamiento</span>':''}${s.notas&&!off?`<span class="pill">${esc(s.notas)}</span>`:''}
+    ${s.contractor?`<span class="pill ${ct==='si'?'c-ok':ct==='no'?'':'c-warn'}">Contractor: ${esc(s.contractor)}</span>`:''}
+    <button class="btn sm" data-copy="${esc(s.site+' — '+s.dir+(s.ciudad?', '+s.ciudad:''))}">Copiar dirección</button></div></article>`}).join('')||'<p class="empty">Ningún site coincide.</p>';
+}
+
+/* --- Links --- */
+let LQ='';
+V.links=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">Acceso rápido</span><h1>Links útiles</h1></div></div>
+  <div class="filters"><input type="search" id="lQ" placeholder="Buscar link" value="${esc(LQ)}"></div><div class="cards" id="lList"></div>`;
+function renderLinks(){
+  if(!$('lList'))return;const q=norm(LQ);
+  $('lList').innerHTML=DATA.links.filter(l=>!q||norm(l.name+' '+l.label+' '+l.desc).includes(q)).map(l=>`<article class="card"><span class="t">${esc(l.name)}</span>${l.desc?`<span class="s">${esc(l.desc)}</span>`:''}
+    <div class="row">${ext(l.url)}${l.url?`<button class="btn sm" data-copy="${esc(l.url)}">Copiar link</button>`:''}</div></article>`).join('')||'<p class="empty">Nada coincide.</p>';
+}
+
+/* --- Accesos --- */
+V.accesos=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">Plataformas de sourcing</span><h1>Accesos</h1></div></div>
+  <p class="muted small">🔒 Las contraseñas no se guardan aquí; pídelas a la dueña de la cuenta.</p>
+  <div class="cards">${DATA.accesos.map(a=>`<article class="card"><span class="t">${esc(a.plat)}</span><span class="s num">${esc(a.cuenta)}</span><span>${esc(a.notas)}</span>
+    <div class="row">${ext(a.url)}<button class="btn sm" data-copy="${esc(a.cuenta)}">Copiar usuario</button></div></article>`).join('')}</div>`;
+
+/* --- Mejor hora para contactar --- */
+const CT=[
+  {p:'Colombia',tz:'America/Bogota',best:[[600,840]],avoid:[[480,540],[1200,1440]],rate:'62–65%',r:63.5,tip:'Pico cerca de la 1:00 p. m.',bt:'10:00 a. m. – 2:00 p. m.',at:'8:00–9:00 a. m. y después de las 8:00 p. m.'},
+  {p:'Kenia',tz:'Africa/Nairobi',best:[[480,600]],avoid:[[900,1200]],rate:'88–99%',r:93.5,bt:'8:00 – 10:00 a. m.',at:'Desde las 3:00 p. m. (hasta las 8:00 p. m.)'},
+  {p:'Argentina',tz:'America/Argentina/Buenos_Aires',best:[[720,1140]],avoid:[[1200,1440],[0,240]],rate:'93%',r:93,bt:'12:00 – 7:00 p. m.',at:'8:00 p. m. – 4:00 a. m.'},
+  {p:'México',tz:'America/Mexico_City',best:[[660,780]],avoid:[[840,900]],rate:'47%',r:47,tip:'2:00 p. m. es su hora de comida',bt:'11:00 a. m. – 1:00 p. m.',at:'2:00 p. m. (hora de comida)'},
+  {p:'Perú',tz:'America/Lima',best:[[720,840],[1080,1140]],avoid:[],rate:'77–84%',r:80.5,bt:'12:00 – 2:00 p. m. y 6:00 p. m.',at:''}];
+const tzMin=tz=>{const p=new Intl.DateTimeFormat('en-US',{timeZone:tz,hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());return (+p.find(x=>x.type==='hour').value%24)*60+(+p.find(x=>x.type==='minute').value)};
+const inR=(m,rs)=>rs.some(([a,b])=>m>=a&&m<b);
+const FLAG={'Colombia':'🇨🇴','Kenia':'🇰🇪','Argentina':'🇦🇷','México':'🇲🇽','Perú':'🇵🇪'};
+V.contactar=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">Según respuestas por WhatsApp</span><h1>¿Es buena hora para escribirle al candidato?</h1></div><span class="muted small">Se actualiza sola</span></div>
+  <div class="ctgrid" id="ctGrid"></div>
+  <p class="muted small">Entre paréntesis: la misma hora en Colombia. Estimaciones con datos de respuesta de WhatsApp en Solvo Global.</p>`;
+function renderCT(){
+  if(!$('ctGrid'))return;
+  const co=tzMin('America/Bogota');
+  const rows=CT.map(c=>{const m=tzMin(c.tz);let off=m-co;if(off>720)off-=1440;if(off<-720)off+=1440;
+    const good=inR(m,c.best),bad=inR(m,c.avoid);
+    const nb=c.best.map(([a])=>a).sort((x,y)=>((x-m+1440)%1440)-((y-m+1440)%1440))[0],wait=(nb-m+1440)%1440;
+    const cur=c.best.find(([a,b])=>m>=a&&m<b);
+    const toCo=x=>hm(((x-off)%1440+1440)%1440);
+    const rng=rs=>rs.map(([a,b])=>`${hm(a)} – ${hm(b)}`).join(' y ');
+    const rngCo=rs=>rs.map(([a,b])=>`${toCo(a)} – ${toCo(b)}`).join(' y ');
+    const w=`${wait>=60?Math.floor(wait/60)+' h':''}${wait%60?' '+wait%60+' min':''}`.trim();
+    const st=good?['ok','✅ Sí, buen momento para escribir',`Quedan ${(()=>{const r=cur[1]-m;return `${r>=60?Math.floor(r/60)+' h ':''}${r%60?r%60+' min':''}`.trim()})()} de la mejor franja`]
+      :bad?['no','⛔ Mejor no escribir ahora',`La mejor hora empieza en ${w} (${toCo(nb)} en Colombia)`]
+      :['wait','⏳ Espera un poco',`La mejor hora empieza en ${w} (${toCo(nb)} en Colombia)`];
+    return {c,m,off,good,st,html:`<article class="ct ${good?'good':''}"><div class="panel-head"><h2>${FLAG[c.p]||''} ${c.p}</h2><span class="muted small num">allá son las <b style="color:var(--ink)">${hm(m)}</b>${off?` · ${off>0?'+':''}${off/60} h`:''}</span></div>
+      <div class="status ${st[0]}">${st[1]}<small>${st[2]}</small></div>
+      <div class="ctl"><span class="k">Mejor hora</span><span>${rng(c.best)}${off?` <span class="co">(${rngCo(c.best)})</span>`:''}</span>
+        ${c.avoid.length?`<span class="k">Evitar</span><span>${esc(c.at)}${c.tip&&/comida/.test(c.tip)?'':''}</span>`:''}
+        ${c.tip?`<span class="k">Tip</span><span>${esc(c.tip)}</span>`:''}
+        <span class="k">Responden</span><span><b>${c.rate}</b> de los candidatos</span></div>
+    </article>`}});
+  rows.sort((a,b)=>(b.good-a.good)||(a.st[0]==='no')-(b.st[0]==='no'));
+  $('ctGrid').innerHTML=rows.map(r=>r.html).join('');
+}
+
+/* --- Horarios --- */
+let ME=store.get('me','');
+const bogotaMin=()=>{const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Bogota',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());const h=+p.find(x=>x.type==='hour').value%24,m=+p.find(x=>x.type==='minute').value;return h*60+m};
+const hm=m=>{const h=Math.floor(m/60),mi=m%60,ap=h<12?'am':'pm';return `${((h+11)%12)+1}${mi?':'+pad(mi):''}${ap}`};
+V.horarios=()=>{
+  const people=[...new Set(DATA.horarios.map(h=>h.ta))].sort();
+  return `<div class="pagehead"><div class="meta"><span class="eyebrow">Hora Colombia</span><h1>Horarios de usuarios</h1></div>
+  <label class="small muted" style="display:flex;flex-direction:column;gap:4px">Resaltar mi turno<select id="hMe"><option value="">—</option>${people.map(p=>`<option${p===ME?' selected':''}>${esc(p)}</option>`).join('')}</select></label></div>
+  <div class="nowbox" id="hNow"></div>
+  <section class="panel"><div class="lanes" id="hLanes"></div></section>
+  <section class="panel"><div class="tablebox"><table><thead><tr><th>TA</th><th>Usuario</th><th>Turno</th></tr></thead><tbody>
+  ${[...DATA.horarios].sort((a,b)=>a.ini-b.ini).map(h=>`<tr${h.ta===ME?' style="font-weight:600"':''}><td>${esc(h.ta)}</td><td>${esc(h.cuenta)}</td><td class="num">${hm(h.ini)} – ${hm(h.fin)}</td></tr>`).join('')}</tbody></table></div></section>`;
+};
+function renderHor(){
+  if(!$('hLanes'))return;
+  const now=bogotaMin(),S0=300,S1=1080,pct=m=>(m-S0)/(S1-S0)*100;
+  const first=n=>n.split(' ')[0];
+  $('hNow').innerHTML=['Mari','Vane'].map(c=>{const cur=DATA.horarios.find(h=>h.cuenta===c&&now>=h.ini&&now<h.fin);const nx=DATA.horarios.filter(h=>h.cuenta===c&&h.ini>now).sort((a,b)=>a.ini-b.ini)[0];
+    return `<div class="panel"><span class="eyebrow">Usuario ${c} · ahora (${hm(now)})</span><span class="big">${cur?esc(cur.ta):'Libre'}</span><span class="muted small">${cur?`hasta las ${hm(cur.fin)}`:''}${nx?`${cur?' · ':''}Sigue: ${esc(first(nx.ta))} a las ${hm(nx.ini)}`:''}</span></div>`}).join('');
+  const ticks=[];for(let m=S0;m<=S1;m+=60)ticks.push(m);
+  $('hLanes').innerHTML=`<div class="hours"><span></span><div class="ticks">${ticks.map(m=>`<span style="left:${pct(m)}%">${hm(m)}</span>`).join('')}</div></div>`+
+    ['Mari','Vane'].map(c=>`<div class="lane"><b>Usuario ${c}</b><div class="track">${DATA.horarios.filter(h=>h.cuenta===c).map(h=>`<div class="blk ${h.ta===ME?'me':''} ${now>=h.ini&&now<h.fin?'now':''}" style="left:${pct(h.ini)}%;width:${pct(h.fin)-pct(h.ini)}%" title="${esc(h.ta)} · ${hm(h.ini)}–${hm(h.fin)}">${esc(first(h.ta))}<br><span class="num">${hm(h.ini)}</span></div>`).join('')}
+    ${now>=S0&&now<=S1?`<div class="nowline" style="left:${pct(now)}%"></div>`:''}</div></div>`).join('');
+}
+
+/* ================== Búsqueda global ================== */
+function globalSearch(q){
+  const n=norm(q),R=[];if(!n)return R;
+  const add=(tab,title,sub)=>R.push({tab,title,sub});
+  DATA.proceso.forEach(s=>{if(norm(s.etapa+s.desc+s.tool+s.sla).includes(n))add('proceso',s.etapa,s.sla)});
+  ST.forEach(x=>{if(norm(x.s+x.d+x.who).includes(n))add('status',x.n+'. '+x.s,x.who+' · '+x.sla)});
+  NOSIGUE.concat(PAUSA).forEach(([es,en])=>{if(norm(es+en).includes(n))add('status',en,es)});
+  SUPQ.forEach(([q,a])=>{if(norm(q+a).includes(n))add('sups',q,a.slice(0,80))});if(norm('supervisor salario script expectativa bonos rango').includes(n)||n.includes('supervisor'))add('sups','Salario y script de Supervisores','Rangos JR, SP y SR por país');
+  DATA.ceipal.notas.forEach(s=>{if(norm(s.nota+s.uso).includes(n))add('ceipal',s.nota,s.uso)});
+  DATA.ceipal.prot.forEach(s=>{if(norm(s.sit+s.prot).includes(n))add('ceipal',s.sit,s.prot)});
+  DATA.fu_notes.forEach(s=>{if(norm(s.tema+s.regla).includes(n))add('followup',s.tema,s.regla.slice(0,90)+'…')});
+  DATA.contratos.forEach(s=>{if(norm(s.pais+s.tipo+s.cond+s.benef+s.notas+s.partner).includes(n))add('contratos',s.pais+' · '+s.tipo,s.partner)});
+  DATA.sites.forEach(s=>{if(norm(s.site+s.ciudad+s.dir+s.pais).includes(n))add('sites',s.site,[s.ciudad,s.pais].filter(Boolean).join(', '))});
+  DATA.links.forEach(s=>{if(norm(s.name+s.desc+s.label).includes(n))add('links',s.name,s.desc)});
+  DATA.horarios.forEach(s=>{if(norm(s.ta).includes(n))add('horarios',s.ta,`Usuario ${s.cuenta} · ${hm(s.ini)}–${hm(s.fin)}`)});
+  return R.slice(0,30);
+}
+$('gsearch').addEventListener('keydown',e=>{if(e.key!=='Enter')return;const r=globalSearch(e.target.value);
+  openSheet(`<h2>Resultados para “${esc(e.target.value)}”</h2>${r.length?`<div class="tl">${r.map(x=>`<button class="tli" style="text-align:left;grid-template-columns:110px 1fr" data-goto="${x.tab}"><span class="pill c-acc">${esc(TABS.find(t=>t[0]===x.tab)[1])}</span><span><b>${esc(x.title)}</b><br><span class="muted small">${esc(x.sub||'')}</span></span></button>`).join('')}</div>`:'<p class="empty">No encontré nada.</p>'}<div class="actions"><button class="btn" data-close>Cerrar</button></div>`)});
+
+/* ================== Navegación ================== */
+let VIEW='proceso';
+$('tabs').innerHTML=TABS.map(([k,l])=>`<button class="tab" role="tab" data-tab="${k}">${esc(l)}</button>`).join('');
+function go(k){
+  VIEW=k;document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===k));
+  $('main').innerHTML=V[k]();
+  if(location.hash.slice(1)!==k)history.replaceState(null,'','#'+k);
+  store.set('tab',k);window.scrollTo(0,0);
+  if(k==='ceipal'){$('ckExists').value=CK.exists;$('ckActive').value=CK.active;$('ckLast').value=CK.last;$('ckDate').value=CK.date;$('ckTime').value=CK.time;ceipalCheck()}
+  if(k==='followup')renderFU();if(k==='jd'){renderJD();$('jdAI').hidden=!SAMPLE}if(k==='entrevista'){renderIV();$('ivAI').hidden=!SAMPLE}if(k==='salarios')renderSal();if(k==='status')renderST();if(k==='peru')renderPE();if(k==='sups')renderSup();if(k==='sites')renderSites();if(k==='links')renderLinks();if(k==='horarios')renderHor();if(k==='contactar')renderCT();
+  const sel=document.querySelector('.tab[aria-selected="true"]');if(sel)sel.scrollIntoView({block:'nearest',inline:'nearest'});
+}
+window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(V[h]&&h!==VIEW)go(h)});
+setInterval(()=>{if(VIEW==='horarios')renderHor();if(VIEW==='contactar')renderCT()},30000);
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-tab]');if(t){go(t.dataset.tab);return}
+  const g=e.target.closest('[data-goto]');if(g){closeSheet();go(g.dataset.goto);return}
+  const c=e.target.closest('[data-copy]');if(c){copy(c.dataset.copy,'Copiado: '+c.dataset.copy.slice(0,40));return}
+  const j=e.target.closest('[data-jump]');if(j){$(j.dataset.jump).scrollIntoView({behavior:'smooth',block:'center'});return}
+  const p=e.target.closest('[data-pais]');if(p){CPAIS=p.dataset.pais;store.set('cpais',CPAIS);go('contratos');return}
+  const sb=e.target.closest('[data-stsel]');if(sb){STSEL=+sb.dataset.stsel;store.set('stsel',STSEL);renderST();return}
+  const sp=e.target.closest('[data-suppais]');if(sp){SUP.pais=sp.dataset.suppais;store.set('sup',SUP);go('sups');return}
+  const se=e.target.closest('[data-supesq]');if(se){SUP.esq=se.dataset.supesq;store.set('sup',SUP);go('sups');return}
+  const sbn=e.target.closest('[data-supbon]');if(sbn){SUP.bonos=sbn.dataset.supbon;store.set('sup',SUP);document.querySelectorAll('[data-supbon]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.supbon===SUP.bonos));renderSup();return}
+  const pm=e.target.closest('[data-pemod]');if(pm){PE.mod=pm.dataset.pemod;store.set('pe',PE);renderPE();return}
+  const o=e.target.closest('[data-out]');if(o){JDOUT=o.dataset.out;renderJD();return}
+  const fs=e.target.closest('[data-fusel]');if(fs){FUSEL=+fs.dataset.fusel;renderFU();$('fuSubj').scrollIntoView({behavior:'smooth',block:'center'});return}
+  if(e.target.id==='fuCpBody'){copy($('fuBody').value,'Correo copiado.');return}
+  if(e.target.id==='fuCpSubj'){copy($('fuSubj').value,'Asunto copiado.');return}
+  if(e.target.id==='jdCopy'){copy($('jdOut').value,'Mensaje copiado.');return}
+  if(e.target.id==='jdClear'){JD.text='';JD.title='';JD.o_sum=JD.o_resp=JD.o_reqs=JD.o_ben='';for(const k in AIOUT)delete AIOUT[k];store.set('jd',JD);go('jd');return}
+  if(e.target.id==='jdFill'){const p=parseJD(JD.text);JD.o_sum=p.sum.join(' ');JD.o_resp=p.resp.join('\n');JD.o_reqs=p.reqs.join('\n');JD.o_ben=p.ben.join('\n');if(!JD.title)JD.title=p.title;store.set('jd',JD);go('jd');document.querySelector('details')&&(document.querySelector('#jdOSum').closest('details').open=true);return}
+  if(e.target.id==='jdAI'){aiImprove();return}
+  if(e.target.id==='ivAI'){ivAI();return}
+  if(e.target.id==='ivSum'){copy(ivSummary(),'Resumen copiado.');return}
+  const ce=e.target.closest('[data-copyel]');if(ce){copy($(ce.dataset.copyel).value,'Copiado.');return}
+  const il=e.target.closest('[data-ivlang]');if(il){IV.lang=il.dataset.ivlang;IVAI=null;for(const k in IVST)delete IVST[k];store.set('iv',IV);go('entrevista');return}
+  const iw=e.target.closest('[data-ivview]');if(iw){IV.view=iw.dataset.ivview;store.set('iv',IV);document.querySelectorAll('[data-ivview]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.ivview===IV.view));renderIV();return}
+  const ir=e.target.closest('[data-ivr]');if(ir){const [id,v]=ir.dataset.ivr.split(':');IVST[id]=IVST[id]||{};IVST[id].r=IVST[id].r===+v?0:+v;renderIV();return}
+});
+document.addEventListener('input',e=>{
+  const id=e.target.id;
+  if(id.startsWith('ck')){CK.exists=$('ckExists').value;CK.active=$('ckActive').value;CK.last=$('ckLast').value;CK.date=$('ckDate').value;CK.time=$('ckTime').value;ceipalCheck();return}
+  if(id==='fuSubj'||id==='fuBody'){updMail();return}
+  if(id.startsWith('fu')){const k={fuDate:'date',fuCliente:'cliente',fuEmpresa:'empresa',fuCargo:'cargo',fuCands:'cands',fuYo:'yo',fuTo:'to'}[id];if(k){FU[k]=e.target.value;store.set('fu',FU);if(k==='date')FUSEL=null;renderFU()}return}
+  if(id==='ivJd'){JD.text=e.target.value;IVAI=null;for(const x in AIOUT)delete AIOUT[x];store.set('jd',JD);clearTimeout(renderIV._t);renderIV._t=setTimeout(renderIV,250);return}
+  if(id==='ivCand'){IV.cand=e.target.value;store.set('iv',IV);return}
+  if(id.startsWith('ivn_')){const q=id.slice(4);IVST[q]=IVST[q]||{};IVST[q].n=e.target.value;return}
+  if(e.target.dataset&&e.target.dataset.ivon){const q=e.target.dataset.ivon;IVST[q]=IVST[q]||{};IVST[q].off=!e.target.checked;e.target.closest('.q').classList.toggle('off',!e.target.checked);return}
+  if(id.startsWith('jd')&&id!=='jdOut'){const k={jdText:'text',jdTitle:'title',jdLoc:'loc',jdMod:'mod',jdSched:'sched',jdEng:'eng',jdSal:'sal',jdLink:'link',jdYo:'yo',jdOSum:'o_sum',jdOResp:'o_resp',jdOReqs:'o_reqs',jdOBen:'o_ben'}[id];if(k){JD[k]=e.target.value;for(const x in AIOUT)delete AIOUT[x];store.set('jd',JD);renderJD()}return}
+  if(id==='stAt'){STCK.at=e.target.value;renderST();$('stAt')&&$('stAt').focus();return}
+  if(id==='supExp'){const d=e.target.value.replace(/[^\d]/g,'');SUP.exp=d?new Intl.NumberFormat('es-CO').format(+d):'';store.set('sup',SUP);const pos=e.target.value.length;renderSup();return}
+  if(id==='peTotal'||id==='peRange'||id==='peRmv'){if(id==='peRange')$('peTotal').value=e.target.value;if(id==='peTotal')$('peRange').value=e.target.value;PE.total=+$('peTotal').value;PE.rmv=+$('peRmv').value||1130;store.set('pe',PE);renderPE();return}
+  if(id==='salPais'||id==='salTotal'){SAL.pais=$('salPais').value;SAL.total=$('salTotal').value;store.set('sal',SAL);renderSal();return}
+  if(id==='sQ'||id==='sPais'||id==='sComp'||id==='sOff'){SF.q=$('sQ').value;SF.pais=$('sPais').value;SF.comp=$('sComp').value;SF.showOff=$('sOff').checked;renderSites();return}
+  if(id==='lQ'){LQ=e.target.value;renderLinks();return}
+  if(id==='hMe'){if(ME!==e.target.value){ME=e.target.value;store.set('me',ME);go('horarios')}return}
+});
+document.addEventListener('change',e=>{if(['ckExists','ckActive','ckLast','jdMod','salPais','sPais','sComp','sOff','hMe'].includes(e.target.id))e.target.dispatchEvent(new Event('input',{bubbles:true}))});
+
+const h0=location.hash.slice(1);
+go(V[h0]?h0:(V[store.get('tab','proceso')]?store.get('tab','proceso'):'proceso'));
+(async()=>{try{if(window.claude&&window.claude.use){SAMPLE=await window.claude.use('sample');if(VIEW==='jd'&&$('jdAI'))$('jdAI').hidden=!SAMPLE}}catch(e){}})();
+</script>
+
+</body></html>
