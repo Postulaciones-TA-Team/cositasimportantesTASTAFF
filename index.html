@@ -324,6 +324,171 @@ details.acc .in{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px}
 .slajor input{width:100%}
 .slaout{margin-top:14px}
 .slaout .big{font-size:22px;font-weight:700;display:block;margin-top:2px}
+/* --- Entrevista QA (TQI) --- */
+.qa-views{display:flex;gap:6px;flex-wrap:wrap}
+.qa-views .chip{font-size:13.5px;padding:7px 14px}
+.qa-ph{background:var(--warn-soft);color:var(--warn);border-radius:4px;padding:0 4px;font-weight:600}
+.qa-say{background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.55;display:flex;flex-direction:column;gap:4px}
+.qa-say b{color:var(--accent)}
+.qa-q{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 10px;font:inherit;color:inherit;cursor:pointer}
+.qa-q:hover{border-color:var(--accent)}
+.qa-q .bx{flex:none;width:18px;height:18px;border:2px solid var(--line);border-radius:5px;margin-top:1px;display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--on-accent)}
+.qa-q[aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok)}
+.qa-q[aria-pressed="true"] .bx{background:var(--ok);border-color:var(--ok)}
+.qa-q[aria-pressed="true"] .bx::after{content:"✓"}
+.qa-q .cds{margin-left:auto;display:flex;gap:4px;flex:none}
+.qa-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.qa-fields label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted);font-weight:600}
+.qa-fields label.wide{grid-column:1/-1}
+.qa-flag{cursor:pointer;white-space:normal;text-align:left}
+.qa-flag[aria-pressed="true"]{background:var(--crit-soft);color:var(--crit);border-color:var(--crit)}
+.qa-meter{height:10px;border-radius:999px;background:var(--line);overflow:hidden}
+.qa-meter i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.qa-meter.ok i{background:var(--ok)}
+.qa-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.qa-kpi{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.qa-kpi b{font-size:24px;font-family:var(--f-display);line-height:1.1}
+.qa-kpi.crit{background:var(--crit-soft);border-color:transparent}.qa-kpi.crit b{color:var(--crit)}
+.qa-kpi.ok{background:var(--ok-soft);border-color:transparent}.qa-kpi.ok b{color:var(--ok)}
+.qa-num{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:var(--accent-soft);color:var(--accent)}
+.qa-num.done{background:var(--ok);color:var(--on-accent)}
+.qa-crs{display:flex;gap:4px;flex-wrap:wrap}
+.qa-crs .pill,.qa-info{cursor:pointer}
+.qa-phase{font-family:var(--f-display);font-weight:700;font-size:15px;margin:8px 0 0;display:flex;align-items:center;gap:8px}
+.qa-phase small{font-family:var(--f-body);font-weight:500;color:var(--muted);font-size:12.5px}
+.qa-card{border-left:4px solid var(--c,var(--line))}
+.qa-card.cov{background:var(--ok-soft)}
+.qa-card .hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.c-med{--c:var(--done);--cs:var(--done-soft)}
+.qa-group{font-weight:700;font-size:13px;margin-top:6px}
+.qa-note{max-height:none}
+.qa-tip{font-size:12.5px;color:var(--muted);background:var(--bg);border-radius:8px;padding:6px 10px}
+@media (max-width:560px){.qa-q .cds{display:none}}
+.qa-live{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px;align-items:start}
+.qa-side{position:sticky;top:72px;gap:10px}
+.qa-txt{width:100%;min-height:440px;font-family:var(--f-body);font-size:14.5px;line-height:1.6;background:var(--surface)}
+.qa-ins{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.qa-ins .chip{cursor:pointer}.qa-ins .chip:hover{border-color:var(--accent);color:var(--accent)}
+.qa-radar{display:flex;gap:16px;align-items:center}
+.qa-ring{--p:0;flex:none;width:96px;height:96px;border-radius:50%;background:conic-gradient(var(--ok) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;position:relative}
+.qa-ring::before{content:"";position:absolute;inset:10px;border-radius:50%;background:var(--surface)}
+.qa-ring b,.qa-ring span{position:relative;grid-area:1/1;line-height:1}
+.qa-ring b{font-family:var(--f-display);font-size:22px;margin-top:-12px}.qa-ring span{font-size:11.5px;color:var(--muted);margin-top:22px}
+.qa-crit8{display:flex;flex-direction:column;gap:4px}
+.qa-c8{display:flex;gap:8px;align-items:flex-start;text-align:left;border:0;background:none;padding:5px 6px;border-radius:8px;font:inherit;color:inherit;cursor:pointer;font-size:13px}
+.qa-c8:hover{background:var(--bg)}
+.qa-c8 .ic{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;background:var(--crit-soft);color:var(--crit)}
+.qa-c8.ok .ic{background:var(--ok);color:var(--on-accent)}.qa-c8.ck .ic{background:var(--done-soft);color:var(--done)}
+.qa-c8 small{display:block;color:var(--muted);font-size:11.5px;line-height:1.35}
+.qa-ask{display:flex;gap:8px;align-items:center;text-align:left;width:100%;border:1px dashed var(--accent);background:var(--accent-soft);border-radius:8px;padding:8px 10px;font:inherit;color:inherit;cursor:pointer;font-size:13px}
+.qa-ask:hover{border-style:solid}
+.qa-alert{background:var(--crit-soft);border-radius:8px;padding:8px 10px;font-size:13px}
+.qa-alert small{display:block;color:var(--muted);margin-top:2px}
+.qa-map{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px}
+.qa-mc{display:flex;gap:8px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 8px;font:inherit;color:inherit;font-size:12.5px;cursor:pointer}
+.qa-mc.ok{background:var(--ok-soft);border-color:var(--ok)}.qa-mc.man{background:var(--accent-soft);border-color:var(--accent)}.qa-mc.ck{background:var(--done-soft);border-style:dashed;color:var(--muted)}
+@media (max-width:900px){.qa-live{grid-template-columns:1fr}.qa-side{position:static}.qa-txt{min-height:300px}}
+.qa-sec{display:flex;flex-direction:column;gap:10px;padding-top:12px;border-top:1px solid var(--line)}
+.qa-sec:first-child{border-top:0;padding-top:0}
+.qa-sech{display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:var(--f-mono);font-weight:600;font-size:12.5px;letter-spacing:.06em;color:var(--muted)}
+.qa-fl{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--ink)}
+.qa-fl.wide{grid-column:1/-1}
+.qa-lb{display:flex;align-items:center;gap:6px;flex-wrap:wrap;color:var(--muted);font-weight:500}
+.qa-cds{display:inline-flex;gap:3px;margin-left:auto}.qa-cds .pill{font-size:10.5px;padding:1px 6px}
+.qa-star{color:var(--crit)}
+.qa-fl input,.qa-fl select,.qa-fl textarea{background:var(--surface);font-size:14px}
+.qa-fl.qa-need input,.qa-fl.qa-need select,.qa-fl.qa-need textarea{border-color:var(--warn);background:var(--warn-soft)}
+.qa-fc.qa-need{border-color:var(--warn);border-style:dashed}
+.qa-fc{grid-column:1/-1}.qa-fc .cds .pill{font-size:10.5px;padding:1px 6px}
+.qa-flash{animation:qaFlash 1.4s ease-out}@keyframes qaFlash{0%,40%{box-shadow:0 0 0 3px var(--accent)}100%{box-shadow:0 0 0 0 transparent}}
+#qaForm{display:flex;flex-direction:column;gap:14px}
+.qa-gd{border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.qa-gd>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:8px 12px;font-weight:600;font-size:13px}
+.qa-gd>summary::-webkit-details-marker{display:none}
+.qa-gd>summary::after{content:"▾";color:var(--muted);margin-left:8px}.qa-gd:not([open])>summary::after{content:"▸"}
+.qa-gd>summary span:first-child{margin-right:auto}
+.qa-gin{display:flex;flex-direction:column;gap:6px;padding:0 12px 12px}
+.qa-gt{font-size:12px;font-weight:700;color:var(--muted);margin-top:4px}
+.qa-qs{padding:6px 10px;font-size:13.5px}
+.qa-q.qa-need{border-color:var(--warn);border-style:dashed}
+.qa-jd{display:flex;flex-direction:column;gap:4px;max-height:420px;overflow:auto}
+.qa-jdi{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;padding:4px 2px}
+.qa-jdi .ic{flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;background:var(--done-soft);color:var(--done)}
+.qa-jdi.ok .ic{background:var(--ok);color:var(--on-accent)}.qa-jdi.part .ic{background:var(--warn-soft);color:var(--warn)}.qa-jdi.no .ic{background:var(--crit);color:var(--on-accent)}
+.qa-jdi.q{color:var(--muted)}
+.qa-jdi small{display:block;color:var(--muted);font-size:11.5px}
+.qa-li{font-size:13px;padding:6px 10px;border-radius:8px}
+.qa-li.ok{background:var(--ok-soft)}.qa-li.no{background:var(--crit-soft)}
+.qa-adj>summary{cursor:pointer;color:var(--accent)}
+.qa-q .sub{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.qa-qlist{display:flex;flex-direction:column;gap:8px}
+.qa-qa{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;background:var(--surface);border-left:4px solid var(--line)}
+.qa-qa.qa-need{border-left-color:var(--warn)}
+.qa-qa.done{border-left-color:var(--ok)}
+.qa-qh{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:14px}
+.qa-qh b{font-weight:600}
+.qa-who{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 8px;flex:none}
+.qa-who.y{color:var(--internal);background:var(--internal-soft)}
+.qa-qa input,.qa-qa textarea{width:100%;background:var(--bg);font-size:14px}
+.qa-qa.qa-need input,.qa-qa.qa-need textarea{background:var(--bg);border-color:var(--line)}
+.qa-opts{display:flex;gap:6px;flex-wrap:wrap}.qa-opts .chip{cursor:pointer;font-size:13px;padding:5px 14px}
+.qa-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.qa-danger{background:var(--crit)!important;border-color:var(--crit)!important;color:#fff!important}
+.qa-docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px}
+.qa-doc{align-items:flex-start}
+.qa-clist{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.qa-cc{display:flex;flex-direction:column;gap:8px;text-align:left;border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--surface);border-radius:12px;padding:12px 14px;font:inherit;color:inherit;cursor:pointer}
+.qa-cc:hover{border-color:var(--accent)}
+.qa-cc.contratado{border-left-color:var(--ok)}.qa-cc.rechazado{border-left-color:var(--crit);opacity:.85}.qa-cc.desistio{border-left-color:var(--done);opacity:.85}
+.qa-cch{display:flex;justify-content:space-between;gap:8px;align-items:center}.qa-cch b{font-size:15px}
+.qa-dots{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.qa-dot{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--muted);background:var(--bg);border-radius:8px;padding:4px 2px}
+.qa-dot i{font-style:normal;font-size:14px;filter:grayscale(1);opacity:.6}
+.qa-dot.part{background:var(--warn-soft);color:var(--warn)}.qa-dot.part i{filter:none;opacity:1}
+.qa-dot.ok{background:var(--ok-soft);color:var(--ok);font-weight:600}.qa-dot.ok i{filter:none;opacity:1}
+.qa-head{gap:12px}
+.qa-hrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.qa-hname{display:flex;flex-direction:column;flex:1;min-width:160px}.qa-hname b{font-family:var(--f-display);font-size:20px}
+.qa-hpct{display:flex;align-items:center;gap:6px}
+.qa-ring.sm{width:52px;height:52px}.qa-ring.sm::before{inset:6px}.qa-ring.sm b{font-size:13px;margin:0}
+.qa-est,.qa-mot{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.qa-est .chip,.qa-mot .chip{cursor:pointer;font-size:12.5px}
+.qa-mot input{flex:1;min-width:180px}
+.qa-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.qa-step{display:flex;gap:8px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 10px;font:inherit;color:inherit;cursor:pointer}
+.qa-step .n{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);font-weight:700}
+.qa-step small{display:block;color:var(--muted);font-size:11.5px}
+.qa-step.part .n{background:var(--warn-soft);border-color:var(--warn)}.qa-step.ok .n{background:var(--ok);border-color:var(--ok);color:var(--on-accent)}
+.qa-step.on{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 -3px 0 var(--accent)}
+@media (max-width:640px){.qa-steps{grid-template-columns:repeat(2,1fr)}}
+.qa-hint{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.45;border-radius:8px;padding:7px 10px;margin-top:2px}
+.qa-hint.crit{background:var(--crit-soft);color:var(--crit)}.qa-hint.warn{background:var(--warn-soft);color:var(--warn)}
+.qa-hint.ok{background:var(--ok-soft);color:var(--ok)}.qa-hint.info{background:var(--accent-soft);color:var(--accent)}
+.qa-hint>span:first-child{flex:none;font-weight:700}.qa-hint .btn{margin-left:4px}
+.qa-stepp{gap:14px}
+.qa-sh{display:flex;align-items:center;gap:12px}.qa-sh h2{margin:0;font-family:var(--f-display);font-size:22px}.qa-sh>div:nth-child(2){flex:1}
+.qa-big{font-size:34px;line-height:1}
+.qa-info{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.qa-info>div{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:13.5px;display:flex;flex-direction:column;gap:3px}
+.qa-info>div span{font-weight:700;font-size:12px;color:var(--muted)}
+.qa-grp{display:flex;flex-direction:column;gap:8px}
+.qa-grph{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.qa-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.qa-tile{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;border:2px dashed var(--warn);background:var(--surface);border-radius:14px;padding:16px 10px 12px;font:inherit;color:inherit;cursor:pointer;min-height:150px;transition:transform .1s}
+.qa-tile:hover{transform:translateY(-2px)}
+.qa-tile.opt{border-color:var(--line)}
+.qa-tile .ic{font-size:30px;line-height:1}
+.qa-tile b{font-size:14px;line-height:1.25}
+.qa-tile small{font-size:11.5px;color:var(--muted);line-height:1.35}
+.qa-tile .ck{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--on-accent)}
+.qa-tile .tag{font-size:10.5px;background:var(--bg);color:var(--muted);border-radius:999px;padding:1px 8px}
+.qa-tile.on{border:2px solid var(--ok);background:var(--ok-soft)}.qa-tile.on .ck{background:var(--ok);border-color:var(--ok)}
+.qa-road{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap}
+.qa-roadc{flex:1;min-width:150px;display:flex;flex-direction:column;gap:4px;background:var(--bg);border-radius:12px;padding:12px}
+.qa-arrow{align-self:center;font-size:20px;color:var(--muted)}
+.qa-steps .qa-step{position:relative}
+@media (max-width:700px){.qa-info{grid-template-columns:1fr}.qa-arrow{display:none}}
+@media (max-width:560px){.qa-tiles{grid-template-columns:repeat(2,1fr);gap:8px}.qa-tile{min-height:120px;padding:12px 6px 10px}.qa-tile small{display:none}.qa-tile .ic{font-size:26px}}
+
 .pgcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .pgc{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--oc);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
 .pgc .who{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--oc)}
@@ -412,7 +577,7 @@ details.acc .in{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px}
 <script>
 const DATA=JSON.parse(document.getElementById('cos-data').textContent);
 const EN=JSON.parse(document.getElementById('cos-en').textContent);
-const TABS=[['proceso','Proceso'],['ceipal','CEIPAL'],['novedades','Novedades'],['status','Status CEIPAL'],['sla','SLA Prehiring'],['ingreso','Fecha de ingreso'],['plantillas','Plantillas'],['funnels','Funnels'],['objeciones','Objeciones'],['followup','Follow up'],['jd','JD → Mensajes'],['entrevista','JD → Entrevista'],['contactar','Mejor hora'],['contratos','Contratos'],['salarios','Salarios'],['peru','Salario Perú'],['pagos','Pagos'],['sups','Supervisores'],['sites','Sites'],['links','Links'],['accesos','Accesos'],['horarios','Horarios']];
+const TABS=[['proceso','Proceso'],['ceipal','CEIPAL'],['qa','Candidatos QA'],['novedades','Novedades'],['status','Status CEIPAL'],['sla','SLA Prehiring'],['ingreso','Fecha de ingreso'],['plantillas','Plantillas'],['funnels','Funnels'],['objeciones','Objeciones'],['followup','Follow up'],['jd','JD → Mensajes'],['entrevista','JD → Entrevista'],['contactar','Mejor hora'],['contratos','Contratos'],['salarios','Salarios'],['peru','Salario Perú'],['pagos','Pagos'],['sups','Supervisores'],['sites','Sites'],['links','Links'],['accesos','Accesos'],['horarios','Horarios']];
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
@@ -450,21 +615,20 @@ function trStr(t){
   if(v==null)for(const [re,f,g] of PATS){const m=k.match(re);if(m){v=g?g(k):f(m);break}}
   if(v==null||v===k)return null;return t.replace(k,v);
 }
-const TR_ATTRS=['placeholder','title','aria-label'];
+const TR_ATTRS=['placeholder','title','aria-label'];const TR_ORIG=new Map(),TR_AORIG=[];
 function trRoot(root){
   if(LANG!=='en'||!root)return;
-  if(root.nodeType===3){const v=trStr(root.nodeValue);if(v!=null)root.nodeValue=v;return}
+  if(root.nodeType===3){const v=trStr(root.nodeValue);if(v!=null){if(!TR_ORIG.has(root))TR_ORIG.set(root,root.nodeValue);root.nodeValue=v}return}
   if(root.nodeType!==1)return;
   const tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement&&n.parentElement.closest('script,style,textarea,[data-notr]')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
   const nodes=[];let n;while(n=tw.nextNode())nodes.push(n);
-  nodes.forEach(n=>{const v=trStr(n.nodeValue);if(v!=null)n.nodeValue=v});
-  [root,...root.querySelectorAll('[placeholder],[title],[aria-label]')].forEach(el=>{if(!el.getAttribute)return;TR_ATTRS.forEach(a=>{const o=el.getAttribute(a);if(o){const v=trStr(o);if(v!=null)el.setAttribute(a,v)}})});
+  nodes.forEach(n=>{const v=trStr(n.nodeValue);if(v!=null){if(!TR_ORIG.has(n))TR_ORIG.set(n,n.nodeValue);n.nodeValue=v}});
+  [root,...root.querySelectorAll('[placeholder],[title],[aria-label]')].forEach(el=>{if(!el.getAttribute)return;TR_ATTRS.forEach(a=>{const o=el.getAttribute(a);if(o){const v=trStr(o);if(v!=null){TR_AORIG.push([el,a,o]);el.setAttribute(a,v)}}})});
 }
-if(LANG==='en'){
-  new MutationObserver(ms=>{for(const m of ms){if(m.type==='characterData')trRoot(m.target);else m.addedNodes.forEach(trRoot);if(m.type==='attributes')trRoot(m.target)}})
-    .observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:TR_ATTRS});
-  trRoot(document.body);
-}
+let TR_OBS=null;
+function trStart(){if(TR_OBS)return;TR_OBS=new MutationObserver(ms=>{for(const m of ms){if(m.type==='characterData')trRoot(m.target);else m.addedNodes.forEach(trRoot);if(m.type==='attributes')trRoot(m.target)}});
+  TR_OBS.observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:TR_ATTRS})}
+if(LANG==='en'){trStart();trRoot(document.body)}
 function toast(t){const el=$('toast');el.textContent=t;el.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>el.hidden=true,3000)}
 async function copy(t,msg){try{await navigator.clipboard.writeText(t);toast(msg||'Copiado.')}catch(e){openSheet(`<h2>Copia este texto</h2><textarea class="out" id="cpy">${esc(t)}</textarea><div class="actions"><button class="btn" data-close>Cerrar</button></div>`);const a=$('cpy');a.focus();a.select()}}
 function openSheet(h){$('sheet').innerHTML=h;$('scrim').hidden=false}
@@ -1662,6 +1826,838 @@ function renderHor(){
     ${now>=S0&&now<=S1?`<div class="nowline" style="left:${pct(now)}%"></div>`:''}</div></div>`).join('');
 }
 
+
+/* --- Entrevista QA (Talent Quality Intelligence) --- */
+const QA_CRIT=[
+ ['Q001','Comunicación salarial','C',1,'El salario se explicó claro, consistente y sin engaños.'],
+ ['Q002','Claridad de condiciones','H',1,'Se explicó horario, modalidad, beneficios y disponibilidad requerida.'],
+ ['Q003','Calidad de comunicación','M',1,'La comunicación fue clara, profesional y con seguimiento.'],
+ ['Q004','Expectativas realistas','C',1,'El candidato entiende el proceso y el rol (evita desistimientos).'],
+ ['Q005','Consistencia de la información','C',1,'No hubo información contradictoria, confusa o engañosa.'],
+ ['Q006','Alineación de experiencia','C',2,'La experiencia real coincide con lo que pide el cliente (seniority y funciones).'],
+ ['Q007','Validación de herramientas','H',2,'Se validaron a fondo las habilidades y herramientas obligatorias.'],
+ ['Q008','Validación de idioma','C',2,'El nivel de inglés se evaluó bien y cumple el requisito del cliente.'],
+ ['Q009','Ajuste general al rol','C',2,'El perfil enviado encaja con lo que espera el cliente.'],
+ ['Q010','Consistencia documental','M',2,'CV, ATS y notas de screening dicen lo mismo.'],
+ ['Q011','Calidad del CV','M',2,'Formato claro, legible, un solo idioma, sin Spanglish.'],
+ ['Q012','Fechas completas en el CV','M',2,'Mes y año en cada empleo, línea de tiempo clara.'],
+ ['Q013','Calidad del submittal','H',2,'El paquete va completo y sin errores evitables.'],
+ ['Q014','Alineación de tarifa','C',2,'El salario enviado está dentro del rango aprobado por el cliente.'],
+ ['Q015','Compatibilidad de ubicación','H',2,'La ubicación sirve para la modalidad y el desplazamiento.'],
+ ['Q016','Calidad del video','M',2,'Buena luz, fondo profesional, poco ruido y buena visibilidad.'],
+ ['Q017','Justificación en notas','H',2,'Las notas explican por qué el perfil cumple con los requisitos.'],
+ ['Q018','Uso de IA y herramientas','M',2,'CV en formato SOLVO y pantallazo del scorecard de IA Matching adjunto (obligatorio).'],
+ ['Q019','Compatibilidad de horario','H',3,'Disponibilidad, turno, zona horaria y flexibilidad validados.'],
+ ['Q020','Modelo de compensación','C',3,'Estructura y frecuencia de pago explicadas y entendidas (incluye proveedor de servicios).'],
+ ['Q021','Estabilidad laboral','M',3,'No hay un patrón repetido de cargos cortos.'],
+ ['Q022','Riesgo de retiro','H',3,'Los riesgos de salida se identificaron, documentaron y escalaron.'],
+ ['Q023','Factores de continuidad','M',3,'Transporte, disponibilidad futura y restricciones validados.'],
+ ['Q024','Notas en ATS','M',4,'Notas en CEIPAL completas, actualizadas y trazables.'],
+ ['Q025','Documentación requerida','H',4,'Todos los adjuntos requeridos están y son válidos.'],
+ ['Q026','Estado en ATS','M',4,'El estado del candidato se actualizó en cada paso.'],
+ ['Q027','Cumplimiento del proceso','H',4,'Se siguió el flujo y las políticas definidas.'],
+ ['Q028','Riesgo de reproceso','H',4,'El submittal no generará correcciones para el POC, QA o el cliente.']];
+const QA_MOD=['','Experiencia del candidato','Calificación del talento','Retención','Gobierno y ATS'];
+const QA_SEV={C:['Critical','c-crit'],H:['High','c-warn'],M:['Medium','c-med']};
+const QA_PHS=['','Conocer a la persona','Validar el perfil','Disponibilidad y modalidad','Oferta, salario y cierre'];
+const QA_VARS=[['nombre','Nombre del candidato'],['yo','Tu nombre'],['cargo','Cargo'],['cliente','Cliente o tipo de empresa'],['horario','Horario (ej. 8 a.m. a 5 p.m.)'],['dias','Días laborales'],['descanso','Días de descanso'],['zona','Zona horaria del cliente'],['salario','Salario (monto, moneda y periodo)'],['contrato','Tipo de contrato'],['pago','Frecuencia de pago'],['modalidad','Modalidad',['','Presencial','Remoto','Híbrido']],['tope','Tope del rango salarial (número)'],['ingreq','Inglés que pide el cliente',['','No aplica','A2','B1','B2','C1','C2']],['ubicacion','Ubicación o sede'],['siguiente','Siguiente paso del proceso']];
+const QA_PHL={nombre:'nombre',yo:'tu nombre',cargo:'cargo',cliente:'cliente',horario:'horario',dias:'días',descanso:'días de descanso',zona:'zona horaria',salario:'salario',contrato:'tipo de contrato',pago:'frecuencia de pago',ubicacion:'ubicación',siguiente:'siguiente paso'};
+const QA_B=[
+ {n:1,ph:1,t:'Romper el hielo',cr:['Q003','Q004'],say:'Hola {nombre}, ¿cómo estás? Soy {yo}, de Talent Acquisition en Solvo. Gracias por tu tiempo. La idea de esta llamada es conocerte, revisar tu experiencia, contarte de la posición de {cargo} y resolver tus dudas. Al final te cuento los próximos pasos del proceso. ¿Te parece bien?',
+  qs:['Saludé y expliqué el objetivo de la llamada','Le dije que al final le explico los próximos pasos'],f:[],fl:[]},
+ {n:2,ph:1,t:'Situación personal y familiar',cr:['Q019','Q022','Q023'],
+  qs:['Cuéntame un poco sobre ti.','¿Cómo está conformado tu núcleo familiar?','¿Tienes alguna responsabilidad personal o familiar que pueda afectar tu disponibilidad?','¿Cómo balanceas tu vida personal con el trabajo?','¿Hay algo en este momento que pueda afectar tu asistencia o puntualidad?'],
+  f:[['familia','Núcleo familiar y responsabilidades','area']],fl:[['Responsabilidades que chocan con el horario','Q022'],['Algo puede afectar su asistencia o puntualidad','Q023']]},
+ {n:3,ph:1,t:'Hobbies e intereses',cr:['Q022'],
+  qs:['¿Qué te gusta hacer en tu tiempo libre?','¿Tienes algún hobby o actividad que te genere ingresos?','¿Cuánto tiempo le dedicas? ¿Te gustaría volverla tu ingreso principal pronto?'],
+  f:[['hobby','Hobbies o actividad que le genera ingresos']],fl:[['Quiere volver su negocio su ingreso principal pronto','Q022']]},
+ {n:4,ph:1,t:'Estudios y planes',cr:['Q019','Q023'],
+  qs:['¿Cuál es tu nivel académico?','¿Estás estudiando actualmente?','¿Piensas empezar algún estudio, curso o certificación pronto?','Si estudia: ¿qué días y horas tienes clase? ¿Cómo lo balanceas con el horario de {horario}?'],
+  f:[['nivel','Nivel académico'],['estudia','¿Estudia?',['','No','Sí','Planea estudiar']],['clases','Días y horas de clase']],fl:[['Las clases se cruzan con el turno','Q019']]},
+ {n:5,ph:2,t:'Experiencia profesional',cr:['Q006','Q012','Q017','Q021'],
+  qs:['Cuéntame sobre tu experiencia profesional.','¿Qué te motivó a buscar una nueva oportunidad?','Por cada empleo: ¿en qué mes y año entraste y saliste?','Por cada empleo: cargo, funciones, herramientas, logros y motivo de salida','Si un empleo duró 6 meses o menos: ¿qué pasó?'],
+  f:[['exp','Años de experiencia y área'],['ultimo','Último cargo, empresa y fechas (mes/año)'],['motivo','Motivo de cambio'],['estab','Empleos cortos y su motivo'],['porque','Por qué cumple con lo que pide el cliente','area']],
+  fl:[['Las fechas no cuadran con el CV','Q012'],['Varios empleos cortos seguidos','Q021'],['La experiencia no cumple lo que pide el cliente','Q006']]},
+ {n:6,ph:2,t:'Herramientas del cargo',cr:['Q007'],tip:'No basta con un "sí": pide un ejemplo concreto de cada herramienta obligatoria.',
+  qs:['¿Has trabajado con las herramientas que pide el cargo?','¿Para qué la usabas? Dame un ejemplo de algo que hayas hecho con ella.','¿Cuánto tiempo de experiencia tienes en el área de {cargo}?'],
+  f:[['herr','Herramientas validadas y el ejemplo que dio','area']],fl:[['No da ejemplos concretos de las herramientas','Q007']]},
+ {n:7,ph:2,t:'Inglés (si aplica)',cr:['Q008'],min:3,say:"Now let's continue in English for a few minutes, is that OK?",tip:'Haz mínimo 3 preguntas. Si la vacante no pide inglés, marca "No aplica" en el nivel.',
+  qs:['Could you please introduce yourself?','Tell me about your current or previous role and responsibilities.','Why are you interested in this opportunity?','How do you handle multiple priorities?','Where do you see yourself in 2 years?','Why do you think you are a good fit for this position?'],
+  f:[['ingles','Nivel observado',['','No aplica','A2','B1','B2','C1','C2']],['ingok','¿Cumple el nivel del cliente?',['','Cumple','No cumple']],['ingobs','Observaciones (fluidez, vocabulario, comprensión)']],
+  fl:[['Inglés por debajo de lo que pide el cliente','Q008']]},
+ {n:8,ph:3,t:'Disponibilidad y viajes',cr:['Q013','Q019','Q023'],tip:'Todo viaje o ausencia con fechas va también en el Submittal.',
+  qs:['¿Tienes vacaciones o viajes programados en los próximos meses? ¿Ya con tiquetes o reservas?','¿Hay algún compromiso personal que debamos conocer sobre tu disponibilidad?','Si recibieras una oferta, ¿cuándo podrías empezar?','La posición trabaja de {horario} ({zona}). ¿Tienes total disponibilidad para ese turno?'],
+  f:[['inicio','Puede iniciar'],['turno','¿Disponible para el turno?',['','Sí','No','Parcial']],['viajes','Viajes o ausencias (con fechas)']],
+  fl:[['Viaje con tiquetes comprados','Q013'],['No puede cumplir el turno completo','Q019']]},
+ {n:9,ph:3,t:'Modalidad y transporte',cr:['Q015','Q023'],mod:true,
+  f:[['transp','Tiempo y medio de transporte / espacio e internet','area']],
+  fl:[['Desplazamiento muy largo o transporte poco confiable','Q023'],['No tiene espacio o internet adecuado','Q023']]},
+ {n:10,ph:4,t:'Explicar la vacante',cr:['Q002','Q004'],say:'Te cuento de la posición. Es para {cliente}, como {cargo}. El horario es de {horario}, de {dias}, y descansas {descanso}. Tus principales responsabilidades serían [responsabilidades]. Además tienes [beneficios, bonos, crecimiento y doble liderazgo, si aplica].',
+  qs:['Expliqué horario, días laborales y de descanso','Expliqué responsabilidades y expectativas del cliente','Expliqué beneficios, bonos y oportunidades de crecimiento','Con lo que te he contado, ¿la posición te sigue interesando? ¿Algo no te encaja?'],
+  f:[['interes','¿Sigue interesado?',['','Sí','Con dudas','No']]],fl:[['Tiene dudas sobre el rol o el proceso','Q004']]},
+ {n:11,ph:4,t:'Salario y contrato',cr:['Q001','Q014','Q020'],say:'Para esta posición el salario es de {salario}. El contrato es {contrato} y el pago es {pago}. Los beneficios incluyen [beneficios].',
+  qs:['¿Cuál es tu expectativa salarial?','Expliqué salario, tipo de contrato, frecuencia de pago y beneficios','Para estar seguros: ¿me repites cómo entendiste el salario y la forma de pago?','¿Estás de acuerdo con estas condiciones?'],
+  f:[['expect','Expectativa salarial'],['acepta','¿Acepta las condiciones?',['','Sí','No','Lo pensará']]],
+  fl:[['Expectativa por encima del rango del cliente','Q014'],['Confusión con el modelo de pago','Q020'],['Le dije un dato distinto al aprobado','Q005']]},
+ {n:12,ph:4,t:'Cierre',cr:['Q003','Q004','Q005'],say:'Muchas gracias por tu tiempo, {nombre}. El siguiente paso es {siguiente}. Si tienes alguna duda, me puedes escribir.',
+  qs:['¿Tienes alguna pregunta para mí?','Le expliqué los próximos pasos y cuándo lo contactamos'],f:[['preg','Preguntas del candidato']],fl:[]}];
+const QA_CK=[
+ ['🚨 Lo crítico','Expliqué el salario claro y sin contradicciones',['Q001','Q005']],
+ ['🚨 Lo crítico','El salario enviado está dentro del rango del cliente',['Q014']],
+ ['🚨 Lo crítico','Expliqué el modelo de pago y el candidato lo entendió',['Q020']],
+ ['🚨 Lo crítico','El candidato tiene expectativas realistas del rol y del proceso',['Q004']],
+ ['🚨 Lo crítico','Su experiencia real cumple lo que pide el cliente',['Q006','Q009']],
+ ['🚨 Lo crítico','Validé el nivel de inglés requerido',['Q008']],
+ ['📎 Documentos','CV en formato SOLVO, sin Spanglish y con mes y año en cada empleo',['Q011','Q012','Q018']],
+ ['📎 Documentos','Pantallazo del scorecard de IA Matching adjunto',['Q018']],
+ ['📎 Documentos','Video con buena luz, fondo profesional y sin ruido',['Q016']],
+ ['📎 Documentos','CV, CEIPAL y notas dicen lo mismo',['Q010']],
+ ['📎 Documentos','Todos los adjuntos requeridos están',['Q025']],
+ ['📎 Documentos','Viajes o ausencias registrados en el Submittal',['Q013']],
+ ['📝 Notas y CEIPAL','Mis notas justifican por qué el perfil cumple',['Q017']],
+ ['📝 Notas y CEIPAL','Documenté y escalé cualquier riesgo de retiro',['Q022']],
+ ['📝 Notas y CEIPAL','Notas en CEIPAL completas y actualizadas',['Q024']],
+ ['📝 Notas y CEIPAL','Estado del candidato actualizado en CEIPAL',['Q026']],
+ ['📝 Notas y CEIPAL','Seguí el flujo de reclutamiento y envío',['Q027']],
+ ['📝 Notas y CEIPAL','Revisé todo para que el POC o el cliente no pidan correcciones',['Q028']]];
+const QA=Object.assign({view:'notes',ph:0,v:{},c:{},f:{},fl:{},ck:{},open:[1],sf:'',mf:0,q:'',notes:'',ai:null},store.get('qa',{}));
+if(!QA.v2){QA.view='notes';QA.v2=1}
+function qaSave(){qaPersist()}
+const qaCrit=c=>QA_CRIT.find(x=>x[0]===c);
+const qaPill=c=>{const x=qaCrit(c);return `<span class="pill ${QA_SEV[x[2]][1]}" data-qainfo="${c}" title="${esc(x[1])} · ${QA_SEV[x[2]][0]}">${c}</span>`};
+const qaFill=t=>esc(t).replace(/\{(\w+)\}/g,(m,k)=>{const v=qaVv(k);return v?`<b>${esc(v)}</b>`:`<span class="qa-ph">[${esc(QA_PHL[k]||k)}]</span>`});
+function qaQs(b){
+  if(!b.mod)return b.qs.map((t,i)=>({id:b.n+'-'+i,t}));
+  const m=qaVv('modalidad'),P=[['9p0','¿Conoces esta ubicación ({ubicacion})?'],['9p1','¿Cuánto tiempo te tomaría llegar?'],['9p2','¿En qué medio de transporte llegarías?']],R=[['9r0','¿Tienes un espacio tranquilo y adecuado para trabajar desde casa?'],['9r1','¿Tu conexión a internet es estable? ¿De qué velocidad es?']];
+  const L2=m==='Presencial'?P:m==='Remoto'?R:P.concat(R);return L2.map(([id,t])=>({id,t}));
+}
+const qaSay=b=>b.mod?(qaVv('modalidad')==='Remoto'?'La posición es 100% remota.':'La posición es '+(qaVv('modalidad')==='Híbrido'?'híbrida':'presencial')+' en {ubicacion}.'):
+  b.n===11&&/contractor|proveedor|servicio/i.test(qaVv('contrato'))?b.say+' Ten en cuenta que la modalidad es de proveedor de servicios: [cómo funciona el pago, qué aportes asume y cómo se factura].':b.say;
+function qaDone(b){if(b.n===7&&QA.f.ingles==='No aplica')return true;const qs=qaQs(b),k=qs.filter(q=>QA.c[q.id]).length;return k>=(b.min||qs.length)}
+const qaCovered=c=>QA_B.some(b=>b.cr.includes(c)&&qaDone(b))||QA_CK.some((x,i)=>qaCkOn(i)&&x[2].includes(c))||!!qaScan().ev[c]||!!(QA.ai&&QA.ai.cov&&QA.ai.cov[c]);
+const qaFlags=()=>{const r=[];QA_B.forEach(b=>b.fl.forEach((x,i)=>{if(QA.fl[b.n+'-'+i])r.push(x)}));return r};
+V.qa=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">Talent Quality Intelligence · 28 criterios</span><h1>Entrevista QA</h1>
+  <span class="muted">El screening paso a paso con lo que audita QA. Marca lo que vas preguntando y la nota para CEIPAL se arma sola.</span></div>
+  <div class="legend"><span class="pill c-crit">Critical</span><span class="pill c-warn">High</span><span class="pill c-med">Medium</span></div></div>
+  <div class="qa-views" id="qaViews"></div><div class="stack" id="qaBody"></div>`;
+function renderQA(){
+  if(!$('qaBody'))return;
+  $('qaViews').innerHTML=[['notes','📝 Notas en vivo'],['crit','📊 Criterios TQI'],['ck','✅ Antes de enviar']].map(([k,t])=>`<button class="chip" type="button" data-qaview="${k}" aria-pressed="${QA.view===k}">${t}</button>`).join('');
+  if(QA.view==='crit'){$('qaBody').innerHTML=qaCritView();qaCritGrid();return}
+  if(QA.view==='ck'){$('qaBody').innerHTML=qaCkView();return}
+  {$('qaBody').innerHTML=qaToolbar()+qaVacHtml()+qaNotesView();qaAnalyze();return}
+  $('qaBody').innerHTML=qaVacHtml()+`
+    <section class="panel" id="qaCov"></section>
+    <div class="slafil" id="qaPh"></div><div class="stack" id="qaBlocks" style="gap:8px"></div>
+    <section class="panel"><div class="panel-head"><h2>✍️ Nota para CEIPAL</h2><span class="muted small">Se arma sola con lo que vas llenando</span></div>
+      <div class="mailbox qa-note" id="qaNote"></div>
+      <div class="actions"><button class="btn primary" type="button" data-qanote>Copiar nota</button><button class="btn" type="button" data-qaview="ck">Ir al checklist →</button><button class="btn" type="button" data-qareset id="qaReset">Nueva entrevista</button></div></section>`;
+  qaPhases();qaBlocks();qaRefresh();
+}
+function qaPhases(){$('qaPh').innerHTML=[0,1,2,3,4].map(p=>{const bs=QA_B.filter(b=>!p||b.ph===p),d=bs.filter(qaDone).length;return `<button class="chip" type="button" data-qaph="${p}" aria-pressed="${QA.ph===p}">${p?`${p} · ${QA_PHS[p]}`:'Todas las fases'} <span class="muted">${d}/${bs.length}</span></button>`}).join('')}
+function qaBlock(b){
+  const qs=qaQs(b),done=qaDone(b),k=qs.filter(q=>QA.c[q.id]).length,say=b.say||b.mod?qaSay(b):'';
+  return `<details class="acc" data-qab="${b.n}" ${QA.open.includes(b.n)?'open':''}><summary><span class="qa-num ${done?'done':''}">${done?'✓':b.n}</span><b>${esc(b.t)}</b><span class="qa-crs">${b.cr.map(qaPill).join('')}</span><span class="muted small">${b.n===7&&QA.f.ingles==='No aplica'?'No aplica':k+'/'+(b.min||qs.length)}</span></summary><div class="in">
+    ${b.tip?`<div class="qa-tip">💡 ${esc(b.tip)}</div>`:''}
+    ${say?`<div class="qa-say"><span class="eyebrow">🗣️ Di</span><span data-qasay="${b.n}">${qaFill(say)}</span></div>`:''}
+    <span class="eyebrow">❓ ${b.n===1||b.n===10?'Marca lo que ya hiciste':'Pregunta'}</span>
+    ${qs.map(q=>`<button type="button" class="qa-q" data-qaq="${q.id}" aria-pressed="${!!QA.c[q.id]}"><span class="bx"></span><span>${qaFill(q.t)}</span></button>`).join('')}
+    ${b.f.length?`<span class="eyebrow">✍️ Documenta</span><div class="qa-fields">${b.f.map(([fk,l,o])=>`<label class="${o==='area'?'wide':''}">${esc(l)}${Array.isArray(o)?`<select data-qaf="${fk}">${o.map(x=>`<option ${QA.f[fk]===x?'selected':''} value="${esc(x)}">${esc(x||'Elige…')}</option>`).join('')}</select>`:o==='area'?`<textarea rows="2" data-qaf="${fk}">${esc(QA.f[fk]||'')}</textarea>`:`<input type="text" data-qaf="${fk}" value="${esc(QA.f[fk]||'')}">`}</label>`).join('')}</div>`:''}
+    ${b.fl.length?`<span class="eyebrow">🚩 Alertas · toca si pasa</span><div class="actions">${b.fl.map((x,i)=>`<button type="button" class="chip qa-flag" data-qafl="${b.n}-${i}" aria-pressed="${!!QA.fl[b.n+'-'+i]}">🚩 ${esc(x[0])} · ${x[1]}</button>`).join('')}</div>`:''}
+  </div></details>`;
+}
+function qaBlocks(){
+  let h='',last=0;
+  QA_B.filter(b=>!QA.ph||b.ph===QA.ph).forEach(b=>{if(b.ph!==last){last=b.ph;h+=`<div class="qa-phase">Fase ${b.ph} · ${esc(QA_PHS[b.ph])}</div>`}h+=qaBlock(b)});
+  $('qaBlocks').innerHTML=h;
+}
+function qaRefresh(){
+  if(!$('qaCov'))return;
+  const cov=QA_CRIT.filter(c=>qaCovered(c[0])),cr=QA_CRIT.filter(c=>c[2]==='C'),cc=cr.filter(c=>qaCovered(c[0])),miss=cr.filter(c=>!qaCovered(c[0])),bd=QA_B.filter(qaDone).length,nf=qaFlags().length,pct=Math.round(cov.length/28*100);
+  $('qaCov').innerHTML=`<div class="panel-head"><h2>Cobertura QA</h2><span class="muted small">Cuenta lo que marcas aquí y en "Antes de enviar"</span></div>
+    <div class="qa-kpis"><div class="qa-kpi"><span class="muted small">Bloques completos</span><b>${bd}/12</b></div>
+      <div class="qa-kpi ${cov.length===28?'ok':''}"><span class="muted small">Criterios cubiertos</span><b>${cov.length}/28</b></div>
+      <div class="qa-kpi ${cc.length===cr.length?'ok':'crit'}"><span class="muted small">Critical cubiertos</span><b>${cc.length}/${cr.length}</b></div>
+      <div class="qa-kpi ${nf?'crit':''}"><span class="muted small">Alertas marcadas</span><b>${nf}</b></div></div>
+    <div class="qa-meter ${pct===100?'ok':''}"><i style="width:${pct}%"></i></div>
+    ${miss.length?`<div class="actions small"><span class="muted">Te faltan estos Critical:</span>${miss.map(c=>qaPill(c[0])).join('')}</div>`:`<div class="status ok">🎉 Cubriste los 8 criterios Critical</div>`}`;
+  $('qaNote').textContent=qaNote();
+  document.querySelectorAll('[data-qasay]').forEach(el=>{const b=QA_B.find(x=>x.n===+el.dataset.qasay);el.innerHTML=qaFill(qaSay(b))});
+}
+function qaNote(){
+  const v=QA.v,f=k=>String(QA.f[k]||'').trim()||'[pendiente]',o=k=>String(QA.f[k]||'').trim();
+  const d=new Date().toLocaleDateString(LOC(),{day:'numeric',month:'short',year:'numeric'}),fl=qaFlags();
+  const ing=QA.f.ingles==='No aplica'?'Inglés: no aplica.':`Inglés: ${f('ingles')} – ${f('ingok')} el nivel requerido.${o('ingobs')?' '+o('ingobs')+'.':''}`;
+  return [`RESUMEN DEL SCREENING – ${v.nombre||'[Nombre]'} – ${v.cargo||'[Cargo]'} – ${d}`,'',
+    `Perfil: ${f('exp')}. Último cargo: ${f('ultimo')}.`,
+    `Por qué cumple: ${f('porque')}.`,
+    `Herramientas validadas: ${f('herr')}.`,ing,
+    `Motivo de cambio: ${f('motivo')}.`,
+    `Estabilidad: ${o('estab')||'sin alertas'}.`,'',
+    `Situación personal: ${f('familia')}.`,
+    `Hobbies: ${o('hobby')||'sin actividades que afecten'}.`,
+    `Estudios: ${f('nivel')} · ${f('estudia')}${o('clases')?' (clases: '+o('clases')+')':''}.`,
+    `Disponibilidad: inicio ${f('inicio')}. Turno ${v.horario||'[horario]'}: ${f('turno')}. Viajes o ausencias: ${o('viajes')||'ninguno'}.`,
+    `Modalidad: ${v.modalidad||'[modalidad]'} – ${f('transp')}.`,'',
+    `Salario: expectativa ${f('expect')}. Se explicó ${v.salario||'[salario]'}, contrato ${v.contrato||'[tipo de contrato]'}, pago ${v.pago||'[frecuencia]'}. Acepta: ${f('acepta')}.`,
+    `Interés en la vacante: ${f('interes')}.${o('preg')?' Preguntas: '+o('preg')+'.':''}`,
+    `Riesgos: ${fl.length?fl.map(x=>x[0]+' ('+x[1]+')').join('; '):'sin alertas'}.`,
+    `Próximo paso: ${v.siguiente||'[siguiente paso]'} – informado al candidato.`].join('\n');
+}
+function qaCritView(){
+  return `<section class="panel"><div class="panel-head"><h2>Los 28 criterios</h2><span class="muted small">En verde: los que ya cubriste en esta entrevista</span></div>
+    <div class="slafil">${[['','Todas'],['C','Critical'],['H','High'],['M','Medium']].map(([k,t])=>`<button class="chip" type="button" data-qasf="${k}" aria-pressed="${QA.sf===k}">${t}</button>`).join('')}</div>
+    <div class="slafil">${[0,1,2,3,4].map(m=>`<button class="chip" type="button" data-qamf="${m}" aria-pressed="${QA.mf===m}">${m?m+' · '+QA_MOD[m]:'Todos los módulos'}</button>`).join('')}</div>
+    <input type="search" data-qasearch placeholder="Buscar criterio… (ej. salario, CV, inglés)" value="${esc(QA.q)}">
+    <div class="cards" id="qaGrid"></div></section>`;
+}
+function qaWhere(c){const bs=QA_B.filter(b=>b.cr.includes(c)),ck=QA_CK.some(x=>x[2].includes(c));
+  return bs.map(b=>`<button class="btn sm" type="button" data-qago="${b.n}">Bloque ${b.n} · ${esc(b.t)}</button>`).join('')+(ck?`<button class="btn sm" type="button" data-qaview="ck">Checklist</button>`:'')}
+function qaCritGrid(){
+  const q=norm(QA.q),L2=QA_CRIT.filter(c=>(!QA.sf||c[2]===QA.sf)&&(!QA.mf||c[3]===QA.mf)&&(!q||norm(c.join(' ')).includes(q)));
+  $('qaGrid').innerHTML=L2.map(c=>`<article class="card qa-card ${QA_SEV[c[2]][1]} ${qaCovered(c[0])?'cov':''}"><div class="hd"><span class="pill ${QA_SEV[c[2]][1]}">${c[0]} · ${QA_SEV[c[2]][0]}</span>${qaCovered(c[0])?'<span class="pill c-ok">✓ Cubierto</span>':''}</div>
+    <span class="t">${esc(c[1])}</span><span class="s">${esc(c[4])}</span><span class="muted small">Módulo ${c[3]} · ${esc(QA_MOD[c[3]])}</span><div class="row">${qaWhere(c[0])}</div></article>`).join('')||'<p class="empty">No hay criterios con ese filtro.</p>';
+}
+function qaCkView(){
+  const on=QA_CK.map((x,i)=>qaCkOn(i)),n=on.filter(Boolean).length,crit=QA_CK.map((x,i)=>i).filter(i=>QA_CK[i][0].startsWith('🚨')),cOk=crit.every(i=>on[i]),pct=Math.round(n/QA_CK.length*100),au=QA_CK.filter((x,i)=>on[i]&&qaCkAuto(i)&&QA.ck[i]==null).length;
+  let g='';
+  return `<section class="panel"><div class="panel-head"><h2>✅ Antes de enviar el Submittal</h2><span class="muted small">${n}/${QA_CK.length} listos · ${au} marcados solos desde tus notas</span></div>
+    <div class="qa-meter ${n===QA_CK.length?'ok':''}"><i style="width:${pct}%"></i></div>
+    <div class="status ${n===QA_CK.length?'ok':cOk?'wait':'no'}">${n===QA_CK.length?'🚀 Listo para enviar':cOk?'⏳ Lo crítico está listo, termina el resto':'🚨 Aún faltan puntos críticos'}<small>Los puntos con ⚡ se marcan solos según lo que llenas en Notas en vivo. Los documentos (CV, video, scorecard, adjuntos) márcalos tú.</small></div>
+    ${QA_CK.map((x,i)=>{const hd=x[0]!==g?`<div class="qa-group">${esc(x[0])}</div>`:'';g=x[0];const a=qaCkAuto(i),man=QA.ck[i]!=null;return hd+`<button type="button" class="qa-q" data-qack="${i}" aria-pressed="${on[i]}"><span class="bx"></span><span>${esc(x[1])}<span class="sub">${a===null?'Manual: márcalo cuando lo revises':man?'Marcado a mano'+(a!==on[i]?' (tus notas dicen lo contrario)':''):a?'⚡ Se marcó solo desde tus notas':'⚡ Se marca solo cuando lo llenes en las notas'}</span></span><span class="cds">${x[2].map(qaPill).join('')}</span></button>`}).join('')}
+    <div class="actions"><button class="btn" type="button" data-qaview="notes">← Volver a las notas</button><button class="btn" type="button" data-qackreset>Volver a automático</button></div></section>`;
+}
+function qaInfo(c){const x=qaCrit(c);openSheet(`<h2>${c} · ${esc(x[1])}</h2><p><span class="pill ${QA_SEV[x[2]][1]}">${QA_SEV[x[2]][0]}</span> <span class="muted small">Módulo ${x[3]} · ${esc(QA_MOD[x[3]])}</span></p>
+  <p><b>QA revisa que:</b> ${esc(x[4])}</p>${(()=>{const [st,ev]=qaSrc(c);return st==='ok'||st==='man'?`<div class="status ok">✓ Cubierto<small>${esc(ev)}</small></div>`:st==='ck'?'<div class="status wait">Se valida en "Antes de enviar"<small>No se detecta en las notas: márcalo en el checklist.</small></div>':`<div class="status no">Pendiente${QA_ASK[c]?`<small>Pregunta: ${esc(QA_ASK[c][0])}</small>`:''}</div>`})()}
+  <p class="muted small">Se cubre en:</p><div class="actions">${qaWhere(c)}</div><div class="actions"><button class="btn" data-close>Cerrar</button></div>`)}
+document.addEventListener('click',e=>{
+  const t=e.target;
+  const inf=t.closest('[data-qainfo]');if(inf){e.preventDefault();e.stopPropagation();qaInfo(inf.dataset.qainfo);return}
+  const vw=t.closest('[data-qaview]');if(vw){QA.view=vw.dataset.qaview;qaSave();if(!$('scrim').hidden)$('scrim').hidden=true;if(VIEW!=='qa')go('qa');else{renderQA();window.scrollTo(0,0)}return}
+  const gb=t.closest('[data-qago]');if(gb){const n=+gb.dataset.qago;QA.view='notes';qaSave();if(!$('scrim').hidden)$('scrim').hidden=true;if(VIEW!=='qa')go('qa');else renderQA();setTimeout(()=>{const el=document.querySelector(`[data-qasecb~="${n}"]`);if(el){el.scrollIntoView({block:'start',behavior:'smooth'});el.classList.add('qa-flash');setTimeout(()=>el.classList.remove('qa-flash'),1400)}},80);return}
+  if(VIEW!=='qa')return;
+  const ph=t.closest('[data-qaph]');if(ph){QA.ph=+ph.dataset.qaph;qaSave();qaPhases();qaBlocks();return}
+  const q=t.closest('[data-qaq]');if(q){const id=q.dataset.qaq;QA.c[id]=!QA.c[id];q.setAttribute('aria-pressed',!!QA.c[id]);qaChanged();return}
+  const fl=t.closest('[data-qafl]');if(fl){const id=fl.dataset.qafl;QA.fl[id]=!QA.fl[id];fl.setAttribute('aria-pressed',!!QA.fl[id]);qaSave();qaRefresh();return}
+  const ck=t.closest('[data-qack]');if(ck){const i=+ck.dataset.qack;QA.ck[i]=!qaCkOn(i);qaSave();renderQA();return}
+  if(t.closest('[data-qackreset]')){QA.ck={};qaSave();renderQA();return}
+  const sf=t.closest('[data-qasf]');if(sf){QA.sf=sf.dataset.qasf;qaSave();renderQA();return}
+  const mf=t.closest('[data-qamf]');if(mf){QA.mf=+mf.dataset.qamf;qaSave();renderQA();return}
+  if(t.closest('[data-qanote]')){copy(qaNote(),'Nota copiada. Pégala en CEIPAL.');return}
+  const rs=t.closest('[data-qareset]');if(rs){if(rs.dataset.sure!=='1'){rs.dataset.sure='1';rs.textContent='¿Seguro? Toca otra vez';rs.classList.add('primary');setTimeout(()=>{if(rs.isConnected){rs.dataset.sure='';rs.textContent='Nueva entrevista';rs.classList.remove('primary')}},4000);return}
+    QA.c={};QA.f={};QA.fl={};QA.ck={};QA.notes='';QA.form={};QA.docs={};QA.ai=null;QA.v.nombre='';QA.open=[1];QA.ph=0;qaSave();renderQA();window.scrollTo(0,0);toast('Listo: entrevista nueva. Los datos de la vacante se mantienen.');return}
+});
+document.addEventListener('input',e=>{
+  if(VIEW!=='qa'||!e.target.dataset)return;const d=e.target.dataset;
+  if(d.qav!==undefined){QA.v[d.qav]=e.target.value;qaVacChanged();return}
+  if(d.qav!==undefined){QA.v[d.qav]=e.target.value;qaSave();if(d.qav==='modalidad'||d.qav==='contrato'){qaBlocks()}else{document.querySelectorAll('[data-qaq]').forEach(el=>{const id=el.dataset.qaq,b=QA_B.find(x=>x.n===parseInt(id,10)),qq=qaQs(b).find(x=>x.id===id);if(qq)el.lastElementChild.innerHTML=qaFill(qq.t)})}qaPhases();qaRefresh();return}
+  if(d.qaf!==undefined){QA.f[d.qaf]=e.target.value;qaSave();if(d.qaf==='ingles'){const el=document.querySelector('[data-qab="7"]');if(el)el.outerHTML=qaBlock(QA_B[6]);qaPhases()}qaRefresh();return}
+  if(d.qasearch!==undefined){QA.q=e.target.value;qaSave();qaCritGrid();return}
+});
+document.addEventListener('toggle',e=>{const d=e.target;if(!d.dataset||!d.dataset.qab)return;const n=+d.dataset.qab;QA.open=QA.open.filter(x=>x!==n);if(d.open)QA.open.push(n);qaSave()},true);
+
+
+/* --- Entrevista QA · Notas en vivo: detecta criterios cubiertos mientras escribes --- */
+const QA_R=(...a)=>a.map(x=>new RegExp(x));
+// Cada criterio: lista de reglas; una regla = varias expresiones que deben aparecer en la MISMA línea.
+const QA_RULES={
+ Q001:[QA_R('(salario|sueldo|honorario|remuneracion|compensacion|oferta economica)','(explic|ofrec|ofert|se le dij|le conte|acept|de acuerdo|entend|\\d)')],
+ Q002:[QA_R('(horario|turno|dias? de descanso|descansa|beneficio|modalidad|responsabilidad|funciones del cargo)','(explic|le conte|se le dij|inform|acept|de acuerdo|entend|claro|ok\\b)')],
+ Q003:[QA_R('(dudas?|preguntas?|proximos pasos|siguiente paso|objetivo de la llamada)')],
+ Q004:[QA_R('(proximos pasos|siguiente paso|etapas? del proceso|entrevista con (el )?(cliente|hiring|hm|supervisor)|se le explico el proceso)'),QA_R('(interes|interesad|le gusta la vacante|quiere continuar)')],
+ Q006:[QA_R('(experiencia|trabajo como|trabajo en|trabajó|cargo|empresa|anos? (en|como|de)|meses (en|como))')],
+ Q007:[QA_R('(herramienta|maneja|domina|usa\\b|usaba|excel|crm|salesforce|zendesk|freshdesk|hubspot|canva|wordpress|adobe|capcut|sap\\b|power ?bi|jira|ceipal|office|google (sheets|workspace)|quickbooks|ats\\b)')],
+ Q008:[QA_R('\\b(a1|a2|b1|b2|c1|c2)\\b'),QA_R('(ingles|english)','(basico|intermedio|avanzado|nativo|fluido|bilingue|bueno|regular|nivel|no aplica|no habla)')],
+ Q012:[QA_R('(ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)[a-z]*\\.? ?(de |del )?(20\\d\\d|\\d\\d\\b)'),QA_R('\\b\\d{1,2}/(20)?\\d{2}\\b')],
+ Q013:[QA_R('(viaj|vacacion|tiquete|ausencia|permiso)')],
+ Q014:[],
+ Q015:[QA_R('(vive en|reside|ubicad|barrio|localidad|sector|conoce la (sede|ubicacion)|cerca de la sede|remoto|desde casa|teletrabajo)')],
+ Q017:[QA_R('(cumple|encaja|buen fit|\\bfit\\b|perfil (ideal|adecuado|alineado)|se recomienda|recomiendo|apto|fortaleza)')],
+ Q019:[QA_R('(disponib|turno|horario|fines de semana|sabados?|domingos?|nocturn|rotativ|zona horaria|full ?time|tiempo completo)')],
+ Q020:[QA_R('(quincenal|mensual|semanal|frecuencia de pago|forma de pago|modelo de pago|contractor|proveedor de servicios|prestacion de servicios|payoneer|nomina|indefinido|termino fijo|planilla|honorarios)')],
+ Q021:[QA_R('(motivo de salida|motivo de retiro|renunci|despid|termino (el )?contrato|finalizo contrato|salio (por|porque)|se retiro|cierre de (la )?(campana|cuenta|empresa)|estabilidad)')],
+ Q022:[QA_R('(familia|hijos?|vive con|esposo|esposa|pareja|mama|papa|hobby|tiempo libre|negocio|emprend|freelance|otros procesos|otras ofertas|riesgo)')],
+ Q023:[QA_R('(transporte|bus\\b|buseta|moto\\b|metro|transmilenio|carro|bicicleta|minutos|desplaz|internet|computador|estudi|universidad|clases)')]
+};
+const QA_AUTO=['Q001','Q002','Q003','Q004','Q006','Q007','Q008','Q009','Q012','Q013','Q014','Q015','Q017','Q019','Q020','Q021','Q022','Q023'];
+const QA_FLAGR=[
+ [QA_R('(negocio propio|emprendimiento|emprende|freelance|independiente)'),'Tiene negocio o trabajo independiente: riesgo de retiro','Q022'],
+ [QA_R('(otro trabajo|segundo trabajo|trabaja en otra|dos trabajos)'),'Tiene o busca otro trabajo en paralelo','Q022'],
+ [QA_R('(otras? ofertas?|otros? procesos?|contraoferta|varios procesos)'),'Está en otros procesos: riesgo de perderlo','Q022'],
+ [QA_R('(se va a mudar|mudanza|se muda|irse del pais|emigrar)'),'Planea mudarse','Q022'],
+ [QA_R('(tiquete|viaje programado|va a viajar|viaja (en|el|a)|vacaciones (en|el|para|programad)|reserva)'),'Tiene viaje o ausencia: regístralo en el Submittal','Q013'],
+ [QA_R('(estudia|universidad|clases|semestre|carrera)','(noche|nocturn|sabado|tarde|manana|horario|lunes|martes|miercoles|jueves|viernes|\\d ?(am|pm))'),'Estudia: valida que las clases no se crucen con el turno','Q019'],
+ [QA_R('\\b(dur[oó]|estuvo|trabajo) ([1-6]|un|dos|tres|cuatro|cinco|seis) mes'),'Empleo de 6 meses o menos: documenta el motivo','Q021'],
+ [QA_R('(no (tiene|cuenta con)( buen| un)? (internet|computador|pc|espacio))|internet (inestable|malo|lento)'),'Sin internet, equipo o espacio adecuado','Q023'],
+ [QA_R('(queda lejos|mas de (una|1|2|dos) horas?|(2|dos|tres|3) horas de (viaje|camino|desplaz))'),'Desplazamiento largo','Q023'],
+ [QA_R('(no (puede|tiene disponibilidad)|solo puede|disponibilidad parcial|medio tiempo|no puede (los )?(sabados|domingos|fines))'),'Disponibilidad incompleta para el turno','Q019'],
+ [QA_R('(no entend|confundid|tiene dudas? (con|sobre) (el )?(pago|salario|contrato))'),'Dudas con el salario o el modelo de pago','Q020'],
+ [QA_R('(no le interesa|no esta interesad|lo va a pensar|no esta segur)'),'Interés bajo o dudoso en la vacante','Q004']
+];
+const QA_ASK={
+ Q001:['Explícale el salario ofrecido y confirma que lo entendió','Salario explicado: '],
+ Q002:['Explícale horario, días de descanso, modalidad y beneficios','Condiciones explicadas: '],
+ Q003:['¿Tienes alguna pregunta para mí?','Dudas del candidato: '],
+ Q004:['Cuéntale los próximos pasos y confirma su interés','Próximos pasos explicados: '],
+ Q006:['Cuéntame sobre tu experiencia en el área del cargo','Experiencia: '],
+ Q007:['¿Qué herramientas manejas? Dame un ejemplo concreto','Herramientas: '],
+ Q008:['Haz 3 preguntas en inglés y anota el nivel (A2–C2)','Inglés: '],
+ Q012:['¿En qué mes y año entraste y saliste de cada empleo?','Fechas: '],
+ Q013:['¿Tienes viajes o vacaciones programados? ¿Con tiquetes?','Viajes: '],
+ Q014:['¿Cuál es tu expectativa salarial?','Expectativa salarial: '],
+ Q015:['¿Dónde vives? ¿Conoces la ubicación de la sede?','Vive en: '],
+ Q017:['Anota por qué el perfil cumple con lo que pide el cliente','Por qué cumple: '],
+ Q019:['¿Tienes total disponibilidad para el turno y la zona horaria?','Disponibilidad: '],
+ Q020:['Explica frecuencia y modelo de pago, y que te lo repita','Modelo de pago: '],
+ Q021:['¿Por qué saliste de cada empleo?','Motivo de salida: '],
+ Q022:['¿Cómo es tu núcleo familiar? ¿Tienes otros procesos o un negocio?','Situación personal: '],
+ Q023:['¿Cómo llegarías? ¿Cuánto tardas? ¿Estudias?','Transporte: ']
+};
+const QA_LV=['A1','A2','B1','B2','C1','C2'];
+function qaMoney(s){const out=[],re=/(\d{1,3}(?:[.,]\d{3})+|\d+(?:[.,]\d+)?)\s*(millones|millon|mill|mm|m\b|k\b|mil\b)?/g;let m;
+  while((m=re.exec(s))){let n=/^\d{1,3}([.,]\d{3})+$/.test(m[1])?+m[1].replace(/[.,]/g,''):parseFloat(m[1].replace(',','.'));const u=m[2]||'';
+    if(/^mill|^mm$|^m$/.test(u))n*=1e6;else if(u==='k'||u==='mil')n*=1e3;if(n>=100&&!(n>=1990&&n<=2099&&!u))out.push(n)}return out}
+const qaFmt=n=>n.toLocaleString(LOC(),{maximumFractionDigits:0});
+let QA_SC=null,QA_SCK='';
+
+/* Formulario de entrevista + guion + JD: campos obligatorios para QA */
+// [sección, clave, etiqueta, tipo (t texto · a área · s lista), opciones, criterios, obligatorio (true | función), ayuda]
+const QA_FF=[
+ ['Perfil','ciudad','¿En qué ciudad y barrio vives?','t',0,['Q015'],true,'Ej.: Bogotá, Kennedy','c'],
+ ['Perfil','vive','¿Con quién vives?','t',0,['Q022'],true,'','c'],
+ ['Perfil','cargo','¿Tienes personas a cargo?','t',0,['Q022'],true,'Ej.: hija de 14 años','c'],
+ ['Perfil','transp',()=>qaVv('modalidad')==='Remoto'?'¿Tienes un espacio adecuado para trabajar desde casa e internet estable?':'¿Cómo llegarías a la oficina y cuánto tiempo tardas?'+(qaVv('ubicacion')?` (${qaVv('ubicacion')})`:''),'t',0,['Q015','Q023'],true,'Ej.: bus, 40 minutos','c'],
+ ['Perfil','hobbies','¿Qué haces en tu tiempo libre? ¿Tienes otros ingresos (negocio, freelance, ventas)?','t',0,['Q022'],true,'','c'],
+ ['Disponibilidad','horario',()=>`¿Tienes total disponibilidad para el horario${qaVv('horario')?' de '+qaVv('horario'):''}${qaVv('zona')?' ('+qaVv('zona')+')':''}? Confírmalo en su zona horaria`,'t',0,['Q019'],true,'','c'],
+ ['Disponibilidad','inicio','Si recibes una oferta, ¿cuándo podrías iniciar?','t',0,['Q019'],true,'','c'],
+ ['Disponibilidad','viajes','¿Tienes viajes o vacaciones en los próximos 3 a 6 meses? ¿Ya con tiquetes?','t',0,['Q013','Q023'],true,'Fechas, o "ninguno"','c'],
+ ['Disponibilidad','restric','¿Hay algo a futuro que pueda limitar tu horario, asistencia o puntualidad?','t',0,['Q023'],true,'','c'],
+ ['Disponibilidad','mudanza','¿Piensas cambiar de residencia o mudarte en los próximos meses?','t',0,['Q022','Q023'],true,'','c'],
+ ['Trabajo y estudios','trabaja','¿Estás trabajando actualmente?','s',['','Sí','No'],[],true,'','c'],
+ ['Trabajo y estudios','exp','Cuéntame tu experiencia: cargo, empresa y mes/año de entrada y salida','a',0,['Q006','Q012'],true,'Ej.: Agente de cobranzas en Konecta, mar 2022 – ene 2025','c'],
+ ['Trabajo y estudios','motivo','¿Por qué saliste de tu último empleo o por qué buscas cambio?','t',0,['Q021'],true,'','c'],
+ ['Trabajo y estudios','estab','Si un empleo duró 6 meses o menos: ¿qué pasó?','t',0,['Q021'],false,'Déjalo vacío si no aplica','c'],
+ ['Trabajo y estudios','herr','¿Qué herramientas manejas? Dame un ejemplo concreto','a',0,['Q007'],true,'','c'],
+ ['Trabajo y estudios','otros','¿Estás en otros procesos o tienes otras ofertas?','s',['','No','Sí'],['Q022'],true,'','c'],
+ ['Trabajo y estudios','estudia','¿Estás estudiando o piensas estudiar pronto?','s',['','No','Sí','Planea estudiar'],['Q019'],true,'','c'],
+ ['Trabajo y estudios','semestre','¿Qué días y horas tienes clase?','t',0,['Q019'],()=>QA.form.estudia==='Sí','','c'],
+ ['Inglés','ingles','Nivel de inglés (haz 3 preguntas en inglés: introduce yourself, your last role, why this job)','s',['','No aplica','A2','B1','B2','C1','C2'],['Q008'],true,'','y'],
+ ['Inglés','ingobs','Observaciones del inglés','t',0,['Q008'],false,'Fluidez, vocabulario, comprensión','y'],
+ ['Salario y condiciones','expect','¿Cuál es tu expectativa salarial?','t',0,['Q014'],true,'','c'],
+ ['Salario y condiciones','c_cond','¿Le explicaste horario, días de descanso y responsabilidades?','s',['','Sí','No'],['Q002'],true,'','y'],
+ ['Salario y condiciones','c_sal','¿Le explicaste salario, tipo de contrato y frecuencia de pago?','s',['','Sí','No'],['Q001','Q020'],true,'','y'],
+ ['Salario y condiciones','c_rep','¿Te repitió cómo entendió el salario y la forma de pago?','s',['','Sí','No'],['Q020','Q005'],true,'','y'],
+ ['Salario y condiciones','acepta','¿Estás de acuerdo con estas condiciones?','s',['','Sí','No','Lo pensará'],['Q001'],true,'','c'],
+ ['Salario y condiciones','interes','Con lo que te conté, ¿te sigue interesando la vacante?','s',['','Sí','Con dudas','No'],['Q004'],true,'','c'],
+ ['Cierre','preg','¿Tienes alguna pregunta para mí?','t',0,['Q003'],false,'','c'],
+ ['Cierre','c_pasos','¿Le explicaste los próximos pasos del proceso?','s',['','Sí','No'],['Q004','Q003'],true,'','y'],
+ ['Cierre','porque','¿Por qué cumple con lo que pide el cliente?','a',0,['Q017','Q009'],true,'Relaciona su experiencia con los requisitos del JD','y'],
+ ['Cierre','pasa','¿Pasa a la siguiente etapa?','s',['','Sí','No','En duda'],[],true,'','y'],
+ ['Cierre','medio','Modalidad de la entrevista','s',['','Teams','Llamada','Presencial'],[],false,'','y']];
+const qaLbl=f=>typeof f[2]==='function'?f[2]():f[2];
+const QA_FSEC=['Perfil','Disponibilidad','Trabajo y estudios','Inglés','Salario y condiciones','Cierre'];
+const QA_SECB={'Proceso':[1],'Perfil':[2,3,9],'Disponibilidad':[8],'Trabajo y estudios':[5,6,4],'Inglés':[7],'Salario y condiciones':[10,11],'Cierre':[12]};
+// Preguntas del guion que dejan evidencia para QA, y las que son obligatorias
+const QA_QC={'1-0':['Q003'],'1-1':['Q004'],'10-0':['Q002'],'10-1':['Q002'],'10-2':['Q002'],'10-3':['Q004'],'11-1':['Q001','Q020'],'11-2':['Q020','Q005'],'11-3':['Q001'],'12-0':['Q003'],'12-1':['Q004','Q003']};
+const QA_QREQ=[];
+if(!QA.form)QA.form={};if(!QA.docs)QA.docs={};if(QA.jd==null)QA.jd='';if(QA.view==='live')QA.view='notes';if(!QA.gclose)QA.gclose={};
+const qaFv=k=>{const v=QA.form[k];return v===true?'Sí':String(v||'').trim()};
+const qaReq=f=>typeof f[6]==='function'?f[6]():!!f[6];
+const qaMissing=()=>QA_FF.filter(f=>qaReq(f)&&!qaFv(f[1]));
+const qaQMiss=()=>QA_QREQ.filter(id=>!QA.c[id]);
+const qaReqTot=()=>QA_FF.filter(qaReq).length+QA_QREQ.length,qaReqMiss=()=>qaMissing().length+qaQMiss().length;
+const qaQtext=id=>{const b=QA_B.find(x=>x.n===parseInt(id,10)),q=b&&qaQs(b).find(x=>x.id===id);return q?q.t:''};
+/* --- JD --- */
+function qaLvl(s){s=norm(s);const m=s.match(/\b(a2|b1|b2|c1|c2)\b/);if(m)return m[1].toUpperCase();if(/(avanzad|advanced|fluent|fluid|bilingue|bilingual|nativ)/.test(s))return'C1';if(/(intermedio alto|upper.intermediate|conversacional|conversational)/.test(s))return'B2';if(/(intermedio|intermediate)/.test(s))return'B1';if(/(basico|basic)/.test(s))return'A2';return''}
+let QA_JDC=null,QA_JDK=null;
+function qaJD(){
+  if(QA_JDK===QA.jd&&QA_JDC)return QA_JDC;QA_JDK=QA.jd;const t=String(QA.jd||'').trim();if(!t){QA_JDC={p:null,v:{}};return QA_JDC}
+  let p;try{p=parseJD(t)}catch(e){p={title:'',reqs:[],resp:[],ben:[]}}
+  const eng=p.eng?qaLvl(p.eng):(/(ingles|english)/.test(norm(t))?qaLvl(t.match(/.{0,80}(ingl[eé]s|english).{0,80}/i)?.[0]||''):'');
+  const tope=Math.max(0,...qaMoney(norm(p.sal||'')));
+  QA_JDC={p,v:{cargo:p.title||'',modalidad:['Presencial','Remoto','Híbrido'].includes(p.mod)?p.mod:'',horario:p.sched||'',ubicacion:p.loc||'',salario:p.sal||'',ingreq:eng||'',tope:tope?String(tope):''}};return QA_JDC;
+}
+const qaVv=k=>String(QA.v[k]||qaJD().v[k]||'').trim();
+const QA_STOP=new Set('para con que los las del una por como sus este esta estos estas debe deben tener contar experiencia conocimiento conocimientos manejo capacidad habilidades habilidad nivel minimo minima años anos year years with and the for you will ability skills strong knowledge experience working work must have able plus preferred requerido requerida deseable buen buena alto alta excelente other that this from your their into within based such each into también tambien entre sobre otros otras asegurar garantizar realizar apoyar brindar cumplir dentro'.split(' '));
+const qaKw=s=>[...new Set(norm(s).replace(/[^a-z0-9+#\s]/g,' ').split(/\s+/).filter(w=>(w.length>=4&&!QA_STOP.has(w))||/^(sap|crm|erp|kpi|sql|ats|bpo|seo|sem|ads|qa)$/.test(w)))];
+function qaCandTxt(){return norm(QA_FF.filter(f=>f[3]!=='s').map(f=>qaFv(f[1])).join(' ')+' '+(QA.notes||''))}
+function qaJDMatch(){
+  const J=qaJD();if(!J.p)return null;const cand=qaCandTxt(),S=qaScan(),items=[];
+  const req=qaVv('ingreq');if(req&&req!=='No aplica'){const lv=QA.form.ingles;items.push({t:`Inglés ${req}`,st:!lv?'?':lv==='No aplica'?'no':QA_LV.indexOf(lv)>=QA_LV.indexOf(req)?'ok':'no',ev:lv?`Candidato: ${lv}`:''})}
+  const yr=norm(QA.jd).match(/(\d+)\s*\+?\s*(anos|years|ano)\b/);if(yr){const cy=S.data.anos;items.push({t:`${yr[1]}+ años de experiencia`,st:!cy?'?':parseFloat(cy)>=+yr[1]?'ok':'no',ev:cy?`Candidato: ${cy} años`:''})}
+  const tope=qaMoney(norm(qaVv('tope')))[0]||Math.max(0,...qaMoney(norm(qaVv('salario'))));if(tope)items.push({t:`Salario hasta ${qaFmt(tope)}`,st:!S.data.exp?'?':S.data.exp<=tope?'ok':'no',ev:S.data.exp?`Expectativa: ${qaFmt(S.data.exp)}`:''});
+  if(qaVv('modalidad')==='Presencial'&&qaVv('ubicacion')){const c=norm(qaFv('ciudad')),kw=qaKw(qaVv('ubicacion'));items.push({t:`Presencial en ${qaVv('ubicacion')}`,st:!c?'?':kw.some(w=>c.includes(w.slice(0,6)))?'ok':'part',ev:c?`Vive en: ${qaFv('ciudad')}`:''})}
+  J.p.reqs.concat(J.p.resp).filter(r=>!/(ingles|english|salario|salary|horario|schedule|modalidad|remoto|presencial)/.test(norm(r))).slice(0,14).forEach(r=>{const kw=qaKw(r);if(!kw.length)return;const hit=kw.filter(w=>cand.includes(w.length>6?w.slice(0,6):w));
+    items.push({t:r,st:hit.length/kw.length>=.5||hit.length>=3?'ok':hit.length?'part':'?',ev:hit.length?'Coincide: '+hit.slice(0,5).join(', '):''})});
+  const ok=items.filter(i=>i.st==='ok').length,pa=items.filter(i=>i.st==='part').length;
+  return{items,pct:items.length?Math.round((ok+pa*.5)/items.length*100):0,ok,pa,no:items.filter(i=>i.st==='no').length};
+}
+/* --- Análisis --- */
+function qaScan(){
+  const key=JSON.stringify([QA.form,QA.c,QA.notes,QA.v,QA.jd]);if(QA_SC&&QA_SCK===key)return QA_SC;
+  const ev={},flags=[],data={},F=QA.form;
+  QA_FF.forEach(f=>{const v=qaFv(f[1]);if(!v||(f[3]==='s'&&v==='No'&&!['otros','trabaja','estudia'].includes(f[1])))return;f[5].forEach(c=>{if(!ev[c])ev[c]=`${qaLbl(f)} ${v}`})});
+  Object.entries(QA_QC).forEach(([id,cs])=>{if(QA.c[id])cs.forEach(c=>{if(!ev[c])ev[c]='Guion: '+qaQtext(id)})});
+  if(ev.Q012&&!/(ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)[a-z]*\.? ?(de |del )?(20\d\d|\d\d\b)|\b\d{1,2}\/(20)?\d{2}\b/.test(norm(qaFv('exp'))))delete ev.Q012;
+  if(F.acepta==='No')delete ev.Q001;
+  const ls=QA_FF.filter(f=>(f[3]==='t'||f[3]==='a')&&qaFv(f[1])).map(f=>({t:`${qaLbl(f)} ${qaFv(f[1])}`,n:norm(qaFv(f[1])),k:f[1]})).concat(String(QA.notes||'').split(/\n+|(?<=[.;])\s+/).map(x=>x.trim()).filter(Boolean).map(x=>({t:x,n:norm(x),k:'notes'})));
+  for(const c in QA_RULES)if(!ev[c]&&!['Q001','Q002','Q004','Q020'].includes(c))for(const rule of QA_RULES[c]){const hit=ls.find(l=>rule.every(r=>r.test(l.n)));if(hit){ev[c]=hit.t;break}}
+  QA_FLAGR.forEach(([rs,t,c])=>{const hit=ls.find(l=>rs.every(r=>r.test(l.n)));if(hit)flags.push([t,c,hit.t])});
+  if(F.otros==='Sí')flags.push(['Está en otros procesos: riesgo de perderlo','Q022','']);
+  const vj=norm(qaFv('viajes'));if(vj&&!/^(no|ninguno|ninguna|na|n\/a|no tiene|sin viajes|nada)\b/.test(vj))flags.push(['Tiene viaje o ausencia: regístralo en el Submittal','Q013',qaFv('viajes')]);
+  const md=norm(qaFv('mudanza'));if(md&&!/^(no|ninguno|na|n\/a|no piensa|nada)\b/.test(md))flags.push(['Planea mudarse o cambiar de residencia','Q022',qaFv('mudanza')]);
+  if(F.estudia==='Sí')flags.push(['Estudia: valida que las clases no se crucen con el turno','Q019',qaFv('semestre')]);
+  if(F.acepta==='No')flags.push(['No acepta las condiciones','Q001','']);
+  if(F.acepta==='Lo pensará')flags.push(['Aún no acepta las condiciones','Q001','']);
+  if(F.interes==='No'||F.interes==='Con dudas')flags.push([F.interes==='No'?'Ya no está interesado':'Tiene dudas sobre la vacante','Q004','']);
+  if(qaFv('estab'))flags.push(['Empleo de 6 meses o menos: documenta el motivo','Q021',qaFv('estab')]);
+  data.ing=F.ingles&&F.ingles!=='No aplica'?F.ingles:'';
+  const req=qaVv('ingreq');
+  if(F.ingles==='No aplica'||req==='No aplica')ev.Q008=ev.Q008||'Inglés: no aplica para esta vacante';
+  if(req&&req!=='No aplica'&&data.ing&&QA_LV.indexOf(data.ing)<QA_LV.indexOf(req))flags.push([`Inglés ${data.ing} por debajo del ${req} que pide el cliente`,'Q008','']);
+  const ex=qaMoney(norm(qaFv('expect')));if(ex.length)data.exp=ex[0];
+  const tope=qaMoney(norm(qaVv('tope')))[0]||Math.max(0,...qaMoney(norm(qaVv('salario'))));
+  if(data.exp&&tope){if(data.exp>tope){flags.push([`Expectativa ${qaFmt(data.exp)} por encima del tope ${qaFmt(tope)}`,'Q014',qaFv('expect')]);delete ev.Q014}else ev.Q014=`Expectativa ${qaFmt(data.exp)} dentro del tope ${qaFmt(tope)}`}
+  else if(data.exp){data.sinTope=1;delete ev.Q014}
+  if(qaFv('inicio'))data.ini=qaFv('inicio');
+  const ye=ls.filter(l=>l.k==='exp'||l.k==='herr'||(l.k==='notes'&&/experiencia|trabaj/.test(l.n))).map(l=>l.n.match(/(\d+(?:[.,]\d)?)\s*anos?\b/)).find(Boolean);if(ye)data.anos=ye[1];
+  if(!(ev.Q006&&ev.Q007&&ev.Q008&&ev.Q017))delete ev.Q009;else ev.Q009='Experiencia, herramientas, inglés y justificación documentados';
+  const seen=new Set();QA_SC={ev,flags:flags.filter(f=>!seen.has(f[0])&&seen.add(f[0])),data};QA_SCK=key;return QA_SC;
+}
+/* --- Checklist "Antes de enviar" que se llena solo --- */
+const QA_CKA=[
+ S=>S.ev.Q001&&!S.flags.some(f=>f[1]==='Q001'||f[1]==='Q005'),S=>!!S.ev.Q014,S=>!!S.ev.Q020&&!S.flags.some(f=>f[1]==='Q020'),S=>!!S.ev.Q004&&!S.flags.some(f=>f[1]==='Q004'),
+ S=>{const m=qaJDMatch();return !!S.ev.Q006&&!!qaFv('porque')&&(!m||m.pct>=50)},S=>!!S.ev.Q008&&!S.flags.some(f=>f[1]==='Q008'),
+ S=>!!QA.docs.cv,S=>!!QA.docs.score,S=>!!QA.docs.video,null,S=>qaDocsMiss().length===0,S=>!!qaFv('viajes')&&(!S.flags.some(f=>f[1]==='Q013')||!!QA.docs.ausencias),S=>!!qaFv('porque'),S=>!!S.ev.Q022&&qaFv('otros')!=='',S=>qaReqMiss()===0,S=>!!QA.docs.ceipal,null,null];
+const qaCkAuto=i=>{const f=QA_CKA[i];return f?!!f(qaScan()):null};
+const qaCkOn=i=>QA.ck[i]===undefined||QA.ck[i]===null?!!qaCkAuto(i):!!QA.ck[i];
+/* --- Vista --- */
+const qaSevW={C:0,H:1,M:2};
+function qaVacHtml(){
+  const J=qaJD(),m=J.p?qaJDMatch():null,det=[['cargo','Cargo'],['modalidad','Modalidad'],['horario','Horario'],['ubicacion','Ubicación'],['ingreq','Inglés'],['salario','Salario']].filter(([k])=>qaVv(k));
+  return `<details class="acc" id="qaVac" ${QA.jd?'':'open'}><summary><b>📄 Vacante y JD</b><span class="muted small" id="qaVacSum">${J.p?`${esc(qaVv('cargo')||'JD cargado')} · coincidencia ${m.pct}%`:'Pega el JD para compararlo con el candidato'}</span></summary>
+  <div class="in"><div class="qa-fields">${[['nombre','Nombre del candidato'],['yo','Tu nombre'],['siguiente','Siguiente paso del proceso']].map(([k,l])=>`<label class="qa-fl"><span class="qa-lb">${esc(l)}</span><input type="text" data-qav="${k}" value="${esc(QA.v[k]||'')}"></label>`).join('')}</div>
+    <label class="qa-fl wide"><span class="qa-lb">Job description</span><textarea rows="6" data-qajd placeholder="Pega aquí el JD de la vacante. Detecto cargo, horario, modalidad, inglés, salario y requisitos.">${esc(QA.jd||'')}</textarea></label>
+    <div class="actions" id="qaJDchips">${det.map(([k,l])=>`<span class="chip"><b>${esc(l)}:</b> ${esc(qaVv(k).slice(0,50))}</span>`).join('')||'<span class="muted small">Aún no hay datos detectados.</span>'}</div>
+    <details class="qa-adj"><summary class="small">Ajustar datos (si el JD no los trae o salen mal)</summary><div class="qa-fields" style="margin-top:8px">${QA_VARS.filter(([k])=>!['nombre','yo','siguiente'].includes(k)).map(([k,l,o])=>`<label class="qa-fl"><span class="qa-lb">${esc(l)}</span>${o?`<select data-qav="${k}">${o.map(x=>`<option ${QA.v[k]===x?'selected':''} value="${esc(x)}">${esc(x||(qaJD().v[k]?'Del JD: '+qaJD().v[k]:'Elige…'))}</option>`).join('')}</select>`:`<input type="text" data-qav="${k}" value="${esc(QA.v[k]||'')}" placeholder="${esc(qaJD().v[k]?'Del JD: '+qaJD().v[k]:'')}">`}</label>`).join('')}</div></details>
+  </div></details>`;
+}
+function qaFieldHtml(f){
+  const [,k,,t,o,cr,,ph,who]=f,l=qaLbl(f),req=qaReq(f),v=QA.form[k],codes=cr.map(c=>`<span class="pill ${QA_SEV[qaCrit(c)[2]][1]}">${c}</span>`).join('');
+  const ctl=t==='s'?`<div class="qa-opts">${o.filter(Boolean).map(x=>`<button type="button" class="chip" data-qaopt="${k}" data-v="${esc(x)}" aria-pressed="${v===x}">${esc(x)}</button>`).join('')}</div>`:t==='a'?`<textarea rows="3" data-qaff="${k}" placeholder="${esc(ph||'Respuesta…')}">${esc(v||'')}</textarea>`:`<input type="text" data-qaff="${k}" value="${esc(v||'')}" placeholder="${esc(ph||'Respuesta…')}">`;
+  return `<div class="qa-qa ${req&&!qaFv(k)?'qa-need':''} ${qaFv(k)?'done':''}" id="qaF-${k}"><div class="qa-qh"><span class="qa-who ${who==='y'?'y':''}">${who==='y'?'✅ Tú':'🗣️ Pregunta'}</span><b>${esc(l)}</b>${req?'<b class="qa-star">*</b>':'<span class="muted small">(opcional)</span>'}<span class="qa-cds">${codes}</span></div>${ctl}<div data-qahint="${k}">${qaHintHtml(k)}</div></div>`;
+}
+function qaGuionHtml(s){
+  const bs=QA_SECB[s].map(n=>QA_B.find(b=>b.n===n)),qs=bs.flatMap(qaQs),d=qs.filter(q=>QA.c[q.id]).length;
+  return `<details class="qa-gd" ${QA.gclose[s]?'':'open'} data-qagd="${esc(s)}"><summary><span>🎙️ Guion</span><span class="pill ${d===qs.length?'c-ok':''}" data-qagdc="${esc(s)}">${d}/${qs.length}</span></summary><div class="qa-gin">
+    ${bs.map(b=>{const say=b.say||b.mod?qaSay(b):'';return `${bs.length>1?`<div class="qa-gt">${b.n}. ${esc(b.t)}</div>`:''}${say?`<div class="qa-say"><span class="eyebrow">🗣️ Di</span><span>${qaFill(say)}</span></div>`:''}${b.tip?`<div class="qa-tip">💡 ${esc(b.tip)}</div>`:''}
+      ${qaQs(b).map(q=>{const rq=QA_QREQ.includes(q.id);return `<button type="button" class="qa-q qa-qs ${rq&&!QA.c[q.id]?'qa-need':''}" data-qaq="${q.id}" aria-pressed="${!!QA.c[q.id]}"><span class="bx"></span><span>${qaFill(q.t)}${rq?' <b class="qa-star">*</b>':''}</span><span class="cds">${(QA_QC[q.id]||[]).map(c=>`<span class="pill ${QA_SEV[qaCrit(c)[2]][1]}">${c}</span>`).join('')}</span></button>`}).join('')}`}).join('')}
+  </div></details>`;
+}
+function qaFormHtml(){return QA_FSEC.map(s=>{const fs=QA_FF.filter(f=>f[0]===s);
+  return `<div class="qa-sec" data-qasecb=" ${QA_SECB[s].join(' ')} "><div class="qa-sech"><span>${esc(s.toUpperCase())}</span><span class="pill" data-qasecc="${esc(s)}"></span></div><div class="qa-qlist">${fs.map(qaFieldHtml).join('')}</div></div>`}).join('')}
+function qaNotesView(){
+  return `<div class="qa-live"><section class="panel qa-pad"><div class="panel-head"><h2>📝 Notas de la entrevista</h2><span class="muted small"><b class="qa-star">*</b> obligatorio para QA</span></div>
+      <div id="qaForm">${qaFormHtml()}</div>
+      <div class="qa-sec"><div class="qa-sech"><span>NOTAS ADICIONALES</span><span class="muted small">Opcional · también se analizan</span></div>
+      <textarea id="qaTxt" class="qa-txt" placeholder="Cualquier otra cosa que quieras dejar anotada…">${esc(QA.notes||'')}</textarea></div>
+      </section>
+    <aside class="stack qa-side" id="qaSide"></aside></div>
+    <section class="panel" id="qaSum"></section>
+    <details class="acc" id="qaMapD" ${QA.mapOpen?'open':''}><summary><b>🗺️ Mapa de los 28 criterios</b><span class="muted small">Toca uno para ver la evidencia</span></summary><div class="in">
+      <div class="legend"><span><i style="background:var(--ok)"></i>Cubierto</span><span><i style="background:var(--accent)"></i>Marcado a mano</span><span><i style="background:var(--line)"></i>Pendiente</span><span><i style="background:var(--done)"></i>Se valida en "Antes de enviar"</span></div>
+      <div class="qa-map" id="qaMap"></div></div></details>`;
+}
+function qaSrc(c){const S=qaScan();if(S.ev[c])return['ok',S.ev[c]];if(QA.ai&&QA.ai.cov&&QA.ai.cov[c])return['ok','IA: '+QA.ai.cov[c]];
+  const ci=QA_CK.findIndex((x,i)=>x[2].includes(c)&&qaCkOn(i));if(ci>=0)return[qaCkAuto(ci)&&QA.ck[ci]==null?'ok':'man','Checklist: '+QA_CK[ci][1]];
+  return[QA_AUTO.includes(c)||QA_FF.some(f=>f[5].includes(c))||Object.values(QA_QC).some(v=>v.includes(c))?'no':'ck',''];}
+const qaStIc={ok:'✓',part:'~',no:'✗','?':'·'};
+function qaAnalyze(){
+  if(!$('qaSide'))return;const S=qaScan(),flags=S.flags.concat((QA.ai&&QA.ai.flags||[]).map(f=>[f,'IA',''])),cov=QA_CRIT.filter(c=>qaCovered(c[0])).length,pct=Math.round(cov/28*100);
+  const crit=QA_CRIT.filter(c=>c[2]==='C'),cc=crit.filter(c=>qaCovered(c[0])).length,tot=qaReqTot(),mi=qaReqMiss(),M=qaJDMatch();
+  $('qaSide').innerHTML=`<section class="panel"><div class="qa-radar"><div class="qa-ring" style="--p:${pct}"><b>${pct}%</b><span>${cov}/28</span></div>
+      <div class="stack" style="gap:6px"><b>Radar QA</b><span class="pill ${mi?'c-warn':'c-ok'}">Obligatorios ${tot-mi}/${tot}</span><span class="pill ${cc===crit.length?'c-ok':'c-crit'}">Critical ${cc}/${crit.length}</span><span class="pill ${flags.length?'c-crit':'c-ok'}">🚩 ${flags.length} alerta${flags.length===1?'':'s'}</span></div></div>
+      <div class="qa-crit8">${crit.map(c=>{const [st,ev]=qaSrc(c[0]);const ok=st==='ok'||st==='man';return `<button type="button" class="qa-c8 ${ok?'ok':st==='ck'?'ck':''}" data-qainfo="${c[0]}"><span class="ic">${ok?'✓':st==='ck'?'☐':'○'}</span><span><b>${c[0]}</b> ${esc(c[1])}${ev?`<small>${esc(ev.slice(0,70))}</small>`:st==='ck'?'<small>Se valida en "Antes de enviar"</small>':''}</span></button>`}).join('')}</div></section>
+    <section class="panel"><div class="panel-head"><h2>🔎 JD vs. candidato</h2>${M?`<span class="pill ${M.pct>=70?'c-ok':M.pct>=40?'c-warn':'c-crit'}">${M.pct}% coincide</span>`:''}</div>
+      ${M?`<div class="qa-meter ${M.pct>=70?'ok':''}"><i style="width:${M.pct}%"></i></div><div class="qa-jd">${M.items.map(i=>`<div class="qa-jdi ${i.st==='?'?'q':i.st}"><span class="ic">${qaStIc[i.st]}</span><span>${esc(i.t.length>90?i.t.slice(0,90)+'…':i.t)}${i.ev?`<small>${esc(i.ev)}</small>`:''}</span></div>`).join('')}</div>`:`<p class="muted small">Pega el JD en "Vacante y JD" y aquí verás qué requisitos cumple el candidato según lo que vas anotando.</p><button class="btn sm" type="button" data-qaopenjd>Pegar JD</button>`}</section>
+    ${flags.length?`<section class="panel"><div class="panel-head"><h2>🚩 Alertas detectadas</h2><span class="muted small">Documenta y escala</span></div>${flags.map(f=>`<div class="qa-alert"><b>${esc(f[0])}</b> <span class="pill c-crit">${esc(f[1])}</span>${f[2]?`<small>“${esc(f[2].slice(0,90))}”</small>`:''}</div>`).join('')}</section>`:''}`;
+  $('qaMap').innerHTML=QA_CRIT.map(c=>{const [st]=qaSrc(c[0]);return `<button type="button" class="qa-mc ${st}" data-qainfo="${c[0]}" title="${esc(c[1])}"><span class="pill ${QA_SEV[c[2]][1]}">${c[0]}</span><span>${esc(c[1])}</span></button>`}).join('');
+  QA_FF.forEach(f=>{const el=$('qaF-'+f[1]);if(el){el.classList.toggle('qa-need',qaReq(f)&&!qaFv(f[1]));el.classList.toggle('done',!!qaFv(f[1]));const st=el.querySelector('.qa-star');if(st)st.hidden=!qaReq(f)}});
+  document.querySelectorAll('[data-qaq]').forEach(el=>{el.setAttribute('aria-pressed',!!QA.c[el.dataset.qaq]);el.classList.toggle('qa-need',QA_QREQ.includes(el.dataset.qaq)&&!QA.c[el.dataset.qaq])});
+  document.querySelectorAll('[data-qasecc]').forEach(el=>{const s=el.dataset.qasecc,fs=QA_FF.filter(f=>f[0]===s&&qaReq(f)),qr=QA_SECB[s].flatMap(n=>qaQs(QA_B.find(b=>b.n===n))).filter(q=>QA_QREQ.includes(q.id)),t=fs.length+qr.length,ok=fs.filter(f=>qaFv(f[1])).length+qr.filter(q=>QA.c[q.id]).length;el.textContent=`${ok}/${t} obligatorios`;el.classList.toggle('c-ok',ok===t)});
+  document.querySelectorAll('[data-qagdc]').forEach(el=>{const qs=QA_SECB[el.dataset.qagdc].flatMap(n=>qaQs(QA_B.find(b=>b.n===n))),d=qs.filter(q=>QA.c[q.id]).length;el.textContent=`${d}/${qs.length}`;el.classList.toggle('c-ok',d===qs.length)});
+  if($('qaVacSum')){const J=qaJD();$('qaVacSum').textContent=J.p?`${qaVv('cargo')||'JD cargado'} · coincidencia ${M?M.pct:0}%`:'Pega el JD para compararlo con el candidato'}
+  qaSummary(S,flags,M,cc,crit.length,tot,mi);
+}
+function qaSummary(S,flags,M,cc,ct,tot,mi){
+  const qs=QA_FF,qd=QA_FF.filter(f=>qaFv(f[1])).length,blk=flags.filter(f=>['Q014','Q008','Q001','Q004'].includes(f[1])),pasa=qaFv('pasa');
+  const cls=blk.length||pasa==='No'?'no':mi?'wait':'ok';
+  const title=pasa==='No'?'❌ No pasa a la siguiente etapa':blk.length?'🚨 Revisa estos puntos críticos antes de enviar':mi?`⏳ Te faltan ${mi} obligatorio${mi===1?'':'s'} para QA`:'✅ Entrevista completa: lista para el checklist de envío';
+  const fort=[...(M?M.items.filter(i=>i.st==='ok').map(i=>i.t.length>70?i.t.slice(0,70)+'…':i.t):[]),S.data.anos&&`${S.data.anos} años de experiencia`,QA.form.ingles&&QA.form.ingles!=='No aplica'&&!flags.some(f=>f[1]==='Q008')&&`Inglés ${QA.form.ingles}`,S.ev.Q014&&S.ev.Q014].filter(Boolean).slice(0,5);
+  const rev=[...flags.map(f=>`${f[0]} (${f[1]})`),...qaDocsMiss().map(d=>`Falta documento: ${d[1]}`),...(M?M.items.filter(i=>i.st==='no'||i.st==='?').map(i=>(i.st==='no'?'No cumple: ':'Sin evidencia: ')+(i.t.length>60?i.t.slice(0,60)+'…':i.t)):[])].slice(0,7);
+  const ckn=QA_CK.filter((x,i)=>qaCkOn(i)).length;
+  $('qaSum').innerHTML=`<div class="panel-head"><h2>📋 Resumen de la entrevista</h2><span class="muted small">${esc(QA.v.nombre||'Candidato')} · ${esc(qaVv('cargo')||'vacante')}</span></div>
+    <div class="status ${cls}">${title}<small>${pasa?`¿Pasa a la siguiente etapa?: ${esc(pasa)}`:'Marca si pasa a la siguiente etapa en la sección Cierre.'}</small></div>
+    <div class="qa-kpis"><div class="qa-kpi"><span class="muted small">Preguntas respondidas</span><b>${qd}/${qs.length}</b></div><div class="qa-kpi ${mi?'':'ok'}"><span class="muted small">Obligatorios</span><b>${tot-mi}/${tot}</b></div><div class="qa-kpi ${cc===ct?'ok':'crit'}"><span class="muted small">Critical</span><b>${cc}/${ct}</b></div><div class="qa-kpi ${M?(M.pct>=70?'ok':M.pct<40?'crit':''):''}"><span class="muted small">Coincidencia con el JD</span><b>${M?M.pct+'%':'—'}</b></div><div class="qa-kpi ${qaDocsMiss().length?'':'ok'}"><span class="muted small">Documentos</span><b>${QA_DOCS.filter(qaDocReq).length-qaDocsMiss().length}/${QA_DOCS.filter(qaDocReq).length}</b></div><div class="qa-kpi"><span class="muted small">Checklist de envío</span><b>${ckn}/${QA_CK.length}</b></div></div>
+    <div class="grid2"><div class="stack" style="gap:6px"><b>💪 Fortalezas</b>${fort.length?fort.map(x=>`<div class="qa-li ok">${esc(x)}</div>`).join(''):'<span class="muted small">Aparecen cuando el candidato cumple requisitos del JD.</span>'}</div>
+      <div class="stack" style="gap:6px"><b>⚠️ A revisar</b>${rev.length?rev.map(x=>`<div class="qa-li no">${esc(x)}</div>`).join(''):'<span class="muted small">Sin alertas por ahora.</span>'}</div></div>
+    <div class="panel-head"><h2>✍️ Nota para CEIPAL</h2></div><div class="mailbox" id="qaNote2"></div>
+    <div class="actions"><button class="btn primary" type="button" data-qanote2>Copiar nota</button><button class="btn" type="button" data-qaai id="qaAIbtn" ${SAMPLE?'':'hidden'}>✨ Revisar con IA</button><span class="muted small" id="qaAIst"></span><button class="btn" type="button" data-qastep="sub">Ir al Submittal →</button></div>`;
+  $('qaNote2').textContent=qaNote2();
+}
+function qaNote2(){
+  if(QA.ai&&QA.ai.note&&QA.aiKey===qaAIKey())return QA.ai.note;
+  const g=k=>qaFv(k)||'[pendiente]',o=k=>qaFv(k),fl=qaScan().flags,line=(l,x)=>`${l}: ${x}`,M=qaJDMatch(),c=QA.c;
+  const out=[`RESUMEN DEL SCREENING – ${QA.v.nombre||'[Nombre]'} – ${qaVv('cargo')||'[Cargo]'} – ${new Date().toLocaleDateString(LOC(),{day:'numeric',month:'short',year:'numeric'})}`,
+    `Entrevistador: ${QA.v.yo||'[tu nombre]'} · ${o('medio')||'Teams'} · ¿Pasa a la siguiente etapa?: ${g('pasa')}${M?` · Coincidencia con el JD: ${M.pct}%`:''}`,'',
+    'PERFIL',line('Ciudad de residencia',g('ciudad')),line('Vive con',g('vive')),line('Personas a cargo',g('cargo')),line('Transporte / lugar de trabajo',g('transp')),line('Hobbies',g('hobbies')),'',
+    'DISPONIBILIDAD',line('Horario',g('horario')),line('Puede iniciar',g('inicio')),line('Viajes o vacaciones',g('viajes')),line('Cambio de residencia',g('mudanza')),o('restric')?line('Restricciones',o('restric')):null,'',
+    'TRABAJO Y ESTUDIOS',line('Trabaja actualmente',g('trabaja')),o('ingresos')?line('Ingresos actuales',o('ingresos')):null,line('Motivo de retiro / cambio',g('motivo')),line('Otros procesos u ofertas',g('otros')),line('Experiencia relevante',g('exp')),o('estab')?line('Empleos cortos',o('estab')):null,line('Herramientas validadas',g('herr')),line('Estudia',g('estudia')+(o('semestre')?' – '+o('semestre'):'')),'',
+    'INGLÉS',QA.form.ingles==='No aplica'?'No aplica para esta vacante':line('Nivel',g('ingles')+(qaVv('ingreq')&&qaVv('ingreq')!=='No aplica'?` (requerido: ${qaVv('ingreq')})`:'')+(o('ingobs')?' – '+o('ingobs'):'')),'',
+    'SALARIO Y CONDICIONES',line('Expectativa salarial',g('expect')),`Se explicó: ${qaVv('salario')||'[salario]'}, contrato ${qaVv('contrato')||'[tipo de contrato]'}, pago ${qaVv('pago')||'[frecuencia]'}.`,
+    `Condiciones explicadas (horario, descanso, responsabilidades): ${g('c_cond')} · Salario y contrato explicados: ${g('c_sal')} · Confirmó cómo entendió el pago: ${g('c_rep')}`,line('Acepta condiciones',g('acepta')),line('Interés en la vacante',g('interes')),'',
+    'POR QUÉ CUMPLE',g('porque'),'',
+    `RIESGOS: ${fl.length?fl.map(f=>f[0]+' ('+f[1]+')').join('; '):'sin alertas'}`,
+    `PRÓXIMO PASO: ${QA.v.siguiente||'[siguiente paso]'} – ${QA.form.c_pasos==='Sí'?'informado al candidato':'[pendiente informar]'}${o('preg')?'. Preguntas del candidato: '+o('preg'):''}`,
+    QA.notes&&QA.notes.trim()?'\nNOTAS ADICIONALES\n'+QA.notes.trim():null];
+  return out.filter(x=>x!==null).join('\n').replace(/\n{3,}/g,'\n\n').trim();
+}
+const qaAIKey=()=>JSON.stringify([QA.form,QA.c,QA.notes,QA.jd]);
+async function qaAI(){
+  const txt=QA_FF.map(f=>qaFv(f[1])?`${qaLbl(f)} ${qaFv(f[1])}`:'').filter(Boolean).join('\n')+(QA.notes?'\nNotas: '+QA.notes:'');
+  if(!SAMPLE||txt.length<40){toast('Primero llena algunos campos.');return}
+  const b=$('qaAIbtn');b.disabled=true;$('qaAIst').textContent='Revisando con IA…';
+  try{const r=await SAMPLE.json(`Eres analista de QA de Talent Acquisition en Solvo Global. Revisa las notas de un screening contra estos criterios TQI y contra el JD de la vacante:
+${QA_CRIT.map(c=>`${c[0]} ${c[1]}: ${c[4]}`).join('\n')}
+JD: ${String(QA.jd||'sin JD').slice(0,5000)}
+Devuelve SOLO un JSON con: "cov" (objeto: código del criterio → evidencia corta tomada de las notas, solo con evidencia clara; no inventes), "flags" (lista de riesgos de retiro, horario, salario o brechas frente al JD, frases cortas), "note" (nota profesional en español para CEIPAL con secciones: PERFIL, DISPONIBILIDAD, TRABAJO Y ESTUDIOS, INGLÉS, SALARIO Y CONDICIONES, POR QUÉ CUMPLE (relacionando con el JD), RIESGOS, PRÓXIMO PASO; usa solo lo que dicen las notas y pon [pendiente] donde falte).
+NOTAS:
+${txt.slice(0,8000)}`,{modelTier:'default'});
+    QA.ai={cov:r&&typeof r.cov==='object'?r.cov:{},flags:Array.isArray(r&&r.flags)?r.flags.filter(x=>typeof x==='string'):[],note:r&&typeof r.note==='string'?r.note:''};QA.aiKey=qaAIKey();qaSave();
+    qaAnalyze();$('qaAIst').textContent='Revisado con IA ✨';
+  }catch(e){if($('qaAIst'))$('qaAIst').textContent=e&&e.code==='rate_limited'?'Límite de uso alcanzado, intenta más tarde.':'No se pudo usar la IA; queda la detección automática.'}
+  if($('qaAIbtn'))$('qaAIbtn').disabled=false;
+}
+let QA_T=0,QA_TJ=0;
+function qaChanged(){if(QA.ai&&QA.aiKey!==qaAIKey())QA.ai=null;clearTimeout(QA_T);QA_T=setTimeout(()=>{qaSave();qaAnalyze()},200)}
+function qaVacChanged(){clearTimeout(QA_TJ);QA_TJ=setTimeout(()=>{qaSave();if($('qaForm'))$('qaForm').innerHTML=qaFormHtml();
+  const J=qaJD(),det=[['cargo','Cargo'],['modalidad','Modalidad'],['horario','Horario'],['ubicacion','Ubicación'],['ingreq','Inglés'],['salario','Salario']].filter(([k])=>qaVv(k));
+  if($('qaJDchips'))$('qaJDchips').innerHTML=det.map(([k,l])=>`<span class="chip"><b>${esc(l)}:</b> ${esc(qaVv(k).slice(0,50))}</span>`).join('')||'<span class="muted small">Aún no hay datos detectados.</span>';qaAnalyze()},300)}
+document.addEventListener('input',e=>{
+  if(e.target.id==='qaTxt'){QA.notes=e.target.value;qaChanged();return}
+  if(e.target.dataset&&e.target.dataset.qajd!==undefined){QA.jd=e.target.value;qaVacChanged();return}
+  const k=e.target.dataset&&e.target.dataset.qaff;if(k===undefined)return;QA.form[k]=e.target.value;
+  if(k==='estudia'){const el=$('qaF-semestre');if(el)el.outerHTML=qaFieldHtml(QA_FF.find(f=>f[1]==='semestre'))}
+  qaChanged();
+});
+document.addEventListener('toggle',e=>{const d=e.target;if(!d.dataset)return;if(d.dataset.qagd){QA.gclose[d.dataset.qagd]=!d.open;qaSave()}if(d.id==='qaMapD'){QA.mapOpen=d.open;qaSave()}},true);
+document.addEventListener('click',e=>{if(VIEW!=='qa')return;const t=e.target;
+  const op=t.closest('[data-qaopt]');if(op){const k=op.dataset.qaopt,v=op.dataset.v;QA.form[k]=QA.form[k]===v?'':v;op.parentElement.querySelectorAll('[data-qaopt]').forEach(b=>b.setAttribute('aria-pressed',QA.form[k]===b.dataset.v));if(k==='estudia'){const el=$('qaF-semestre');if(el)el.outerHTML=qaFieldHtml(QA_FF.find(f=>f[1]==='semestre'))}qaChanged();return}
+  if(t.closest('[data-qaopenjd]')){const v=$('qaVac');if(v){v.open=true;v.scrollIntoView({block:'start',behavior:'smooth'});setTimeout(()=>{const x=v.querySelector('[data-qajd]');x&&x.focus()},300)}return}
+  if(t.closest('[data-qanote2]')){copy(qaNote2(),'Nota copiada. Pégala en CEIPAL.');return}
+  if(t.closest('[data-qaai]')){qaAI();return}});
+
+/* --- Documentos obligatorios para el submittal --- */
+const QA_DOCS=[
+ ['cv','CV en formato SOLVO','Generado con el Solvo CV Generator. Un solo idioma (sin Spanglish) y mes/año en cada empleo.',['Q011','Q012','Q018'],true],
+ ['score','Pantallazo del scorecard de IA Matching','El resultado del CV and JD evaluator contra el JD. Es la única forma en que QA valida el uso de la IA: siempre adjúntalo.',['Q018'],true],
+ ['video','Video de presentación','Máximo 1:30 a 2 minutos, grabado en horizontal, fondo neutro (blanco o pastel) y sin ruido de fondo.',['Q016'],true],
+ ['prueba','Prueba Kudert o Excel','Solo si el Hiring Manager la pide para esta vacante.',['Q025'],false],
+ ['ceipal','Notas y estado en CEIPAL','Nota del screening pegada y estado del candidato actualizado.',['Q024','Q026'],true],
+ ['ausencias','Viajes o ausencias en el Submittal','Si el candidato tiene viajes o vacaciones, quedan escritos en el Submittal.',['Q013'],false]];
+const qaDocReq=d=>d[4]||(d[0]==='ausencias'&&qaScan().flags.some(f=>f[1]==='Q013'));
+const qaDocsMiss=()=>QA_DOCS.filter(d=>qaDocReq(d)&&!QA.docs[d[0]]);
+function qaDocsHtml(){const rq=QA_DOCS.filter(qaDocReq),ok=rq.filter(d=>QA.docs[d[0]]).length;
+  return `<div class="panel-head"><h2>📎 Documentos para el submittal</h2><span class="pill ${ok===rq.length?'c-ok':'c-warn'}">${ok}/${rq.length} obligatorios</span></div>
+  <p class="muted small">Sin estos documentos QA no puede aprobar el envío. Márcalos cuando los tengas adjuntos.</p>
+  <div class="qa-docs">${QA_DOCS.map(d=>{const r=qaDocReq(d);return `<button type="button" class="qa-q qa-doc ${r&&!QA.docs[d[0]]?'qa-need':''}" data-qadoc="${d[0]}" aria-pressed="${!!QA.docs[d[0]]}"><span class="bx"></span><span><b>${esc(d[1])}</b>${r?' <b class="qa-star">*</b>':' <span class="muted small">(si aplica)</span>'}<span class="sub">${esc(d[2])}</span></span><span class="cds">${d[3].map(c=>`<span class="pill ${QA_SEV[qaCrit(c)[2]][1]}">${c}</span>`).join('')}</span></button>`}).join('')}</div>`}
+function qaToolbar(){return `<div class="qa-bar"><span class="muted small">${QA.v.nombre?`Entrevista de <b>${esc(QA.v.nombre)}</b>`:'Entrevista en curso'}</span><span style="flex:1"></span>
+  <button class="btn primary" type="button" data-qanew>🧹 Nuevo candidato</button><button class="btn" type="button" data-qawipe>Borrar todo, también el JD</button></div>`}
+function qaClear(all){QA.c={};QA.f={};QA.fl={};QA.ck={};QA.notes='';QA.form={};QA.docs={};QA.ai=null;QA.v.nombre='';if(all){QA.jd='';const yo=QA.v.yo;QA.v={yo}}qaSave();renderQA();window.scrollTo(0,0);toast(all?'Todo borrado. Pega el JD de la nueva vacante.':'Listo para un nuevo candidato. El JD de la vacante se mantiene.')}
+function qaConfirm(btn,label,fn){if(btn.dataset.sure!=='1'){btn.dataset.sure='1';const o=btn.textContent;btn.dataset.o=o;btn.textContent=label;btn.classList.add('qa-danger');setTimeout(()=>{if(btn.isConnected&&btn.dataset.sure==='1'){btn.dataset.sure='';btn.textContent=o;btn.classList.remove('qa-danger')}},4000);return}fn()}
+document.addEventListener('click',e=>{if(VIEW!=='qa')return;const t=e.target;
+  const dc=t.closest('[data-qadoc]');if(dc){const k=dc.dataset.qadoc;QA.docs[k]=!QA.docs[k];qaSave();$('qaDocs').innerHTML=qaDocsHtml();qaAnalyze();return}
+  const nw=t.closest('[data-qanew]');if(nw){qaConfirm(nw,'¿Borrar las respuestas? Toca otra vez',()=>qaClear(false));return}
+  const wp=t.closest('[data-qawipe]');if(wp){qaConfirm(wp,'¿Borrar todo? Toca otra vez',()=>qaClear(true));return}});
+
+/* --- Avisos en vivo debajo de cada respuesta --- */
+const qaNo=s=>/^(no|ninguno|ninguna|nada|na|n\/a|no tiene|no piensa|sin)\b/.test(norm(s));
+function qaMins(s){s=norm(s);let m=0;const h=s.match(/(\d+(?:[.,]\d+)?)\s*(h\b|hr|hora)/);if(h)m+=parseFloat(h[1].replace(',','.'))*60;else if(/\buna hora\b/.test(s))m+=60;else if(/\bdos horas\b/.test(s))m+=120;else if(/\btres horas\b/.test(s))m+=180;
+  if(/hora y media/.test(s))m+=30;const mi=s.match(/(\d+)\s*(min|m\b)/);if(mi)m+=+mi[1];return m}
+const QA_HINT={
+ cargo:v=>/(hij|bebe|nino|nina|mama|papa|abuel|adulto mayor|discapacidad)/.test(norm(v))?['info','Pregúntale quién lo apoya con el cuidado durante el turno y déjalo en la nota.']:null,
+ transp:v=>{const n=norm(v);if(qaVv('modalidad')==='Remoto')return/(no tiene|inestable|lento|malo|compart|no cuenta)/.test(n)?['crit','Sin espacio o internet adecuado: riesgo para el trabajo remoto. Documéntalo (Q023).']:['ok','Bien: deja en la nota el tipo de espacio y la conexión.'];
+   const m=qaMins(v);return m>=90?['crit',`Tarda unos ${Math.round(m)} minutos: desplazamiento largo y riesgo de retiro. Documéntalo y valídalo con tu supervisor (Q023).`]:m>=60?['warn',`Unos ${Math.round(m)} minutos de camino: déjalo escrito en la nota (Q023).`]:m?['ok','Desplazamiento razonable.']:['info','Anota el medio de transporte y cuánto tarda (QA lo revisa).']},
+ hobbies:v=>/(negocio|emprend|freelance|venta|vend|independiente|ingreso|cobro|clientes|domicilios|uber|rappi)/.test(norm(v))?['warn','Tiene otros ingresos: pregúntale cuánto tiempo le dedica y si quiere volverlo su ingreso principal. Déjalo en la nota (Q022).']:null,
+ horario:v=>/(^no\b|parcial|solo puede|no puede|medio tiempo|hasta las)/.test(norm(v))?['crit','No cumple el turno completo: no lo envíes sin validarlo con tu supervisor (Q019).']:['ok',`Confirmado. Asegúrate de haberlo dicho en su zona horaria${qaVv('zona')?' ('+qaVv('zona')+')':''}.`],
+ inicio:v=>/(inmediat|ya|cuando sea|de una)/.test(norm(v))?['ok','Inicio inmediato.']:/(mes|30|15|preaviso|semanas?)/.test(norm(v))?['info','Escribe la fecha de inicio en el Submittal para que el manager la tenga clara.']:null,
+ viajes:v=>qaNo(v)?['ok','Sin viajes: queda así en la nota.']:['warn','📌 Recuerda escribir este viaje (fechas) en el Submittal y avisarle al manager (Q013). Si ya tiene tiquetes, pide las fechas exactas.'],
+ restric:v=>qaNo(v)?null:['warn','Valida que no choque con el turno y déjalo escrito en la nota de CEIPAL (Q023).'],
+ mudanza:v=>qaNo(v)?null:['crit','Riesgo de retiro: pregúntale a dónde y cuándo. Si afecta la modalidad o la ubicación, escálalo a tu supervisor (Q022).'],
+ trabaja:v=>v==='Sí'?['info','Pregúntale cuánto preaviso debe dar a su empresa actual y confírmalo en "¿Cuándo podrías iniciar?".']:null,
+ otros:v=>v==='Sí'?['crit','Riesgo de perderlo: pregúntale en qué etapa va y qué le ofrecen. Muévete rápido con el envío y avísale a tu supervisor (Q022).']:null,
+ exp:v=>{const S=qaScan(),yr=norm(QA.jd||'').match(/(\d+)\s*\+?\s*(anos|years)\b/);const r=[];
+   if(!S.ev.Q012)r.push(['warn','Agrega mes y año de entrada y salida de cada empleo: QA penaliza si solo está el año (Q012).']);
+   if(yr&&S.data.anos&&parseFloat(S.data.anos)<+yr[1])r.push(['crit',`Tiene ${S.data.anos} años y el JD pide ${yr[1]}+. Si igual lo envías, deja una nota de justificación en CEIPAL con el aval de tu supervisor (Q017).`]);
+   return r.length?r:['ok','Bien documentado.']},
+ estab:v=>['warn','Empleos cortos = riesgo de retiro (Q021). Documenta el motivo de cada uno; si son varios seguidos, valídalo con tu supervisor.'],
+ herr:v=>v.length<40?['warn','QA pide profundidad: pregúntale en qué empresa la usó, para qué y un ejemplo concreto (Q007).']:['ok','Bien: hay detalle de cómo la usó.'],
+ estudia:v=>v==='Sí'?['warn','Pregúntale qué días y horas tiene clase y valida que no se crucen con el turno (Q019).']:v==='Planea estudiar'?['info','Pregúntale cuándo empezaría y en qué horario. Déjalo en la nota (Q019).']:null,
+ semestre:v=>['info',`Compáralo con el horario de la vacante${qaVv('horario')?': '+qaVv('horario'):''}. Si se cruzan, no lo envíes sin validarlo.`],
+ ingles:v=>{const rq=qaVv('ingreq');if(v==='No aplica')return null;if(!rq||rq==='No aplica')return['info','Pon en "Vacante y JD" el nivel que pide el cliente para compararlo.'];
+   return QA_LV.indexOf(v)<QA_LV.indexOf(rq)?['crit',`Por debajo del ${rq} que pide el cliente. Es Critical (Q008): no lo envíes sin el aval de tu supervisor y una nota de justificación.`]:['ok',`Cumple el ${rq} que pide el cliente.`]},
+ expect:v=>{const S=qaScan(),tope=qaMoney(norm(qaVv('tope')))[0]||Math.max(0,...qaMoney(norm(qaVv('salario'))));if(!S.data.exp)return['info','Escribe el valor en números para compararlo con el rango.'];
+   if(!tope)return['info','Pon el tope del rango en "Vacante y JD" para compararlo.'];
+   return S.data.exp>tope?['crit',`Pide ${qaFmt(S.data.exp)} y el tope es ${qaFmt(tope)}. Es Critical (Q014): negocia o no lo envíes fuera de rango.`]:['ok',`Dentro del rango (tope ${qaFmt(tope)}).`]},
+ c_cond:v=>v==='No'?['crit','Explícaselo antes de cerrar la llamada: horario, descanso y responsabilidades. QA lo revisa (Q002).']:null,
+ c_sal:v=>v==='No'?['crit','Es Critical (Q001 y Q020): explícale salario, tipo de contrato y frecuencia de pago antes de enviarlo. Si no tienes el dato, no lo supongas: confírmalo y le escribes.']:null,
+ c_rep:v=>v==='No'?['warn','Pídele que te repita cómo entendió el salario y la forma de pago, para evitar malentendidos (Q020).']:null,
+ acepta:v=>v==='No'?['crit','No lo envíes. Marca el estado como Rechazado o Desistió con el motivo.']:v==='Lo pensará'?['warn','Agenda un seguimiento y no lo envíes hasta que confirme las condiciones.']:null,
+ interes:v=>v==='Con dudas'?['warn','Resuelve sus dudas antes de enviarlo (Q004).']:v==='No'?['crit','Ya no está interesado: marca el estado como Desistió.']:null,
+ c_pasos:v=>v==='No'?['warn','Cuéntale los próximos pasos: video, CV, revisión del cliente y cuándo le escribes (Q004).']:null,
+ porque:v=>v.length<30?['info','Relaciona su experiencia con los must-have del JD: es la evidencia de Q017.']:null,
+ pasa:v=>v==='Sí'?['info','Siguiente paso: arma el Submittal (CV SOLVO, pantallazo del scorecard de IA y video).','sub']:v==='No'?['info','Marca el estado del candidato como Rechazado y elige el motivo.']:null};
+const QA_HIC={crit:'🚨',warn:'⚠️',ok:'✓',info:'💡'};
+function qaHintHtml(k){const f=QA_HINT[k],v=qaFv(k);if(!f||!v)return'';let r=f(v);if(!r)return'';if(!Array.isArray(r[0]))r=[r];
+  return r.map(([l,m,go])=>`<div class="qa-hint ${l}"><span>${QA_HIC[l]}</span><span>${esc(m)}${go?` <button type="button" class="btn sm" data-qastep="${go}">Ir al Submittal →</button>`:''}</span></div>`).join('')}
+function qaHints(){document.querySelectorAll('[data-qahint]').forEach(el=>{const h=qaHintHtml(el.dataset.qahint);if(el.innerHTML!==h)el.innerHTML=h})}
+
+/* ================= Candidatos QA: un expediente por candidato, de la entrevista a la contratación ================= */
+const QA_KEYS=['v','jd','form','notes','docs','ck','c','ai','aiKey','f','fl','st','estado','motivo','motivoTxt','sub'];
+const QA_EMPTY={v:{},jd:'',form:{},notes:'',docs:{},ck:{},c:{},ai:null,aiKey:'',f:{},fl:{},st:{},estado:'entrevista',motivo:'',motivoTxt:'',sub:'ent'};
+const qaClone=x=>x==null?x:JSON.parse(JSON.stringify(x));
+const QAD=store.get('qacands',null)||{list:[],cur:null};
+const qaNewRec=o=>Object.assign({id:'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),created:Date.now(),updated:Date.now()},qaClone(QA_EMPTY),o||{});
+if(!store.get('qacands',null)&&((QA.form&&Object.keys(QA.form).length)||(QA.v&&QA.v.nombre)||QA.jd)){const r=qaNewRec();QA_KEYS.forEach(k=>{if(QA[k]!=null)r[k]=qaClone(QA[k])});QAD.list.push(r);QAD.cur=r.id}
+if(!['list','cand','crit'].includes(QA.view))QA.view=QAD.cur?'cand':'list';
+const qaCur=()=>QAD.list.find(x=>x.id===QAD.cur);
+function qaLoad(id){QAD.cur=id;const r=qaCur();QA_KEYS.forEach(k=>{QA[k]=qaClone(r&&r[k]!=null?r[k]:QA_EMPTY[k])});QA_SC=null}
+let QA_PT=0;
+function qaPersist(now){const r=qaCur();if(r){QA_KEYS.forEach(k=>r[k]=qaClone(QA[k]));r.updated=Date.now()}
+  const doIt=()=>{store.set('qacands',QAD);store.set('qa',{view:QA.view,sf:QA.sf,mf:QA.mf,q:QA.q,v2:1,mapOpen:QA.mapOpen,gclose:QA.gclose,filt:QA.filt,lq:QA.lq})};
+  clearTimeout(QA_PT);if(now)doIt();else QA_PT=setTimeout(doIt,150)}
+function qaWith(r,fn){const keep={};QA_KEYS.forEach(k=>keep[k]=QA[k]);const kc=QAD.cur;QAD.cur=r.id;QA_KEYS.forEach(k=>QA[k]=r[k]!=null?r[k]:qaClone(QA_EMPTY[k]));QA_SC=null;
+  try{return fn()}finally{QA_KEYS.forEach(k=>QA[k]=keep[k]);QAD.cur=kc;QA_SC=null}}
+if(QAD.cur&&qaCur())qaLoad(QAD.cur);else QAD.cur=null;
+
+/* --- Pasos del proceso --- */
+const QA_STEPS=[['ent','Entrevista','📝'],['sub','Submittal','📎'],['cli','Cliente','🤝'],['con','Contratación','✅']];
+const QA_EST=[['entrevista','En entrevista','c-acc'],['enviado','Enviado al cliente','c-warn'],['cliente','En proceso con el cliente','c-warn'],['oferta','En contratación','c-warn'],['contratado','Contratado','c-ok'],['rechazado','Rechazado','c-crit'],['desistio','Desistió','c-med']];
+const QA_FINAL=['contratado','rechazado','desistio'];
+const QA_MOT=['No pasó el screening','Rechazado por el cliente','No aceptó condiciones / salario','Desistió del proceso','No se presentó','Posición cancelada o en pausa','Otro'];
+const qaDep=()=>QA.st.contrato==='Dependencia';
+const qaNeedJust=()=>{const m=qaJDMatch(),S=qaScan();return !!(m&&m.items.some(i=>i.st==='no'))||S.flags.some(f=>['Q006','Q008','Q014'].includes(f[1]))};
+// [clave, etiqueta, ayuda, tipo (c casilla · s opciones · t texto · d fecha), opciones, criterios, obligatorio (bool | fn), dónde se guarda]
+const QA_ITEMS={
+ sub:[
+  ['cv','CV en formato SOLVO','Hecho con el Solvo CV Generator, un solo idioma (sin Spanglish) y mes/año en cada empleo.','c',0,['Q011','Q012','Q018'],true,'docs'],
+  ['score','Pantallazo del scorecard de IA Matching (CV vs. JD)','Es obligatorio: QA solo puede validar el uso de la IA con este pantallazo en CEIPAL.','c',0,['Q018'],true,'docs'],
+  ['video','Video de presentación','Máximo 1:30 a 2 minutos, en horizontal, fondo neutro (blanco o pastel) y sin ruido de fondo.','c',0,['Q016'],true,'docs'],
+  ['prueba','Prueba Kudert o Excel','Solo si el Hiring Manager la pide.','c',0,['Q025'],false,'docs'],
+  ['cert','Certificaciones que pida el JD, subidas a CEIPAL','Si el JD exige una certificación, debe reposar en CEIPAL.','c',0,['Q025'],false,'st'],
+  ['ceipal','Nota del screening pegada en CEIPAL','Copia la nota de la pestaña Entrevista. Es la única visual que tiene QA.','c',0,['Q024','Q017'],true,'docs'],
+  ['justif','Nota de justificación en CEIPAL (+ pantallazo del aval de tu supervisor)','Cuando el candidato no cumple un must-have (años, inglés, salario) pero lo envías por buen fit.','c',0,['Q017','Q009'],()=>qaNeedJust(),'st'],
+  ['ausencias','Viajes o ausencias escritos en el Submittal','El candidato reportó viajes o vacaciones.','c',0,['Q013'],()=>qaScan().flags.some(f=>f[1]==='Q013'),'docs'],
+  ['send','Submittal enviado con ubicación, tipo de trabajo, salario acordado y video','Revisa que no tenga errores antes de mandarlo al manager.','c',0,['Q013','Q028'],true,'st'],
+  ['ccqa','Copié a QA (Anderson) en el correo del submittal','Si no aparece en el hilo de CEIPAL, cópialo a mano.','c',0,['Q027'],true,'st'],
+  ['ats_sub','Estado del candidato actualizado en CEIPAL','Debe reflejar que ya se envió.','c',0,['Q026'],true,'st'],
+  ['fsub','Fecha de envío','','d',0,[],false,'st']],
+ cli:[
+  ['cli_fecha','Fecha de la entrevista con el cliente o Hiring Manager','','d',0,[],true,'st'],
+  ['cli_res','Resultado de la entrevista con el cliente','','s',['Pendiente','Avanza','No avanza'],[],true,'st'],
+  ['cli_fb','Feedback del cliente','Lo que dijo el manager, fortalezas y dudas.','t',0,['Q024'],true,'st'],
+  ['cambio','¿Cambiaron las condiciones, el horario o la vacante?','','s',['No','Sí'],['Q005'],true,'st'],
+  ['cambio_ok','Le hice una quick call con las nuevas condiciones y subí a CEIPAL el pantallazo de WhatsApp con su aceptación','Así QA sabe que el cambio fue con su consentimiento.','c',0,['Q005','Q002'],()=>QA.st.cambio==='Sí','st'],
+  ['ats_cli','Estado del candidato actualizado en CEIPAL','','c',0,['Q026'],true,'st']],
+ con:[
+  ['contrato','Tipo de contratación','','s',['Dependencia','Contractor / proveedor de servicios'],['Q020'],true,'st'],
+  ['oferta','Le confirmé por escrito salario, tipo de contrato, frecuencia de pago y fecha de inicio','Deja el pantallazo o el correo en CEIPAL.','c',0,['Q001','Q020','Q005'],true,'st'],
+  ['inicio_f','Fecha de inicio','','d',0,[],true,'st'],
+  ['co','Control order subida a CEIPAL','Solo en contratos de dependencia (los contractor no llevan control order).','c',0,['Q025'],()=>qaDep(),'st'],
+  ['acept','Aceptación del candidato subida a CEIPAL','Solo en contratos de dependencia.','c',0,['Q025'],()=>qaDep(),'st'],
+  ['ats_hired','Estado en CEIPAL actualizado a contratado','Todos los estados, de pipeline a contratado, deben quedar completos.','c',0,['Q026','Q027'],true,'st']]};
+const qaIReq=it=>typeof it[6]==='function'?!!it[6]():!!it[6];
+const qaIVal=it=>{const o=it[7]==='docs'?QA.docs:QA.st;const v=o[it[0]];return v===true?'Sí':String(v||'').trim()};
+function qaStepStat(k){
+  if(k==='ent'){const t=qaReqTot(),m=qaReqMiss();return{t,d:t-m,miss:qaMissing().map(f=>qaLbl(f))}}
+  const rq=QA_ITEMS[k].filter(qaIReq),miss=rq.filter(it=>!qaIVal(it));return{t:rq.length,d:rq.length-miss.length,miss:miss.map(it=>it[1])};
+}
+const qaPct=s=>s.t?Math.round(s.d/s.t*100):100;
+function qaAll(){const st=QA_STEPS.map(([k])=>qaStepStat(k)),t=st.reduce((a,s)=>a+s.t,0),d=st.reduce((a,s)=>a+s.d,0);return{st,t,d,pct:t?Math.round(d/t*100):0}}
+const qaStepUpTo=e=>({entrevista:1,enviado:2,cliente:3,oferta:4,contratado:4,rechazado:0,desistio:0}[e]||1);
+function qaNextTxt(){const A=qaAll();for(let i=0;i<QA_STEPS.length;i++){const s=A.st[i];if(s.miss.length&&i<Math.max(1,qaStepUpTo(QA.estado)))return`${QA_STEPS[i][1]}: ${s.miss[0]}${s.miss.length>1?` (+${s.miss.length-1})`:''}`}return''}
+const qaEst=k=>QA_EST.find(x=>x[0]===k)||QA_EST[0];
+const qaDate=t=>new Date(t).toLocaleDateString(LOC(),{day:'numeric',month:'short'});
+
+/* --- Vistas --- */
+V.qa=()=>`<div class="pagehead"><div class="meta"><span class="eyebrow">Talent Quality Intelligence · 28 criterios</span><h1>Candidatos QA</h1>
+  <span class="muted">Un expediente por candidato: entrevista, submittal, cliente y contratación, con lo que audita QA en cada paso.</span></div></div>
+  <div class="qa-views" id="qaViews"></div><div class="stack" id="qaBody"></div>`;
+function renderQA(){
+  if(!$('qaBody'))return;
+  if(QA.view==='notes'){QA.view='cand';QA.sub='ent'}if(QA.view==='ck'){QA.view='cand';QA.sub='sub'}
+  if(QA.view==='cand'&&!qaCur())QA.view='list';
+  const act=QAD.list.filter(r=>!QA_FINAL.includes(r.estado)).length;
+  $('qaViews').innerHTML=`<button class="chip" type="button" data-qaview="list" aria-pressed="${QA.view!=='crit'}">👥 Candidatos <span class="muted">${act} en proceso</span></button><button class="chip" type="button" data-qaview="crit" aria-pressed="${QA.view==='crit'}">📊 Criterios TQI</button>`;
+  if(QA.view==='crit'){$('qaBody').innerHTML=qaCritView();qaCritGrid();return}
+  if(QA.view==='list'){$('qaBody').innerHTML=qaListView();return}
+  $('qaBody').innerHTML=qaCandView();if(QA.sub==='ent')qaAnalyze();
+}
+function qaCardInfo(r){return qaWith(r,()=>{const A=qaAll();return{A,next:qaNextTxt(),cargo:qaVv('cargo'),flags:qaScan().flags.length}})}
+function qaListView0(){
+  const F=QA.filt||'proc',q=norm(QA.lq||''),cnt={proc:0,cont:0,rech:0,all:QAD.list.length};
+  QAD.list.forEach(r=>{if(r.estado==='contratado')cnt.cont++;else if(QA_FINAL.includes(r.estado))cnt.rech++;else cnt.proc++});
+  const L2=QAD.list.filter(r=>(F==='all'||(F==='proc'&&!QA_FINAL.includes(r.estado))||(F==='cont'&&r.estado==='contratado')||(F==='rech'&&(r.estado==='rechazado'||r.estado==='desistio')))&&(!q||norm((r.v&&r.v.nombre||'')+' '+(r.jd||'').slice(0,200)).includes(q))).sort((a,b)=>b.updated-a.updated);
+  return `<div class="qa-bar"><button class="btn primary" type="button" data-qaadd>＋ Nuevo candidato</button><input type="search" data-qalq placeholder="Buscar por nombre o vacante…" value="${esc(QA.lq||'')}" style="flex:1;min-width:180px"><button class="btn" type="button" data-qaexp>⬇️ Respaldo</button><label class="btn" style="cursor:pointer">⬆️ Cargar respaldo<input type="file" accept=".json,application/json" data-qaimp hidden></label></div>
+  <div class="slafil">${[['proc','⏳ En proceso'],['cont','✅ Contratados'],['rech','❌ Rechazados / desistieron'],['all','Todos']].map(([k,t])=>`<button class="chip" type="button" data-qafilt="${k}" aria-pressed="${F===k}">${t} <span class="muted">${cnt[k]}</span></button>`).join('')}</div>
+  ${L2.length?`<div class="qa-clist">${L2.map(r=>{const I=qaCardInfo(r),E=qaEst(r.estado),fin=QA_FINAL.includes(r.estado);return `<button type="button" class="qa-cc ${r.estado}" data-qaopen="${r.id}">
+    <div class="qa-cch"><b>${esc(r.v&&r.v.nombre||'Sin nombre')}</b><span class="pill ${E[2]}">${esc(E[1])}</span></div>
+    <span class="muted small">${esc(I.cargo||'Sin vacante')} · actualizado ${qaDate(r.updated)}</span>
+    <div class="qa-dots">${QA_STEPS.map(([k,t,ic,sh],i)=>{const p=qaPct(I.A.st[i]);return `<span class="qa-dot ${p===100?'ok':p>0?'part':''}" title="${esc(t)} ${p}%"><i>${ic}</i>${esc(sh||t)}</span>`}).join('')}</div>
+    <div class="qa-meter ${I.A.pct===100?'ok':''}"><i style="width:${I.A.pct}%"></i></div>
+    <span class="small ${I.next&&!fin?'':'muted'}">${r.estado==='contratado'?(I.A.pct===100?'🎉 Expediente completo':`⚠️ Contratado con ${I.A.t-I.A.d} pendientes`):fin?esc(r.motivo||'Proceso cerrado'):I.next?'👉 '+esc(I.next):'✓ Al día en lo que va del proceso'}${I.flags&&!fin?` · 🚩 ${I.flags}`:''}</span></button>`}).join('')}</div>`
+  :`<div class="empty">${QAD.list.length?'No hay candidatos con ese filtro.':'Aún no tienes candidatos. Toca <b>＋ Nuevo candidato</b> para empezar una entrevista.'}</div>`}
+  <p class="muted small">Los candidatos se guardan en este navegador. Descarga un respaldo de vez en cuando, o para pasarlos a otro computador.</p>`;
+}
+function qaCandView(){
+  const r=qaCur(),A=qaAll(),E=qaEst(QA.estado),fin=QA_FINAL.includes(QA.estado);
+  const head=`<section class="panel qa-head"><div class="qa-hrow"><button class="btn sm" type="button" data-qaview="list">← Candidatos</button>
+      <div class="qa-hname"><b>${esc(QA.v.nombre||'Sin nombre')}</b><span class="muted small">${esc(qaVv('cargo')||'Sin vacante')} · creado ${qaDate(r.created)}</span></div>
+      <div class="qa-hpct"><div class="qa-ring sm" style="--p:${A.pct}"><b>${A.pct}%</b></div><span class="muted small">expediente</span></div></div>
+    <div class="qa-est"><span class="muted small">Estado:</span>${QA_EST.map(([k,t,c])=>`<button type="button" class="chip" data-qaest="${k}" aria-pressed="${QA.estado===k}">${esc(t)}</button>`).join('')}</div>
+    ${QA.estado==='contratado'?(A.pct===100?'<div class="status ok">🎉 Contratado con el expediente completo<small>Todo lo que QA revisa en una auditoría post hire quedó listo.</small></div>':`<div class="status wait">⚠️ Contratado, pero faltan ${A.t-A.d} pasos para que el expediente quede completo<small>Las control orders siempre se auditan. Revisa los pasos en naranja.</small></div>`):''}
+    ${QA.estado==='rechazado'||QA.estado==='desistio'?`<div class="qa-mot"><span class="muted small">Motivo:</span>${QA_MOT.map(m=>`<button type="button" class="chip" data-qamot="${esc(m)}" aria-pressed="${QA.motivo===m}">${esc(m)}</button>`).join('')}<input type="text" data-qamottxt placeholder="Detalle (opcional)" value="${esc(QA.motivoTxt||'')}"></div>
+      <div class="actions"><span class="muted small">Su información queda guardada en "Rechazados / desistieron". Si no la necesitas:</span><button class="btn sm" type="button" data-qadel>🗑️ Eliminar candidato</button></div>`:''}
+    <div class="qa-steps">${QA_STEPS.map(([k,t,ic],i)=>{const s=A.st[i],p=qaPct(s);return `<button type="button" class="qa-step ${QA.sub===k?'on':''} ${p===100?'ok':p>0?'part':''}" data-qastep="${k}"><span class="n">${p===100?'✓':ic}</span><span><b>${i+1}. ${esc(t)}</b><small>${s.d}/${s.t} · ${p}%</small></span></button>`}).join('')}</div></section>`;
+  let body='';
+  if(QA.sub==='ent')body=qaVacHtml()+qaNotesView();
+  else body=qaStepView(QA.sub);
+  return head+body+(QA.sub!=='ent'||fin?'':'')+`<div class="actions" style="justify-content:space-between"><button class="btn sm" type="button" data-qadel>🗑️ Eliminar candidato</button><span class="muted small">Se guarda solo mientras escribes.</span></div>`;
+}
+function qaItemHtml(it){
+  const [k,l,h,t,o,cr,,w]=it,req=qaIReq(it),val=qaIVal(it),src=w==='docs'?QA.docs:QA.st,codes=cr.map(c=>`<span class="pill ${QA_SEV[qaCrit(c)[2]][1]}">${c}</span>`).join('');
+  if(t==='c')return `<button type="button" class="qa-q qa-it ${req&&!val?'qa-need':''}" data-qait="${k}" aria-pressed="${!!src[k]}"><span class="bx"></span><span><b>${esc(l)}</b>${req?' <b class="qa-star">*</b>':' <span class="muted small">(si aplica)</span>'}${h?`<span class="sub">${esc(h)}</span>`:''}</span><span class="cds">${codes}</span></button>`;
+  const ctl=t==='s'?`<div class="qa-opts">${o.map(x=>`<button type="button" class="chip" data-qaiopt="${k}" data-v="${esc(x)}" aria-pressed="${src[k]===x}">${esc(x)}</button>`).join('')}</div>`:t==='d'?`<input type="date" data-qaiin="${k}" value="${esc(src[k]||'')}">`:`<textarea rows="2" data-qaiin="${k}" placeholder="${esc(h||'')}">${esc(src[k]||'')}</textarea>`;
+  return `<div class="qa-qa ${req&&!val?'qa-need':''} ${val?'done':''}"><div class="qa-qh"><b>${esc(l)}</b>${req?'<b class="qa-star">*</b>':'<span class="muted small">(opcional)</span>'}<span class="qa-cds">${codes}</span></div>${ctl}</div>`;
+}
+function qaStepView(k){
+  const s=qaStepStat(k),p=qaPct(s),T={sub:['📎 Submittal','Documentos y envío. No tienes que hacerlo todo al terminar la entrevista: vuelve cuando subas cada cosa.'],cli:['🤝 Proceso con el cliente','Entrevista con el Hiring Manager y cualquier cambio en las condiciones.'],con:['✅ Contratación','Lo que QA revisa en la auditoría post hire (control order).']}[k];
+  let extra='';
+  if(k==='sub'){const S=qaScan(),crit=QA_CK.map((x,i)=>i).filter(i=>i<6||i===12||i===13);extra=`<section class="panel"><div class="panel-head"><h2>🔎 Validación QA desde la entrevista</h2><span class="muted small">Se marca sola con tus notas; tócala si necesitas corregirla</span></div>
+    ${crit.map(i=>{const x=QA_CK[i],on=qaCkOn(i),a=qaCkAuto(i);return `<button type="button" class="qa-q" data-qack="${i}" aria-pressed="${on}"><span class="bx"></span><span>${esc(x[1])}<span class="sub">${a===null?'Manual':QA.ck[i]!=null?'Marcado a mano':a?'⚡ Desde tus notas':'⚡ Se marca solo cuando lo llenes en la entrevista'}</span></span><span class="cds">${x[2].map(qaPill).join('')}</span></button>`}).join('')}
+    ${S.flags.length?`<div class="stack" style="gap:6px"><b class="small">🚩 Alertas de la entrevista</b>${S.flags.map(f=>`<div class="qa-alert"><b>${esc(f[0])}</b> <span class="pill c-crit">${esc(f[1])}</span></div>`).join('')}</div>`:''}</section>`}
+  if(k==='cli'&&QA.st.cli_res==='No avanza'&&QA.estado!=='rechazado')extra=`<div class="status no">El cliente no avanzó con el candidato<small><button class="btn sm" type="button" data-qaest="rechazado">Marcar como rechazado</button></small></div>`;
+  if(k==='cli'&&QA.st.cli_res==='Avanza'&&qaStepUpTo(QA.estado)<4)extra=`<div class="status ok">El candidato avanza<small><button class="btn sm" type="button" data-qaest="oferta">Pasar a contratación</button></small></div>`;
+  if(k==='con'){const all=qaAll();extra=QA.estado!=='contratado'?`<div class="status ${s.d===s.t?'ok':'wait'}">${s.d===s.t?'Todo listo para cerrar como contratado':'Cuando quede contratado, márcalo aquí'}<small><button class="btn sm ${s.d===s.t?'primary':''}" type="button" data-qaest="contratado">✅ Marcar como contratado</button>${all.t-all.d?` · Faltan ${all.t-all.d} pasos en todo el expediente`:''}</small></div>`:''}
+  return `<section class="panel"><div class="panel-head"><h2>${T[0]}</h2><span class="pill ${p===100?'c-ok':'c-warn'}">${s.d}/${s.t} obligatorios</span></div><p class="muted small">${T[1]}</p>
+    <div class="qa-meter ${p===100?'ok':''}"><i style="width:${p}%"></i></div><div class="qa-qlist">${QA_ITEMS[k].map(qaItemHtml).join('')}</div></section>${extra}`;
+}
+function qaCreateSheet(){
+  const seen=new Map();QAD.list.forEach(r=>{const j=String(r.jd||'').trim();if(j&&!seen.has(j)){let t='';try{t=parseJD(j).title}catch(e){}seen.set(j,(r.v&&r.v.cargo)||t||j.slice(0,40))}});
+  const vac=[...seen.entries()];
+  openSheet(`<h2>Nuevo candidato</h2><label class="qa-fl"><span class="qa-lb">Nombre del candidato</span><input type="text" id="qaNewName" placeholder="Nombre y apellido"></label>
+    <label class="qa-fl"><span class="qa-lb">Vacante</span><select id="qaNewVac"><option value="">Nueva vacante (pegaré el JD)</option>${vac.map(([j,t],i)=>`<option value="${i}">${esc(t)}</option>`).join('')}</select></label>
+    ${QAD.cur&&qaCur()?'<p class="muted small">Tip: si es para la misma vacante del candidato que tenías abierto, elígela en la lista y no tienes que volver a pegar el JD.</p>':''}
+    <div class="actions"><button class="btn primary" type="button" data-qacreate>Crear y empezar la entrevista</button><button class="btn" type="button" data-close>Cancelar</button></div>`);
+  window.__qaVac=vac;setTimeout(()=>{const x=$('qaNewName');x&&x.focus()},50);
+}
+function qaExport(){const data=JSON.stringify({tipo:'cositas-candidatos-qa',fecha:new Date().toISOString(),candidatos:QAD.list},null,1),fn=`candidatos_qa_${new Date().toISOString().slice(0,10)}.json`;
+  (async()=>{try{const dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null;if(dl){await dl.save({filename:fn,data});toast('Respaldo descargado.');return}}catch(e){}
+    try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download=fn;document.body.appendChild(a);a.click();a.remove();toast('Respaldo descargado.')}catch(e){toast('No se pudo descargar el respaldo.')}})()}
+function qaImport(file){const fr=new FileReader();fr.onload=()=>{try{const d=JSON.parse(fr.result),arr=Array.isArray(d)?d:d.candidatos;if(!Array.isArray(arr))throw 0;let n=0;
+  arr.forEach(r=>{if(!r||!r.id)return;const i=QAD.list.findIndex(x=>x.id===r.id);if(i>=0){if((r.updated||0)>=(QAD.list[i].updated||0))QAD.list[i]=r}else QAD.list.push(r);n++});
+  if(QAD.cur)qaLoad(QAD.cur);qaPersist(true);renderQA();toast(`Respaldo cargado: ${n} candidato${n===1?'':'s'}.`)}catch(e){toast('Ese archivo no es un respaldo válido.')}};fr.readAsText(file)}
+function qaOpen(id,sub){qaPersist(true);qaLoad(id);QA.view='cand';if(sub)QA.sub=sub;qaPersist(true);renderQA();window.scrollTo(0,0)}
+function qaRefreshHead(){if(QA.view!=='cand'||!$('qaBody'))return;const h=document.querySelector('.qa-head');if(!h)return;const tmp=document.createElement('div');tmp.innerHTML=qaCandView();const nh=tmp.querySelector('.qa-head');if(nh)h.replaceWith(nh)}
+const _qaAnalyze=qaAnalyze;qaAnalyze=function(){_qaAnalyze();qaHints();qaRefreshHead()};
+document.addEventListener('click',e=>{if(VIEW!=='qa')return;const t=e.target;
+  if(t.closest('[data-qaadd]')){qaCreateSheet();return}
+  if(t.closest('[data-qacreate]')){const nm=($('qaNewName').value||'').trim(),vi=$('qaNewVac').value,r=qaNewRec();r.v.nombre=nm;r.v.yo=(qaCur()&&qaCur().v.yo)||QA.v.yo||'';
+    if(vi!==''){const [j]=window.__qaVac[+vi];r.jd=j;const src=QAD.list.find(x=>x.jd===j);if(src){const keep=['cargo','modalidad','horario','ubicacion','salario','tope','ingreq','contrato','pago','zona','dias','descanso','cliente','siguiente'];keep.forEach(k=>{if(src.v&&src.v[k])r.v[k]=src.v[k]})}}
+    QAD.list.push(r);$('scrim').hidden=true;qaOpen(r.id,'ent');toast(nm?`Expediente de ${nm} creado.`:'Expediente creado.');return}
+  const op=t.closest('[data-qaopen]');if(op){qaOpen(op.dataset.qaopen,null);return}
+  const fl=t.closest('[data-qafilt]');if(fl){QA.filt=fl.dataset.qafilt;qaPersist();renderQA();return}
+  const sp=t.closest('[data-qastep]');if(sp){QA.view='cand';QA.sub=sp.dataset.qastep;qaPersist();renderQA();window.scrollTo(0,document.querySelector('.qa-head')?document.querySelector('.qa-head').offsetTop-70:0);return}
+  const es=t.closest('[data-qaest]');if(es){const k=es.dataset.qaest;QA.estado=k;if(!['rechazado','desistio'].includes(k)){QA.motivo='';}
+    if(k==='enviado'&&!QA.st.fsub)QA.st.fsub=new Date().toISOString().slice(0,10);
+    qaPersist();renderQA();if(k==='contratado'){const A=qaAll();toast(A.pct===100?'🎉 ¡Contratado! Expediente completo.':`Contratado. Te faltan ${A.t-A.d} pasos del expediente.`)}if(k==='rechazado'||k==='desistio')toast('Elige el motivo. Su información queda guardada.');return}
+  const mo=t.closest('[data-qamot]');if(mo){QA.motivo=QA.motivo===mo.dataset.qamot?'':mo.dataset.qamot;qaPersist();qaRefreshHead();return}
+  const it=t.closest('[data-qait]');if(it){const k=it.dataset.qait,x=Object.values(QA_ITEMS).flat().find(y=>y[0]===k),o=x[7]==='docs'?QA.docs:QA.st;o[k]=!o[k];qaPersist();renderQA();return}
+  const io=t.closest('[data-qaiopt]');if(io){const k=io.dataset.qaiopt,v=io.dataset.v,x=Object.values(QA_ITEMS).flat().find(y=>y[0]===k),o=x[7]==='docs'?QA.docs:QA.st;o[k]=o[k]===v?'':v;qaPersist();renderQA();return}
+  const dl=t.closest('[data-qadel]');if(dl){qaConfirm(dl,'¿Eliminar para siempre? Toca otra vez',()=>{const nm=QA.v.nombre;QAD.list=QAD.list.filter(x=>x.id!==QAD.cur);QAD.cur=null;QA.view='list';QA_KEYS.forEach(k=>QA[k]=qaClone(QA_EMPTY[k]));qaPersist(true);renderQA();toast(`${nm||'Candidato'} eliminado.`)});return}
+  if(t.closest('[data-qaexp]')){qaExport();return}
+},true);
+document.addEventListener('input',e=>{if(VIEW!=='qa')return;const d=e.target.dataset||{};
+  if(d.qaiin!==undefined){QA.st[d.qaiin]=e.target.value;qaPersist();const s=e.target.closest('.qa-qa');if(s){s.classList.toggle('done',!!e.target.value.trim());s.classList.toggle('qa-need',!e.target.value.trim())}qaRefreshHead();return}
+  if(d.qamottxt!==undefined){QA.motivoTxt=e.target.value;qaPersist();return}
+  if(d.qalq!==undefined){QA.lq=e.target.value;qaPersist();const p=e.target.selectionStart;renderQA();const x=document.querySelector('[data-qalq]');if(x){x.focus();x.setSelectionRange(p,p)}return}
+  if(d.qav==='nombre'){qaRefreshHead()}
+});
+document.addEventListener('change',e=>{if(VIEW!=='qa')return;if(e.target.dataset&&e.target.dataset.qaimp!==undefined&&e.target.files[0]){qaImport(e.target.files[0]);e.target.value=''}});
+
+/* --- Pasos 2 a 4 en versión visual --- */
+QA_STEPS.splice(0,4,['ent','Entrevista','📝','Entrevista'],['sub','Enviar al cliente','📤','Envío'],['cli','Entrevista con el cliente','🤝','Cliente'],['con','Contratación','🎉','Contrato']);
+const QA_INFO={
+ ent:['Hablas con el candidato y llenas sus respuestas.','Durante la llamada.','Respondiste todas las preguntas con ✱.'],
+ sub:['Armas el paquete del candidato y se lo mandas al Hiring Manager.','Después de la entrevista. Puedes volver cuando tengas cada documento.','Mandaste el submittal con todo y copiaste a QA.'],
+ cli:['El Hiring Manager entrevista al candidato y te da su respuesta.','Cuando el cliente agenda y hace su entrevista.','Anotaste el resultado y el feedback del cliente.'],
+ con:['El candidato fue seleccionado: le confirmas la oferta y subes los papeles.','Cuando el cliente dice que sí.','Todo está en CEIPAL y el estado dice contratado.']};
+// ícono y nombre corto de cada tarea
+const QA_TILE={cv:['📄','CV en formato SOLVO'],score:['🤖','Pantallazo de la IA (CV vs. JD)'],video:['🎥','Video de presentación'],prueba:['🧪','Prueba Kudert o Excel'],cert:['🎓','Certificaciones del JD'],
+ ceipal:['📝','Nota de la entrevista en CEIPAL'],justif:['✍️','Nota de justificación'],ausencias:['✈️','Viajes escritos en el submittal'],send:['📧','Submittal enviado al manager'],ccqa:['👀','Copia a QA (Anderson)'],ats_sub:['🔄','Estado actualizado en CEIPAL'],
+ cambio_ok:['📲','Quick call + pantallazo de WhatsApp'],ats_cli:['🔄','Estado actualizado en CEIPAL'],
+ oferta:['✉️','Oferta confirmada por escrito'],co:['📑','Control order en CEIPAL'],acept:['🤝','Aceptación del candidato en CEIPAL'],ats_hired:['🔄','Estado "contratado" en CEIPAL']};
+const QA_GRP={sub:[['Documentos del candidato',['cv','score','video','prueba','cert']],['Enviar',['ceipal','justif','ausencias','send','ccqa','ats_sub','fsub']]],
+ cli:[['Entrevista con el cliente',['cli_fecha','cli_res','cli_fb']],['¿Cambió algo?',['cambio','cambio_ok']],['Cerrar el paso',['ats_cli']]],
+ con:[['Contrato',['contrato','inicio_f']],['Papeles',['oferta','co','acept','ats_hired']]]};
+const qaItem=k=>Object.values(QA_ITEMS).flat().find(x=>x[0]===k);
+function qaTile(it){const [k,l,h,,,cr,,w]=it,src=w==='docs'?QA.docs:QA.st,on=!!src[k],req=qaIReq(it),[ic,sh]=QA_TILE[k]||['☑️',l];
+  return `<button type="button" class="qa-tile ${on?'on':''} ${req?'':'opt'}" data-qait="${k}" aria-pressed="${on}" title="${esc(l)}"><span class="ck">${on?'✓':''}</span><span class="ic">${ic}</span><b>${esc(sh)}</b><small>${esc(h)}</small>${req?'':'<span class="tag">si aplica</span>'}</button>`}
+function qaStepView(k){
+  const s=qaStepStat(k),p=qaPct(s),I=QA_INFO[k],idx=QA_STEPS.findIndex(x=>x[0]===k),nx=QA_STEPS[idx+1];
+  const grp=QA_GRP[k].map(([g,keys])=>{const its=keys.map(qaItem).filter(it=>it&&(qaIReq(it)||it[3]!=='c'||!/^(justif|ausencias|cambio_ok|co|acept)$/.test(it[0])||qaIReq(it)));
+    if(!its.length)return'';const tiles=its.filter(it=>it[3]==='c'),fields=its.filter(it=>it[3]!=='c');
+    return `<div class="qa-grp"><div class="qa-grph">${esc(g)}</div>${fields.length?`<div class="qa-qlist">${fields.map(qaItemHtml).join('')}</div>`:''}${tiles.length?`<div class="qa-tiles">${tiles.map(qaTile).join('')}</div>`:''}</div>`}).join('');
+  let tip='';
+  if(k==='sub'&&qaIVal(qaItem('send'))&&qaStepUpTo(QA.estado)<2)tip=`<div class="status ok">📧 Ya enviaste el submittal<small><button class="btn sm primary" type="button" data-qaest="enviado">Cambiar estado a "Enviado al cliente"</button></small></div>`;
+  if(k==='cli'&&QA.st.cli_res==='No avanza'&&QA.estado!=='rechazado')tip=`<div class="status no">👎 El cliente no avanzó con el candidato<small><button class="btn sm" type="button" data-qaest="rechazado">Marcar como rechazado</button></small></div>`;
+  if(k==='cli'&&QA.st.cli_res==='Avanza'&&qaStepUpTo(QA.estado)<4)tip=`<div class="status ok">👍 ¡El candidato avanza!<small><button class="btn sm primary" type="button" data-qaest="oferta">Pasar a contratación</button></small></div>`;
+  if(k==='con'&&QA.estado!=='contratado'){const all=qaAll();tip=`<div class="status ${s.d===s.t?'ok':'wait'}">${s.d===s.t?'🎉 Todo listo':'Cuando quede contratado, márcalo aquí'}<small><button class="btn sm ${s.d===s.t?'primary':''}" type="button" data-qaest="contratado">🎉 Marcar como contratado</button>${all.t-all.d?` · Faltan ${all.t-all.d} cosas en todo el expediente`:''}</small></div>`}
+  let qa='';
+  if(k==='sub'){const crit=QA_CK.map((x,i)=>i).filter(i=>i<6),ok=crit.filter(i=>qaCkOn(i)).length;qa=`<details class="acc"><summary><b>🔎 ¿La entrevista quedó bien para QA?</b><span class="pill ${ok===crit.length?'c-ok':'c-warn'}">${ok}/${crit.length}</span></summary><div class="in">
+    <p class="muted small">Se marca solo con lo que respondiste en la entrevista.</p>${crit.map(i=>`<button type="button" class="qa-q" data-qack="${i}" aria-pressed="${qaCkOn(i)}"><span class="bx"></span><span>${esc(QA_CK[i][1])}</span></button>`).join('')}</div></details>`}
+  return `<section class="panel qa-stepp"><div class="qa-sh"><span class="qa-big">${QA_STEPS[idx][2]}</span><div><span class="eyebrow">Paso ${idx+1} de 4</span><h2>${esc(QA_STEPS[idx][1])}</h2></div><div class="qa-ring sm" style="--p:${p}"><b>${p}%</b></div></div>
+    <div class="qa-info"><div><span>💡 Qué es</span>${esc(I[0])}</div><div><span>⏰ Cuándo</span>${esc(I[1])}</div><div><span>✅ Listo cuando</span>${esc(I[2])}</div></div>
+    ${tip}${grp}
+    <div class="actions" style="justify-content:space-between"><span class="muted small">Toca cada tarjeta cuando lo hagas. Se pone verde ✓</span>${nx?`<button class="btn" type="button" data-qastep="${nx[0]}">Siguiente: ${esc(nx[1])} →</button>`:''}</div></section>${qa}`;
+}
+function qaHowHtml(){return `<details class="acc qa-how" ${QAD.list.length?'':'open'}><summary><b>🧭 ¿Cómo funciona?</b><span class="muted small">Cada candidato pasa por 4 pasos</span></summary><div class="in"><div class="qa-road">${QA_STEPS.map(([k,t,ic],i)=>`<div class="qa-roadc"><span class="qa-big">${ic}</span><b>${i+1}. ${esc(t)}</b><span class="small">${esc(QA_INFO[k][0])}</span><span class="muted small">⏰ ${esc(QA_INFO[k][1])}</span></div>`).join('<span class="qa-arrow">→</span>')}</div>
+  <p class="muted small">Al final marcas el estado: 🎉 Contratado, ❌ Rechazado o 🚪 Desistió. Nada se borra solo: el candidato queda guardado con todo lo que llenaste.</p></div></details>`}
+function qaListView(){return qaHowHtml()+qaListView0()}
+const QA_EN={"(opcional)": "(optional)", "(si aplica)": "(if applicable)", "Acepta condiciones": "Accepts conditions", "Aceptación del candidato subida a CEIPAL": "Candidate's acceptance uploaded to CEIPAL", "Agenda un seguimiento y no lo envíes hasta que confirme las condiciones.": "Schedule a follow-up and don't submit until they confirm the conditions.", "Agrega mes y año de entrada y salida de cada empleo: QA penaliza si solo está el año (Q012).": "Add start and end month and year for each job: QA penalizes year-only dates (Q012).", "Ajustar datos (si el JD no los trae o salen mal)": "Adjust details (if the JD doesn't include them or they're wrong)", "Ajuste general al rol": "General role fit", "Alineación de experiencia": "Experience alignment", "Alineación de tarifa": "Rate alignment", "Anota el medio de transporte y cuánto tarda (QA lo revisa).": "Write down how they commute and how long it takes (QA checks it).", "Aparecen cuando el candidato cumple requisitos del JD.": "They appear when the candidate meets JD requirements.", "Así QA sabe que el cambio fue con su consentimiento.": "So QA knows the change had their consent.", "Avanza": "Moves forward", "Aún no acepta las condiciones": "Hasn't accepted the conditions yet", "Aún no hay datos detectados.": "No details detected yet.", "Bien documentado.": "Well documented.", "Bien: deja en la nota el tipo de espacio y la conexión.": "Good: note the workspace and connection in the notes.", "Bien: hay detalle de cómo la usó.": "Good: there's detail on how they used it.", "Buena luz, fondo profesional, poco ruido y buena visibilidad.": "Good lighting, professional background, little noise and good visibility.", "CV en formato SOLVO": "CV in SOLVO format", "CV en formato SOLVO y pantallazo del scorecard de IA Matching adjunto (obligatorio).": "CV in SOLVO format and AI Matching scorecard screenshot attached (mandatory).", "CV en formato SOLVO, sin Spanglish y con mes y año en cada empleo": "CV in SOLVO format, no Spanglish, with month and year for each job", "CV, ATS y notas de screening dicen lo mismo.": "CV, ATS and screening notes match.", "CV, CEIPAL y notas dicen lo mismo": "CV, CEIPAL and notes match", "Calidad de comunicación": "Communication quality", "Calidad del CV": "CV quality", "Calidad del submittal": "Submittal quality", "Calidad del video": "Video quality", "Calificación del talento": "Talent qualification", "Cambio de residencia": "Change of residence", "Cancelar": "Cancel", "Candidato": "Candidate", "Candidatos QA": "QA Candidates", "Cargo": "Role", "Certificaciones que pida el JD, subidas a CEIPAL": "Certifications required by the JD, uploaded to CEIPAL", "Checklist de envío": "Submission checklist", "Cierre": "Closing", "CIERRE": "CLOSING", "Ciudad de residencia": "City of residence", "Claridad de condiciones": "Clarity of conditions", "Cliente": "Client", "Cliente o tipo de empresa": "Client or company type", "Coincidencia con el JD": "JD match", "Compatibilidad de horario": "Schedule compatibility", "Compatibilidad de ubicación": "Location compatibility", "Comunicación salarial": "Salary communication", "Con dudas": "Unsure", "Con lo que te conté, ¿te sigue interesando la vacante?": "With what I've told you, are you still interested in the role?", "Conocer a la persona": "Getting to know the person", "Consistencia de la información": "Information consistency", "Consistencia documental": "Documentation consistency", "Contractor / proveedor de servicios": "Contractor / service provider", "Contratación": "Hiring", "Contratado": "Hired", "Control order subida a CEIPAL": "Control order uploaded to CEIPAL", "Copia la nota de la pestaña Entrevista. Es la única visual que tiene QA.": "Copy the note from the Interview step. It's the only view QA has.", "Copiar nota": "Copy note", "Copié a QA (Anderson) en el correo del submittal": "I cc'd QA (Anderson) on the submittal email", "Crear y empezar la entrevista": "Create and start the interview", "Cuando el candidato no cumple un must-have (años, inglés, salario) pero lo envías por buen fit.": "When the candidate misses a must-have (years, English, salary) but you submit them as a good fit.", "Cuando quede contratado, márcalo aquí": "When they're hired, mark it here", "Cubierto": "Covered", "Cumplimiento del proceso": "Process compliance", "Cuéntale los próximos pasos: video, CV, revisión del cliente y cuándo le escribes (Q004).": "Tell them the next steps: video, CV, client review and when you'll reach out (Q004).", "Cuéntame tu experiencia: cargo, empresa y mes/año de entrada y salida": "Tell me about your experience: role, company and start/end month and year", "Debe reflejar que ya se envió.": "It should show it was already submitted.", "Deja el pantallazo o el correo en CEIPAL.": "Leave the screenshot or email in CEIPAL.", "Dependencia": "Direct hire", "Desistió": "Withdrew", "Desistió del proceso": "Withdrew from the process", "Desplazamiento razonable.": "Reasonable commute.", "Disponibilidad": "Availability", "DISPONIBILIDAD": "AVAILABILITY", "Disponibilidad y modalidad": "Availability and work model", "Disponibilidad, turno, zona horaria y flexibilidad validados.": "Availability, shift, time zone and flexibility validated.", "Documenta y escala": "Document and escalate", "Documentación requerida": "Required documentation", "Documentos": "Documents", "Documentos y envío. No tienes que hacerlo todo al terminar la entrevista: vuelve cuando subas cada cosa.": "Documents and submission. You don't have to do it all right after the interview: come back as you upload each item.", "Documenté y escalé cualquier riesgo de retiro": "I documented and escalated any attrition risk", "Déjalo vacío si no aplica": "Leave empty if not applicable", "Días de descanso": "Days off", "Días laborales": "Working days", "Ej.: Agente de cobranzas en Konecta, mar 2022 – ene 2025": "E.g.: Collections agent at Konecta, Mar 2022 – Jan 2025", "Ej.: Bogotá, Kennedy": "E.g.: Bogotá, Kennedy", "Ej.: bus, 40 minutos": "E.g.: bus, 40 minutes", "Ej.: hija de 14 años": "E.g.: 14-year-old daughter", "El candidato avanza": "The candidate moves forward", "El candidato entiende el proceso y el rol (evita desistimientos).": "The candidate understands the process and the role (prevents dropouts).", "El candidato reportó viajes o vacaciones.": "The candidate reported trips or vacations.", "El candidato tiene expectativas realistas del rol y del proceso": "The candidate has realistic expectations of the role and process", "El cliente no avanzó con el candidato": "The client didn't move forward with the candidate", "El estado del candidato se actualizó en cada paso.": "The candidate status was updated at each step.", "El nivel de inglés se evaluó bien y cumple el requisito del cliente.": "English level was properly assessed and meets the client's requirement.", "El paquete va completo y sin errores evitables.": "The package is complete and free of avoidable errors.", "El perfil enviado encaja con lo que espera el cliente.": "The submitted profile fits what the client expects.", "El resultado del CV and JD evaluator contra el JD. Es la única forma en que QA valida el uso de la IA: siempre adjúntalo.": "The CV and JD evaluator result against the JD. It's the only way QA validates AI use: always attach it.", "El salario enviado está dentro del rango aprobado por el cliente.": "The submitted salary is within the client's approved range.", "El salario enviado está dentro del rango del cliente": "The submitted salary is within the client's range", "El salario se explicó claro, consistente y sin engaños.": "The salary was explained clearly, consistently and honestly.", "El submittal no generará correcciones para el POC, QA o el cliente.": "The submittal won't cause rework for the POC, QA or the client.", "Elige el motivo. Su información queda guardada.": "Choose the reason. Their information stays saved.", "Empleo de 6 meses o menos: documenta el motivo": "Job of 6 months or less: document the reason", "Empleos cortos": "Short jobs", "Empleos cortos = riesgo de retiro (Q021). Documenta el motivo de cada uno; si son varios seguidos, valídalo con tu supervisor.": "Short jobs = attrition risk (Q021). Document the reason for each; if there are several in a row, check with your supervisor.", "En contratación": "In hiring", "En duda": "Unsure", "En entrevista": "Interviewing", "En proceso con el cliente": "In process with the client", "Entrevista": "Interview", "Entrevista con el Hiring Manager y cualquier cambio en las condiciones.": "Interview with the Hiring Manager and any change in conditions.", "Enviado al cliente": "Submitted to client", "Es Critical (Q001 y Q020): explícale salario, tipo de contrato y frecuencia de pago antes de enviarlo. Si no tienes el dato, no lo supongas: confírmalo y le escribes.": "It's Critical (Q001 and Q020): explain salary, contract type and pay frequency before submitting. If you don't have the info, don't guess: confirm it and get back to them.", "Es obligatorio: QA solo puede validar el uso de la IA con este pantallazo en CEIPAL.": "Mandatory: QA can only validate AI use with this screenshot in CEIPAL.", "Escribe el valor en números para compararlo con el rango.": "Write the amount in numbers to compare it with the range.", "Escribe la fecha de inicio en el Submittal para que el manager la tenga clara.": "Write the start date in the Submittal so the manager has it clear.", "Ese archivo no es un respaldo válido.": "That file isn't a valid backup.", "Estabilidad laboral": "Employment stability", "Estado del candidato actualizado en CEIPAL": "Candidate status updated in CEIPAL", "Estado en ATS": "ATS status", "Estado en CEIPAL actualizado a contratado": "CEIPAL status updated to hired", "Estado:": "Status:", "Estructura y frecuencia de pago explicadas y entendidas (incluye proveedor de servicios).": "Pay structure and frequency explained and understood (includes service provider).", "Estudia": "Studying", "Estudia: valida que las clases no se crucen con el turno": "Studying: make sure classes don't overlap with the shift", "Está en otros procesos: riesgo de perderlo": "In other processes: risk of losing them", "Expectativa salarial": "Salary expectation", "Expectativas realistas": "Realistic expectations", "Expediente creado.": "Record created.", "Experiencia del candidato": "Candidate experience", "Experiencia relevante": "Relevant experience", "Experiencia, herramientas, inglés y justificación documentados": "Experience, tools, English and justification documented", "Expliqué el modelo de pago y el candidato lo entendió": "I explained the pay model and the candidate understood it", "Expliqué el salario claro y sin contradicciones": "I explained the salary clearly and consistently", "Explícaselo antes de cerrar la llamada: horario, descanso y responsabilidades. QA lo revisa (Q002).": "Explain it before ending the call: schedule, days off and responsibilities. QA checks it (Q002).", "Factores de continuidad": "Continuity factors", "Fecha de envío": "Submission date", "Fecha de inicio": "Start date", "Fecha de la entrevista con el cliente o Hiring Manager": "Date of the client or Hiring Manager interview", "Fechas completas en el CV": "Complete dates on the CV", "Fechas, o \"ninguno\"": "Dates, or \"none\"", "Feedback del cliente": "Client feedback", "Fluidez, vocabulario, comprensión": "Fluency, vocabulary, comprehension", "Formato claro, legible, un solo idioma, sin Spanglish.": "Clear, readable format, one language, no Spanglish.", "Frecuencia de pago": "Pay frequency", "Gobierno y ATS": "Governance and ATS", "Hecho con el Solvo CV Generator, un solo idioma (sin Spanglish) y mes/año en cada empleo.": "Made with the Solvo CV Generator, one language (no Spanglish) and month/year for each job.", "Herramientas validadas": "Validated tools", "Hobbies": "Hobbies", "Horario": "Schedule", "Horario (ej. 8 a.m. a 5 p.m.)": "Schedule (e.g. 8 a.m. to 5 p.m.)", "Híbrido": "Hybrid", "Inglés": "English", "INGLÉS": "ENGLISH", "Inglés que pide el cliente": "English the client requires", "Inglés: no aplica para esta vacante": "English: not required for this role", "Ingresos actuales": "Current income", "Inicio inmediato.": "Immediate start.", "Interés en la vacante": "Interest in the role", "Ir al Submittal →": "Go to Submittal →", "JD cargado": "JD loaded", "Justificación en notas": "Justification in notes", "La comunicación fue clara, profesional y con seguimiento.": "Communication was clear, professional and with follow-up.", "La experiencia real coincide con lo que pide el cliente (seniority y funciones).": "Actual experience matches what the client asks for (seniority and duties).", "La ubicación sirve para la modalidad y el desplazamiento.": "Location works for the work model and commute.", "Las control orders siempre se auditan. Revisa los pasos en naranja.": "Control orders are always audited. Check the steps in orange.", "Las notas explican por qué el perfil cumple con los requisitos.": "Notes explain why the profile meets the requirements.", "Le confirmé por escrito salario, tipo de contrato, frecuencia de pago y fecha de inicio": "I confirmed salary, contract type, pay frequency and start date in writing", "Le hice una quick call con las nuevas condiciones y subí a CEIPAL el pantallazo de WhatsApp con su aceptación": "I did a quick call with the new conditions and uploaded the WhatsApp screenshot of their acceptance to CEIPAL", "Llamada": "Call", "Lo pensará": "Will think about it", "Lo que QA revisa en la auditoría post hire (control order).": "What QA checks in the post-hire audit (control order).", "Lo que dijo el manager, fortalezas y dudas.": "What the manager said, strengths and concerns.", "Los candidatos se guardan en este navegador. Descarga un respaldo de vez en cuando, o para pasarlos a otro computador.": "Candidates are saved in this browser. Download a backup now and then, or to move them to another computer.", "Los riesgos de salida se identificaron, documentaron y escalaron.": "Attrition risks were identified, documented and escalated.", "Límite de uso alcanzado, intenta más tarde.": "Usage limit reached, try again later.", "Manual": "Manual", "Marca el estado del candidato como Rechazado y elige el motivo.": "Set the candidate status to Rejected and choose the reason.", "Marca si pasa a la siguiente etapa en la sección Cierre.": "Mark whether they move to the next stage in the Closing section.", "Marcado a mano": "Marked manually", "Marcar como rechazado": "Mark as rejected", "Mes y año en cada empleo, línea de tiempo clara.": "Month and year for each job, clear timeline.", "Mis notas justifican por qué el perfil cumple": "My notes justify why the profile fits", "Modalidad": "Work model", "Modalidad de la entrevista": "Interview format", "Modelo de compensación": "Compensation model", "Motivo de retiro / cambio": "Reason for leaving / change", "Motivo:": "Reason:", "Máximo 1:30 a 2 minutos, en horizontal, fondo neutro (blanco o pastel) y sin ruido de fondo.": "1:30 to 2 minutes max, horizontal, neutral background (white or pastel) and no background noise.", "NOTAS ADICIONALES": "ADDITIONAL NOTES", "Nivel": "Level", "Nivel de inglés (haz 3 preguntas en inglés: introduce yourself, your last role, why this job)": "English level (ask 3 questions in English: introduce yourself, your last role, why this job)", "No": "No", "No acepta las condiciones": "Doesn't accept the conditions", "No aceptó condiciones / salario": "Didn't accept conditions / salary", "No aplica": "Not applicable", "No aplica para esta vacante": "Not required for this role", "No avanza": "Doesn't move forward", "No cumple el turno completo: no lo envíes sin validarlo con tu supervisor (Q019).": "Can't cover the full shift: don't submit without checking with your supervisor (Q019).", "No hay candidatos con ese filtro.": "No candidates match that filter.", "No hay un patrón repetido de cargos cortos.": "No repeated pattern of short jobs.", "No hubo información contradictoria, confusa o engañosa.": "There was no contradictory, confusing or misleading information.", "No lo envíes. Marca el estado como Rechazado o Desistió con el motivo.": "Don't submit. Set the status to Rejected or Withdrew with the reason.", "No pasó el screening": "Didn't pass the screening", "No se presentó": "No-show", "No se pudo descargar el respaldo.": "Couldn't download the backup.", "No se pudo usar la IA; queda la detección automática.": "Couldn't use AI; automatic detection still works.", "Nombre del candidato": "Candidate name", "Nota copiada. Pégala en CEIPAL.": "Note copied. Paste it in CEIPAL.", "Nota de justificación en CEIPAL (+ pantallazo del aval de tu supervisor)": "Justification note in CEIPAL (+ screenshot of your supervisor's approval)", "Nota del screening pegada en CEIPAL": "Screening note pasted in CEIPAL", "Notas en ATS": "ATS notes", "Notas en CEIPAL completas y actualizadas": "CEIPAL notes complete and up to date", "Notas en CEIPAL completas, actualizadas y trazables.": "CEIPAL notes complete, up to date and traceable.", "Nueva vacante (pegaré el JD)": "New role (I'll paste the JD)", "Nuevo candidato": "New candidate", "Obligatorios": "Required", "Observaciones del inglés": "English notes", "Oferta, salario y cierre": "Offer, salary and closing", "Opcional · también se analizan": "Optional · also analyzed", "Otro": "Other", "Otros procesos u ofertas": "Other processes or offers", "Pantallazo del scorecard de IA Matching (CV vs. JD)": "AI Matching scorecard screenshot (CV vs. JD)", "Pasar a contratación": "Move to hiring", "Pega el JD en \"Vacante y JD\" y aquí verás qué requisitos cumple el candidato según lo que vas anotando.": "Paste the JD in \"Role and JD\" and you'll see here which requirements the candidate meets as you take notes.", "Pega el JD para compararlo con el candidato": "Paste the JD to compare it with the candidate", "Pegar JD": "Paste JD", "Pendiente": "Pending", "Perfil": "Profile", "PERFIL": "PROFILE", "Personas a cargo": "Dependents", "Planea estudiar": "Plans to study", "Planea mudarse o cambiar de residencia": "Plans to move or change residence", "Pon el tope del rango en \"Vacante y JD\" para compararlo.": "Enter the top of the range in \"Role and JD\" to compare it.", "Pon en \"Vacante y JD\" el nivel que pide el cliente para compararlo.": "Enter the client's required level in \"Role and JD\" to compare it.", "Posición cancelada o en pausa": "Position canceled or on hold", "Preguntas respondidas": "Questions answered", "Pregúntale cuándo empezaría y en qué horario. Déjalo en la nota (Q019).": "Ask when they'd start and at what times. Note it down (Q019).", "Pregúntale cuánto preaviso debe dar a su empresa actual y confírmalo en \"¿Cuándo podrías iniciar?\".": "Ask how much notice they must give their current employer and confirm it in \"When could you start?\".", "Pregúntale quién lo apoya con el cuidado durante el turno y déjalo en la nota.": "Ask who helps with caregiving during the shift and note it down.", "Pregúntale qué días y horas tiene clase y valida que no se crucen con el turno (Q019).": "Ask what days and times they have class and make sure they don't overlap with the shift (Q019).", "Presencial": "On-site", "Primero llena algunos campos.": "Fill in some fields first.", "Proceso cerrado": "Process closed", "Prueba Kudert o Excel": "Kudert or Excel test", "Puede iniciar": "Can start", "Pídele que te repita cómo entendió el salario y la forma de pago, para evitar malentendidos (Q020).": "Ask them to repeat how they understood the salary and payment method, to avoid misunderstandings (Q020).", "QA pide profundidad: pregúntale en qué empresa la usó, para qué y un ejemplo concreto (Q007).": "QA asks for depth: ask where they used it, what for, and a concrete example (Q007).", "Radar QA": "QA radar", "Rechazado": "Rejected", "Rechazado por el cliente": "Rejected by the client", "Relaciona su experiencia con los must-have del JD: es la evidencia de Q017.": "Link their experience to the JD must-haves: it's the evidence for Q017.", "Relaciona su experiencia con los requisitos del JD": "Link their experience to the JD requirements", "Remoto": "Remote", "Respaldo descargado.": "Backup downloaded.", "Restricciones": "Restrictions", "Resuelve sus dudas antes de enviarlo (Q004).": "Clear up their doubts before submitting (Q004).", "Resultado de la entrevista con el cliente": "Client interview result", "Retención": "Retention", "Revisa que no tenga errores antes de mandarlo al manager.": "Check it has no errors before sending it to the manager.", "Revisado con IA ✨": "Reviewed with AI ✨", "Revisando con IA…": "Reviewing with AI…", "Revisé todo para que el POC o el cliente no pidan correcciones": "I reviewed everything so the POC or client won't ask for corrections", "Riesgo de perderlo: pregúntale en qué etapa va y qué le ofrecen. Muévete rápido con el envío y avísale a tu supervisor (Q022).": "Risk of losing them: ask what stage they're at and what they're offered. Move fast with the submission and tell your supervisor (Q022).", "Riesgo de reproceso": "Rework risk", "Riesgo de retiro": "Attrition risk", "Riesgo de retiro: pregúntale a dónde y cuándo. Si afecta la modalidad o la ubicación, escálalo a tu supervisor (Q022).": "Attrition risk: ask where and when. If it affects the work model or location, escalate to your supervisor (Q022).", "Salario": "Salary", "Salario (monto, moneda y periodo)": "Salary (amount, currency and period)", "Salario y condiciones": "Salary and conditions", "SALARIO Y CONDICIONES": "SALARY AND CONDITIONS", "Se explicó horario, modalidad, beneficios y disponibilidad requerida.": "Schedule, work model, benefits and required availability were explained.", "Se guarda solo mientras escribes.": "Saves automatically as you type.", "Se marca sola con tus notas; tócala si necesitas corregirla": "It checks itself from your notes; tap to correct it", "Se siguió el flujo y las políticas definidas.": "The defined flow and policies were followed.", "Se valida en \"Antes de enviar\"": "Validated in \"Before submitting\"", "Se validaron a fondo las habilidades y herramientas obligatorias.": "Required skills and tools were thoroughly validated.", "Seguí el flujo de reclutamiento y envío": "I followed the recruiting and submission flow", "Si el JD exige una certificación, debe reposar en CEIPAL.": "If the JD requires a certification, it must be in CEIPAL.", "Si no aparece en el hilo de CEIPAL, cópialo a mano.": "If they're not on the CEIPAL thread, cc them manually.", "Si recibes una oferta, ¿cuándo podrías iniciar?": "If you get an offer, when could you start?", "Si un empleo duró 6 meses o menos: ¿qué pasó?": "If a job lasted 6 months or less: what happened?", "Siguiente paso del proceso": "Next step in the process", "Siguiente paso: arma el Submittal (CV SOLVO, pantallazo del scorecard de IA y video).": "Next step: put together the Submittal (SOLVO CV, AI scorecard screenshot and video).", "Sin alertas por ahora.": "No alerts so far.", "Sin espacio o internet adecuado: riesgo para el trabajo remoto. Documéntalo (Q023).": "No suitable space or internet: risk for remote work. Document it (Q023).", "Sin nombre": "No name", "Sin vacante": "No role", "Sin viajes: queda así en la nota.": "No trips: it stays like that in the note.", "Solo en contratos de dependencia (los contractor no llevan control order).": "Only for direct-hire contracts (contractors don't have a control order).", "Solo en contratos de dependencia.": "Only for direct-hire contracts.", "Solo si el Hiring Manager la pide.": "Only if the Hiring Manager asks for it.", "Su experiencia real cumple lo que pide el cliente": "Their actual experience meets what the client asks for", "Su información queda guardada en \"Rechazados / desistieron\". Si no la necesitas:": "Their information stays saved in \"Rejected / withdrew\". If you don't need it:", "Submittal enviado con ubicación, tipo de trabajo, salario acordado y video": "Submittal sent with location, work type, agreed salary and video", "Sí": "Yes", "Talent Quality Intelligence · 28 criterios": "Talent Quality Intelligence · 28 criteria", "Tiene dudas sobre la vacante": "Has doubts about the role", "Tiene otros ingresos: pregúntale cuánto tiempo le dedica y si quiere volverlo su ingreso principal. Déjalo en la nota (Q022).": "Has other income: ask how much time they spend on it and whether they want it to become their main income. Note it down (Q022).", "Tiene viaje o ausencia: regístralo en el Submittal": "Has a trip or absence: record it in the Submittal", "Tip: si es para la misma vacante del candidato que tenías abierto, elígela en la lista y no tienes que volver a pegar el JD.": "Tip: if it's for the same role, pick it from the list and you won't have to paste the JD again.", "Tipo de contratación": "Contract type", "Tipo de contrato": "Contract type", "Toca uno para ver la evidencia": "Tap one to see the evidence", "Todo listo para cerrar como contratado": "All set to close as hired", "Todo lo que QA revisa en una auditoría post hire quedó listo.": "Everything QA checks in a post-hire audit is done.", "Todos": "All", "Todos los adjuntos requeridos están": "All required attachments are there", "Todos los adjuntos requeridos están y son válidos.": "All required attachments are there and valid.", "Todos los estados, de pipeline a contratado, deben quedar completos.": "All statuses, from pipeline to hired, must be complete.", "Tope del rango salarial (número)": "Top of salary range (number)", "Trabaja actualmente": "Currently working", "Trabajo y estudios": "Work and studies", "TRABAJO Y ESTUDIOS": "WORK AND STUDIES", "Transporte / lugar de trabajo": "Commute / workspace", "Transporte, disponibilidad futura y restricciones validados.": "Commute, future availability and restrictions validated.", "Tu nombre": "Your name", "Ubicación": "Location", "Ubicación o sede": "Location or site", "Un expediente por candidato: entrevista, submittal, cliente y contratación, con lo que audita QA en cada paso.": "One record per candidate: interview, submittal, client and hiring, with what QA audits at each step.", "Uso de IA y herramientas": "AI and tools usage", "Vacante": "Role", "Valida que no choque con el turno y déjalo escrito en la nota de CEIPAL (Q023).": "Make sure it doesn't clash with the shift and note it in CEIPAL (Q023).", "Validación de herramientas": "Tools validation", "Validación de idioma": "Language validation", "Validar el perfil": "Validate the profile", "Validé el nivel de inglés requerido": "I validated the required English level", "Viajes o ausencias escritos en el Submittal": "Trips or absences written in the Submittal", "Viajes o ausencias registrados en el Submittal": "Trips or absences recorded in the Submittal", "Viajes o vacaciones": "Trips or vacations", "Video con buena luz, fondo profesional y sin ruido": "Video with good lighting, professional background and no noise", "Video de presentación": "Intro video", "Vive con": "Lives with", "Ya no está interesado": "No longer interested", "Ya no está interesado: marca el estado como Desistió.": "No longer interested: set the status to Withdrew.", "Zona horaria del cliente": "Client time zone", "expediente": "record", "obligatorio para QA": "required for QA", "¿Borrar las respuestas? Toca otra vez": "Delete the answers? Tap again", "¿Cambiaron las condiciones, el horario o la vacante?": "Did the conditions, schedule or role change?", "¿Con quién vives?": "Who do you live with?", "¿Cuál es tu expectativa salarial?": "What's your salary expectation?", "¿Cómo llegarías a la oficina y cuánto tiempo tardas?": "How would you get to the office and how long does it take?", "¿Eliminar para siempre? Toca otra vez": "Delete permanently? Tap again", "¿En qué ciudad y barrio vives?": "What city and neighborhood do you live in?", "¿Estás de acuerdo con estas condiciones?": "Do you agree with these conditions?", "¿Estás en otros procesos o tienes otras ofertas?": "Are you in other processes or do you have other offers?", "¿Estás estudiando o piensas estudiar pronto?": "Are you studying or planning to study soon?", "¿Estás trabajando actualmente?": "Are you currently working?", "¿Hay algo a futuro que pueda limitar tu horario, asistencia o puntualidad?": "Is there anything coming up that could limit your schedule, attendance or punctuality?", "¿Le explicaste horario, días de descanso y responsabilidades?": "Did you explain the schedule, days off and responsibilities?", "¿Le explicaste los próximos pasos del proceso?": "Did you explain the next steps of the process?", "¿Le explicaste salario, tipo de contrato y frecuencia de pago?": "Did you explain the salary, contract type and pay frequency?", "¿Pasa a la siguiente etapa?": "Moves to the next stage?", "¿Piensas cambiar de residencia o mudarte en los próximos meses?": "Are you planning to move in the coming months?", "¿Por qué cumple con lo que pide el cliente?": "Why do they meet what the client asks for?", "¿Por qué saliste de tu último empleo o por qué buscas cambio?": "Why did you leave your last job or why are you looking for a change?", "¿Qué días y horas tienes clase?": "What days and times do you have class?", "¿Qué haces en tu tiempo libre? ¿Tienes otros ingresos (negocio, freelance, ventas)?": "What do you do in your free time? Do you have other income (business, freelance, sales)?", "¿Qué herramientas manejas? Dame un ejemplo concreto": "What tools do you use? Give me a concrete example", "¿Te repitió cómo entendió el salario y la forma de pago?": "Did they repeat how they understood the salary and payment method?", "¿Tienes alguna pregunta para mí?": "Do you have any questions for me?", "¿Tienes personas a cargo?": "Do you have dependents?", "¿Tienes un espacio adecuado para trabajar desde casa e internet estable?": "Do you have a suitable space to work from home and stable internet?", "¿Tienes viajes o vacaciones en los próximos 3 a 6 meses? ¿Ya con tiquetes?": "Do you have trips or vacations in the next 3 to 6 months? Already booked?", "← Candidatos": "← Candidates", "⏳ En proceso": "⏳ In process", "⚠️ A revisar": "⚠️ To review", "⚡ Desde tus notas": "⚡ From your notes", "⚡ Se marca solo cuando lo llenes en la entrevista": "⚡ Checks itself when you fill it in the interview", "✅ Contratación": "✅ Hiring", "✅ Contratados": "✅ Hired", "✅ Entrevista completa: lista para el checklist de envío": "✅ Interview complete: ready for the submission checklist", "✅ Marcar como contratado": "✅ Mark as hired", "✍️ Nota para CEIPAL": "✍️ CEIPAL note", "✓ Al día en lo que va del proceso": "✓ Up to date so far", "✨ Revisar con IA": "✨ Review with AI", "❌ No pasa a la siguiente etapa": "❌ Doesn't move to the next stage", "❌ Rechazados / desistieron": "❌ Rejected / withdrew", "⬆️ Cargar respaldo": "⬆️ Load backup", "⬇️ Respaldo": "⬇️ Backup", "＋ Nuevo candidato": "＋ New candidate", "🎉 Contratado con el expediente completo": "🎉 Hired with a complete record", "🎉 Expediente completo": "🎉 Record complete", "🎉 ¡Contratado! Expediente completo.": "🎉 Hired! Record complete.", "👥 Candidatos": "👥 Candidates", "💪 Fortalezas": "💪 Strengths", "📄 Vacante y JD": "📄 Role and JD", "📊 Criterios TQI": "📊 TQI criteria", "📋 Resumen de la entrevista": "📋 Interview summary", "📌 Recuerda escribir este viaje (fechas) en el Submittal y avisarle al manager (Q013). Si ya tiene tiquetes, pide las fechas exactas.": "📌 Remember to write this trip (dates) in the Submittal and tell the manager (Q013). If they already have tickets, ask for the exact dates.", "📎 Documentos para el submittal": "📎 Documents for the submittal", "📎 Submittal": "📎 Submittal", "📝 Notas de la entrevista": "📝 Interview notes", "🔎 JD vs. candidato": "🔎 JD vs. candidate", "🔎 Validación QA desde la entrevista": "🔎 QA validation from the interview", "🗑️ Eliminar candidato": "🗑️ Delete candidate", "🗣️ Pregunta": "🗣️ Ask", "✅ Tú": "✅ You", "🗺️ Mapa de los 28 criterios": "🗺️ Map of the 28 criteria", "🚨 Lo crítico": "🚨 Critical", "🚨 Revisa estos puntos críticos antes de enviar": "🚨 Check these critical points before submitting", "🚩 Alertas de la entrevista": "🚩 Interview alerts", "🚩 Alertas detectadas": "🚩 Alerts detected", "🤝 Proceso con el cliente": "🤝 Process with the client", "Cubierto en tus notas": "Covered in your notes", "Critical": "Critical", "High": "High", "Medium": "Medium", "Los 28 criterios": "The 28 criteria", "En verde: los que ya cubriste en esta entrevista": "In green: the ones you've already covered in this interview", "Todas": "All", "Todos los módulos": "All modules", "Buscar criterio… (ej. salario, CV, inglés)": "Search criteria… (e.g. salary, CV, English)", "Buscar por nombre o vacante…": "Search by name or role…", "Checklist": "Checklist", "No hay criterios con ese filtro.": "No criteria match that filter.", "QA revisa que:": "QA checks that:", "Se cubre en:": "Covered in:", "Cerrar": "Close", "Respuesta…": "Answer…", "Cualquier otra cosa que quieras dejar anotada…": "Anything else you want to note…", "Pega aquí el JD de la vacante. Detecto cargo, horario, modalidad, inglés, salario y requisitos.": "Paste the role's JD here. I'll detect the role, schedule, work model, English, salary and requirements.", "Job description": "Job description", "Nombre y apellido": "First and last name", "Detalle (opcional)": "Detail (optional)", "Experiencia y transparencia": "Experience and transparency", "Sostenibilidad (retención)": "Sustainability (retention)", "Gobierno y operación": "Governance and operations", "Enviar al cliente": "Submit to client", "Entrevista con el cliente": "Client interview", "Envío": "Submit", "Contrato": "Contract", "Hablas con el candidato y llenas sus respuestas.": "You talk to the candidate and fill in their answers.", "Durante la llamada.": "During the call.", "Respondiste todas las preguntas con ✱.": "You answered all questions marked ✱.", "Armas el paquete del candidato y se lo mandas al Hiring Manager.": "You put together the candidate's package and send it to the Hiring Manager.", "Después de la entrevista. Puedes volver cuando tengas cada documento.": "After the interview. Come back as you get each document.", "Mandaste el submittal con todo y copiaste a QA.": "You sent the full submittal and cc'd QA.", "El Hiring Manager entrevista al candidato y te da su respuesta.": "The Hiring Manager interviews the candidate and gives you an answer.", "Cuando el cliente agenda y hace su entrevista.": "When the client schedules and holds the interview.", "Anotaste el resultado y el feedback del cliente.": "You noted the client's result and feedback.", "El candidato fue seleccionado: le confirmas la oferta y subes los papeles.": "The candidate was selected: you confirm the offer and upload the paperwork.", "Cuando el cliente dice que sí.": "When the client says yes.", "Todo está en CEIPAL y el estado dice contratado.": "Everything is in CEIPAL and the status says hired.", "Pantallazo de la IA (CV vs. JD)": "AI screenshot (CV vs. JD)", "Certificaciones del JD": "JD certifications", "Nota de la entrevista en CEIPAL": "Interview note in CEIPAL", "Nota de justificación": "Justification note", "Viajes escritos en el submittal": "Trips written in the submittal", "Submittal enviado al manager": "Submittal sent to the manager", "Copia a QA (Anderson)": "Cc QA (Anderson)", "Estado actualizado en CEIPAL": "Status updated in CEIPAL", "Quick call + pantallazo de WhatsApp": "Quick call + WhatsApp screenshot", "Oferta confirmada por escrito": "Offer confirmed in writing", "Control order en CEIPAL": "Control order in CEIPAL", "Aceptación del candidato en CEIPAL": "Candidate's acceptance in CEIPAL", "Estado \"contratado\" en CEIPAL": "\"Hired\" status in CEIPAL", "Documentos del candidato": "Candidate documents", "Enviar": "Submit", "¿Cambió algo?": "Did anything change?", "Cerrar el paso": "Close the step", "Papeles": "Paperwork", "si aplica": "if applicable", "💡 Qué es": "💡 What it is", "⏰ Cuándo": "⏰ When", "✅ Listo cuando": "✅ Done when", "📧 Ya enviaste el submittal": "📧 You already sent the submittal", "Cambiar estado a \"Enviado al cliente\"": "Change status to \"Submitted to client\"", "👎 El cliente no avanzó con el candidato": "👎 The client didn't move forward with the candidate", "👍 ¡El candidato avanza!": "👍 The candidate moves forward!", "🎉 Todo listo": "🎉 All set", "🎉 Marcar como contratado": "🎉 Mark as hired", "🔎 ¿La entrevista quedó bien para QA?": "🔎 Is the interview QA-ready?", "Se marca solo con lo que respondiste en la entrevista.": "It checks itself from your interview answers.", "Toca cada tarjeta cuando lo hagas. Se pone verde ✓": "Tap each card when you do it. It turns green ✓", "🧭 ¿Cómo funciona?": "🧭 How does it work?", "Cada candidato pasa por 4 pasos": "Every candidate goes through 4 steps", "Al final marcas el estado: 🎉 Contratado, ❌ Rechazado o 🚪 Desistió. Nada se borra solo: el candidato queda guardado con todo lo que llenaste.": "At the end you set the status: 🎉 Hired, ❌ Rejected or 🚪 Withdrew. Nothing is deleted automatically: the candidate stays saved with everything you filled in."};
+
+/* --- Inglés para Candidatos QA --- */
+Object.assign(EN,QA_EN);
+const QA_STEPEN={Entrevista:'Interview',Submittal:'Submittal',Cliente:'Client','Contratación':'Hiring','Enviar al cliente':'Submit to client','Entrevista con el cliente':'Client interview'};
+PATS.push(
+ [/^(\d+)\/(\d+) obligatorios$/,m=>`${m[1]}/${m[2]} required`],[/^Obligatorios (\d+)\/(\d+)$/,m=>`Required ${m[1]}/${m[2]}`],
+ [/^🚩 (\d+) alertas?$/,m=>`🚩 ${m[1]} alert${m[1]==='1'?'':'s'}`],[/^(\d+) en proceso$/,m=>`${m[1]} in process`],
+ [/^(\d+)\. (Entrevista con el cliente|Enviar al cliente|Entrevista|Submittal|Cliente|Contratación)$/,m=>`${m[1]}. ${QA_STEPEN[m[2]]}`],[/^(\d+)% coincide$/,m=>`${m[1]}% match`],
+ [/^⏳ Te faltan (\d+) obligatorios? para QA$/,m=>`⏳ ${m[1]} required item${m[1]==='1'?'':'s'} missing for QA`],
+ [/^⚠️ Contratado con (\d+) pendientes$/,m=>`⚠️ Hired with ${m[1]} pending`],
+ [/^⚠️ Contratado, pero faltan (\d+) pasos para que el expediente quede completo$/,m=>`⚠️ Hired, but ${m[1]} steps are missing to complete the record`],
+ [/^👉 (Entrevista con el cliente|Enviar al cliente|Entrevista|Submittal|Cliente|Contratación): (.+?)( \(\+\d+\))?$/,m=>`👉 ${QA_STEPEN[m[1]]}: ${EN[m[2]]||m[2]}${m[3]||''}`],
+ [/^Expediente de (.+) creado\.$/,m=>`Record for ${m[1]} created.`],[/^(.+) eliminado\.$/,m=>`${m[1]} deleted.`],
+ [/^Cumple el (\w+) que pide el cliente\.$/,m=>`Meets the ${m[1]} the client requires.`],
+ [/^Contratado\. Te faltan (\d+) pasos del expediente\.$/,m=>`Hired. ${m[1]} record steps still missing.`],
+ [/^Respaldo cargado: (\d+) candidatos?\.$/,m=>`Backup loaded: ${m[1]} candidate${m[1]==='1'?'':'s'}.`],
+ [/^Falta documento: (.+)$/,m=>`Missing document: ${EN[m[1]]||m[1]}`],[/^No cumple: (.+)$/,m=>`Doesn't meet: ${m[1]}`],[/^Sin evidencia: (.+)$/,m=>`No evidence: ${m[1]}`],
+ [/^Candidato: (.+)$/,m=>`Candidate: ${m[1]}`],[/^Expectativa: (.+)$/,m=>`Expectation: ${m[1]}`],[/^Coincide: (.+)$/,m=>`Match: ${m[1]}`],
+ [/^(\d+)\+ años de experiencia$/,m=>`${m[1]}+ years of experience`],[/^Salario hasta (.+)$/,m=>`Salary up to ${m[1]}`],[/^Inglés (\w+)$/,m=>`English ${m[1]}`],
+ [/^(.*) · creado (.+)$/,m=>`${EN[m[1]]||m[1]} · created ${m[2]}`],[/^(.*) · actualizado (.+)$/,m=>`${EN[m[1]]||m[1]} · updated ${m[2]}`],
+ [/^Paso (\d) de 4$/,m=>`Step ${m[1]} of 4`],[/^Siguiente: (.+) →$/,m=>`Next: ${QA_STEPEN[m[1]]||m[1]} →`],[/^· Faltan (\d+) cosas en todo el expediente$/,m=>`· ${m[1]} items missing in the whole record`],
+ [/^Dentro del rango \(tope (.+)\)\.$/,m=>`Within range (cap ${m[1]}).`]);
+
 /* ================== Búsqueda global ================== */
 function globalSearch(q){
   const n=norm(q),R=[];if(!n)return R;
@@ -1675,6 +2671,8 @@ function globalSearch(q){
   if(norm('fecha de ingreso start date calculadora').includes(n))add('ingreso','Calculadora de fecha de ingreso','Días mínimos y cortes por país');
   PAGOS.forEach(x=>{if(norm(x.pais+x.resp+x.tipo+x.pago+' pago metodo banco').includes(n))add('pagos',x.pais+' · '+x.resp,x.tipo+' · '+x.pago)});
   SLA_PH.forEach(([t,h,x])=>{if(norm(t+(x||'')+' sla prehiring').includes(n))add('sla',t,h+' horas hábiles')});
+  QA_CRIT.forEach(c=>{if(norm(c.join(' ')+' qa tqi criterio auditoria').includes(n))add('qa',c[0]+' · '+c[1],QA_SEV[c[2]][0]+' · '+c[4])});
+  QA_B.forEach(b=>{if(norm(b.t+' '+(b.qs||[]).join(' ')+' entrevista screening').includes(n))add('qa','Bloque '+b.n+' · '+b.t,'Candidatos QA · Entrevista')});
   NOSIGUE.concat(PAUSA).forEach(([es,en])=>{if(norm(es+en).includes(n))add('status',en,es)});
   SUPQ.forEach(([q,a])=>{if(norm(q+a).includes(n))add('sups',q,a.slice(0,80))});if(norm('supervisor salario script expectativa bonos rango').includes(n)||n.includes('supervisor'))add('sups','Salario y script de Supervisores','Rangos JR, SP y SR por país');
   DATA.ceipal.notas.forEach(s=>{if(norm(s.nota+s.uso).includes(n))add('ceipal',s.nota,s.uso)});
@@ -1691,7 +2689,7 @@ $('gsearch').addEventListener('keydown',e=>{if(e.key!=='Enter')return;const r=gl
 
 /* ================== Navegación ================== */
 let VIEW='proceso';
-const GROUPS=[['Equipo',['novedades']],['Proceso',['proceso','ceipal','status','sla','ingreso','followup','funnels']],['Generadores',['jd','entrevista','plantillas']],['Contacto',['contactar','objeciones','horarios']],['Compensación',['contratos','pagos','salarios','peru','sups']],['Directorio',['sites','links','accesos']]];
+const GROUPS=[['Equipo',['novedades']],['Proceso',['proceso','ceipal','qa','status','sla','ingreso','followup','funnels']],['Generadores',['jd','entrevista','plantillas']],['Contacto',['contactar','objeciones','horarios']],['Compensación',['contratos','pagos','salarios','peru','sups']],['Directorio',['sites','links','accesos']]];
 const tabName=k=>(TABS.find(t=>t[0]===k)||[k,k])[1];
 $('drawer').innerHTML=`<div class="dhead"><span class="brand">Cositas <span>TA</span></span><button class="btn sm" type="button" data-dclose>Cerrar</button></div>`+
   GROUPS.map(([g,ks])=>`<div class="dgroup"><div class="lbl">${esc(g==='Proceso'?'Procesos':g)}</div>${ks.map(k=>`<button class="ditem" type="button" data-tab="${k}">${esc(tabName(k))}</button>`).join('')}</div>`).join('');
@@ -1699,7 +2697,11 @@ function openDrawer(){$('dscrim').hidden=false;$('menuBtn').setAttribute('aria-e
 function closeDrawer(){if($('dscrim').hidden)return;$('dscrim').hidden=true;$('menuBtn').setAttribute('aria-expanded','false');$('menuBtn').focus()}
 $('langBtn').onclick=()=>{const nl=LANG==='en'?'es':'en';store.set('lang',nl);
   const iv=store.get('iv',null);if(iv){iv.lang=nl;store.set('iv',iv)}
-  location.reload()};
+  setLangLive(nl)};
+function setLangLive(nl){LANG=nl;document.documentElement.lang=nl;
+  if(nl==='en'){trStart();trRoot(document.body)}else{if(TR_OBS){TR_OBS.disconnect();TR_OBS=null}TR_ORIG.forEach((o,n)=>{if(n.isConnected)n.nodeValue=o});TR_ORIG.clear();TR_AORIG.forEach(([el,a,o])=>{if(el.isConnected)el.setAttribute(a,o)});TR_AORIG.length=0}
+  try{JDOUT=nl==='en'?'wa_en':'wa'}catch(e){}
+  try{go(VIEW)}catch(e){location.reload()}}
 $('menuBtn').onclick=()=>$('dscrim').hidden?openDrawer():closeDrawer();
 $('dscrim').addEventListener('click',e=>{if(e.target.id==='dscrim'||e.target.closest('[data-dclose]'))closeDrawer()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
@@ -1710,7 +2712,7 @@ function go(k){
   if(location.hash.slice(1)!==k)history.replaceState(null,'','#'+k);
   store.set('tab',k);window.scrollTo(0,0);
   if(k==='ceipal'){$('ckExists').value=CK.exists;$('ckActive').value=CK.active;$('ckLast').value=CK.last;$('ckDate').value=CK.date;$('ckTime').value=CK.time;ceipalCheck()}
-  if(k==='followup')renderFU();if(k==='jd'){renderJD();$('jdAI').hidden=!SAMPLE}if(k==='entrevista'){renderIV();$('ivAI').hidden=!SAMPLE}if(k==='salarios')renderSal();if(k==='status')renderST();if(k==='sla')renderSLA();if(k==='pagos')renderPG();if(k==='ingreso')renderING();if(k==='funnels')renderFN();if(k==='plantillas')renderTPL();if(k==='peru')renderPE();if(k==='sups')renderSup();if(k==='sites')renderSites();if(k==='links')renderLinks();if(k==='horarios')renderHor();if(k==='contactar')renderCT();
+  if(k==='followup')renderFU();if(k==='jd'){renderJD();$('jdAI').hidden=!SAMPLE}if(k==='entrevista'){renderIV();$('ivAI').hidden=!SAMPLE}if(k==='salarios')renderSal();if(k==='status')renderST();if(k==='sla')renderSLA();if(k==='qa')renderQA();if(k==='pagos')renderPG();if(k==='ingreso')renderING();if(k==='funnels')renderFN();if(k==='plantillas')renderTPL();if(k==='peru')renderPE();if(k==='sups')renderSup();if(k==='sites')renderSites();if(k==='links')renderLinks();if(k==='horarios')renderHor();if(k==='contactar')renderCT();
 }
 window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(V[h]&&h!==VIEW)go(h)});
 setInterval(()=>{if(VIEW==='sla'&&$('slaOut'))slaCalc();if(VIEW==='horarios')renderHor();if(VIEW==='contactar')renderCT()},30000);
@@ -1796,7 +2798,7 @@ if(['ckExists','ckActive','ckLast','jdMod','salPais','sPais','sComp','sOff','hMe
 
 const h0=location.hash.slice(1);
 go(V[h0]?h0:(V[store.get('tab','proceso')]?store.get('tab','proceso'):'proceso'));
-(async()=>{try{if(window.claude&&window.claude.use){SAMPLE=await window.claude.use('sample');if(VIEW==='jd'&&$('jdAI'))$('jdAI').hidden=!SAMPLE}}catch(e){}})();
+(async()=>{try{if(window.claude&&window.claude.use){SAMPLE=await window.claude.use('sample');if(VIEW==='jd'&&$('jdAI'))$('jdAI').hidden=!SAMPLE;if($('qaAIbtn'))$('qaAIbtn').hidden=!SAMPLE}}catch(e){}})();
 </script>
 
 </body></html>
